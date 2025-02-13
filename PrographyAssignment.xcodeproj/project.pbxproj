@@ -10,6 +10,7 @@
 		5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE802D5DCB5C00527C8E /* HomeVC.swift */; };
 		5131DE852D5DD10300527C8E /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */; };
 		5131DE862D5DD10300527C8E /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */; };
+		5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE8C2D5DDEF100527C8E /* UIViewController+.swift */; };
 		515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B12D5DC22C00FC0957 /* Assets.xcassets */; };
 		515C38BE2D5DC22C00FC0957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */; };
 		515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C38B02D5DC22C00FC0957 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 		5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		5131DE882D5DDA9A00527C8E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5131DE8C2D5DDEF100527C8E /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		515C38952D5DC20A00FC0957 /* PrographyAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrographyAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515C38B02D5DC22C00FC0957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515C38B12D5DC22C00FC0957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				5131DE7E2D5DC7F900527C8E /* CoreData */,
 				5131DE7F2D5DC82100527C8E /* Fonts */,
 				5131DE872D5DD25B00527C8E /* Extentions */,
+				5131DE892D5DDD9B00527C8E /* Components */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -104,8 +107,16 @@
 		5131DE872D5DD25B00527C8E /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				5131DE8C2D5DDEF100527C8E /* UIViewController+.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		5131DE892D5DDD9B00527C8E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		515C388C2D5DC20A00FC0957 = {
@@ -215,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */,
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
 				515C38C12D5DC22C00FC0957 /* PrographyAssignment.xcdatamodeld in Sources */,
