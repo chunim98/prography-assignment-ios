@@ -1,5 +1,5 @@
 //
-//  CarouselCardCell.swift
+//  CarouselCell.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/13/25.
@@ -7,10 +7,11 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 
-final class CarouselCardCell: UICollectionViewCell {
-    static let identifier = "CarouselCardCell"
+final class CarouselCell: UICollectionViewCell {
+    static let identifier = "CarouselCell"
     
     // MARK: Components
     
@@ -51,6 +52,7 @@ final class CarouselCardCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        // 콘텐츠 뷰 구성
         contentView.backgroundColor = .gray
         contentView.layer.cornerRadius = 28
         contentView.clipsToBounds = true
@@ -76,8 +78,21 @@ final class CarouselCardCell: UICollectionViewCell {
         gradientView.snp.makeConstraints { $0.edges.equalToSuperview() }
         labelVStack.snp.makeConstraints { $0.edges.equalToSuperview().inset(16) }
     }
+    
+    // MARK: Configure Components
+    
+    func configure(_ data: CarouselCellData) {
+        let url = URL(string: data.backDropPath)
+        backImageView.kf.indicatorType = .activity
+        backImageView.kf.setImage(with: url)
+        
+        titleLabel.text = data.title
+        overViewLabel.text = data.overview
+//                let data = try? Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/w500/5ZoI48Puf5i5FwI6HOpunDuJOw0.jpg")!)
+//                backImageView.image = UIImage(data: data!)
+    }
 }
 
 #Preview(traits: .fixedLayout(width: 316, height: 205)) {
-    CarouselCardCell()
+    CarouselCell()
 }

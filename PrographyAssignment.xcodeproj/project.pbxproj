@@ -11,6 +11,16 @@
 		5131DE852D5DD10300527C8E /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */; };
 		5131DE862D5DD10300527C8E /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */; };
 		5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE8C2D5DDEF100527C8E /* UIViewController+.swift */; };
+		5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE912D5DE5DB00527C8E /* BackdropCarouselView.swift */; };
+		5131DE962D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE942D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift */; };
+		5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE952D5DE69900527C8E /* UIEdgeInsets+.swift */; };
+		5131DE992D5DEA1B00527C8E /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE982D5DEA1B00527C8E /* CarouselCell.swift */; };
+		5131DE9B2D5DEC0D00527C8E /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE9A2D5DEC0A00527C8E /* UIFont+.swift */; };
+		5131DE9D2D5DF3C600527C8E /* CarouselGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE9C2D5DF3C600527C8E /* CarouselGradientView.swift */; };
+		5131DE9F2D5DFC2E00527C8E /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE9E2D5DFC2B00527C8E /* UICollectionView+.swift */; };
+		5131DEA52D5E1DDE00527C8E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5131DEA42D5E1DDE00527C8E /* Kingfisher */; };
+		5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */; };
+		5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */; };
 		515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B12D5DC22C00FC0957 /* Assets.xcassets */; };
 		515C38BE2D5DC22C00FC0957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */; };
 		515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C38B02D5DC22C00FC0957 /* AppDelegate.swift */; };
@@ -26,6 +36,15 @@
 		5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		5131DE882D5DDA9A00527C8E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5131DE8C2D5DDEF100527C8E /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		5131DE912D5DE5DB00527C8E /* BackdropCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackdropCarouselView.swift; sourceTree = "<group>"; };
+		5131DE942D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDirectionalEdgeInsets+.swift"; sourceTree = "<group>"; };
+		5131DE952D5DE69900527C8E /* UIEdgeInsets+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+.swift"; sourceTree = "<group>"; };
+		5131DE982D5DEA1B00527C8E /* CarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
+		5131DE9A2D5DEC0A00527C8E /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		5131DE9C2D5DF3C600527C8E /* CarouselGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselGradientView.swift; sourceTree = "<group>"; };
+		5131DE9E2D5DFC2B00527C8E /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
+		5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCellData.swift; sourceTree = "<group>"; };
+		5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackdropCarouselVM.swift; sourceTree = "<group>"; };
 		515C38952D5DC20A00FC0957 /* PrographyAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrographyAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515C38B02D5DC22C00FC0957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515C38B12D5DC22C00FC0957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5131DEA52D5E1DDE00527C8E /* Kingfisher in Frameworks */,
 				515C38C62D5DC3BC00FC0957 /* RxCocoa in Frameworks */,
 				515C38C92D5DC3E300FC0957 /* SnapKit in Frameworks */,
 			);
@@ -99,6 +119,7 @@
 		5131DE822D5DCB6000527C8E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5131DE8E2D5DE4E400527C8E /* Components */,
 				5131DE802D5DCB5C00527C8E /* HomeVC.swift */,
 			);
 			path = Home;
@@ -107,6 +128,10 @@
 		5131DE872D5DD25B00527C8E /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				5131DE9E2D5DFC2B00527C8E /* UICollectionView+.swift */,
+				5131DE9A2D5DEC0A00527C8E /* UIFont+.swift */,
+				5131DE942D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift */,
+				5131DE952D5DE69900527C8E /* UIEdgeInsets+.swift */,
 				5131DE8C2D5DDEF100527C8E /* UIViewController+.swift */,
 			);
 			path = Extentions;
@@ -115,6 +140,34 @@
 		5131DE892D5DDD9B00527C8E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5131DE8E2D5DE4E400527C8E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE932D5DE60300527C8E /* BackdropCarouselView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5131DE932D5DE60300527C8E /* BackdropCarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE912D5DE5DB00527C8E /* BackdropCarouselView.swift */,
+				5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */,
+				5131DEA02D5DFECF00527C8E /* Components */,
+			);
+			path = BackdropCarouselView;
+			sourceTree = "<group>";
+		};
+		5131DEA02D5DFECF00527C8E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE982D5DEA1B00527C8E /* CarouselCell.swift */,
+				5131DE9C2D5DF3C600527C8E /* CarouselGradientView.swift */,
+				5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -164,6 +217,7 @@
 			packageProductDependencies = (
 				515C38C52D5DC3BC00FC0957 /* RxCocoa */,
 				515C38C82D5DC3E300FC0957 /* SnapKit */,
+				5131DEA42D5E1DDE00527C8E /* Kingfisher */,
 			);
 			productName = PrographyAssignment;
 			productReference = 515C38952D5DC20A00FC0957 /* PrographyAssignment.app */;
@@ -196,6 +250,7 @@
 			packageReferences = (
 				515C38C42D5DC3BC00FC0957 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				515C38C72D5DC3E300FC0957 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5131DEA32D5E1DDE00527C8E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 515C38962D5DC20A00FC0957 /* Products */;
@@ -227,9 +282,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */,
+				5131DE962D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift in Sources */,
+				5131DE9D2D5DF3C600527C8E /* CarouselGradientView.swift in Sources */,
+				5131DE9B2D5DEC0D00527C8E /* UIFont+.swift in Sources */,
+				5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */,
+				5131DE992D5DEA1B00527C8E /* CarouselCell.swift in Sources */,
+				5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */,
+				5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */,
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
+				5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
 				515C38C12D5DC22C00FC0957 /* PrographyAssignment.xcdatamodeld in Sources */,
+				5131DE9F2D5DFC2E00527C8E /* UICollectionView+.swift in Sources */,
 				515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +526,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5131DEA32D5E1DDE00527C8E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
 		515C38C42D5DC3BC00FC0957 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -481,6 +553,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5131DEA42D5E1DDE00527C8E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5131DEA32D5E1DDE00527C8E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		515C38C52D5DC3BC00FC0957 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 515C38C42D5DC3BC00FC0957 /* XCRemoteSwiftPackageReference "RxSwift" */;
