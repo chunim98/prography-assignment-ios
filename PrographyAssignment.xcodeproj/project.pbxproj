@@ -21,6 +21,7 @@
 		5131DEA52D5E1DDE00527C8E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5131DEA42D5E1DDE00527C8E /* Kingfisher */; };
 		5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */; };
 		5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */; };
+		5131DEAC2D5E293400527C8E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEAB2D5E292D00527C8E /* MockData.swift */; };
 		515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B12D5DC22C00FC0957 /* Assets.xcassets */; };
 		515C38BE2D5DC22C00FC0957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */; };
 		515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C38B02D5DC22C00FC0957 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 		5131DE9E2D5DFC2B00527C8E /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCellData.swift; sourceTree = "<group>"; };
 		5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackdropCarouselVM.swift; sourceTree = "<group>"; };
+		5131DEAB2D5E292D00527C8E /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		515C38952D5DC20A00FC0957 /* PrographyAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrographyAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515C38B02D5DC22C00FC0957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515C38B12D5DC22C00FC0957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				5131DE7F2D5DC82100527C8E /* Fonts */,
 				5131DE872D5DD25B00527C8E /* Extentions */,
 				5131DE892D5DDD9B00527C8E /* Components */,
+				5131DEAA2D5E291F00527C8E /* Model */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -170,6 +173,14 @@
 				5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5131DEAA2D5E291F00527C8E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5131DEAB2D5E292D00527C8E /* MockData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		515C388C2D5DC20A00FC0957 = {
@@ -292,6 +303,7 @@
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
 				5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
+				5131DEAC2D5E293400527C8E /* MockData.swift in Sources */,
 				515C38C12D5DC22C00FC0957 /* PrographyAssignment.xcdatamodeld in Sources */,
 				5131DE9F2D5DFC2E00527C8E /* UICollectionView+.swift in Sources */,
 				515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */,
