@@ -1,0 +1,83 @@
+//
+//  CarouselCardCell.swift
+//  PrographyAssignment
+//
+//  Created by 신정욱 on 2/13/25.
+//
+
+import UIKit
+
+import SnapKit
+
+final class CarouselCardCell: UICollectionViewCell {
+    static let identifier = "CarouselCardCell"
+    
+    // MARK: Components
+    
+    let backImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "prography_logo")
+        return imageView
+    }()
+    
+    let gradientView = CarouselGradientView()
+    
+    let labelVStack = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 4
+        return sv
+    }()
+    
+    let titleLabel = {
+        let label = UILabel()
+        label.text = "Title" // temp
+        label.font = .pretendardBold16
+        label.textColor = .white
+        return label
+    }()
+    
+    let overViewLabel = {
+        let label = UILabel()
+        label.text = "대충 한 줄이 넘지 않게 구현해야 한다고 함" // temp
+        label.font = .pretendardSemiBold11
+        label.textColor = .white
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    // MARK: Life Cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        contentView.backgroundColor = .gray
+        contentView.layer.cornerRadius = 28
+        contentView.clipsToBounds = true
+        
+        setAutoLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Layout
+    
+    private func setAutoLayout() {
+        contentView.addSubview(backImageView)
+        contentView.addSubview(gradientView)
+        contentView.addSubview(labelVStack)
+        labelVStack.addArrangedSubview(UIView())
+        labelVStack.addArrangedSubview(titleLabel)
+        labelVStack.addArrangedSubview(overViewLabel)
+        
+        backImageView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        gradientView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        labelVStack.snp.makeConstraints { $0.edges.equalToSuperview().inset(16) }
+    }
+}
+
+#Preview(traits: .fixedLayout(width: 316, height: 205)) {
+    CarouselCardCell()
+}
