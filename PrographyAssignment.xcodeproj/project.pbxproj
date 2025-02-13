@@ -23,6 +23,7 @@
 		5131DE802D5DCB5C00527C8E /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		5131DE882D5DDA9A00527C8E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		515C38952D5DC20A00FC0957 /* PrographyAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrographyAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515C38B02D5DC22C00FC0957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515C38B12D5DC22C00FC0957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -173,11 +174,11 @@
 				};
 			};
 			buildConfigurationList = 515C38902D5DC20A00FC0957 /* Build configuration list for PBXProject "PrographyAssignment" */;
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ko,
 			);
 			mainGroup = 515C388C2D5DC20A00FC0957;
 			minimizedProjectReferenceProxies = 1;
@@ -228,6 +229,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				515C38B32D5DC22C00FC0957 /* Base */,
+				5131DE882D5DDA9A00527C8E /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -245,6 +247,7 @@
 				DEVELOPMENT_TEAM = 4ZYD8FJ88F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PrographyAssignment/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PrographyAssignment;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -278,6 +281,7 @@
 				DEVELOPMENT_TEAM = 4ZYD8FJ88F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PrographyAssignment/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PrographyAssignment;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -306,6 +310,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -369,6 +374,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
