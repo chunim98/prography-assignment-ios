@@ -40,7 +40,7 @@ extension UIViewController {
     }
 
     // 스크롤 해도 색이 변하지 않는 네비게이션 바 구성
-    func navigationBarWillSet(
+    func setNavigationBar(
         leftBarButtonItems: [UIBarButtonItem]? = nil,
         rightBarButtonItems: [UIBarButtonItem]? = nil,
         title: String? = nil,
