@@ -9,4 +9,10 @@ struct CarouselCellData {
     let title: String
     let overview: String
     let backDropPath: String
+    
+    init(title: String, overview: String, backDropPath: String) {
+        self.title = title
+        self.overview = overview
+        self.backDropPath = "https://image.tmdb.org/t/p/original" + backDropPath
+    }
 }

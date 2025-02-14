@@ -40,7 +40,7 @@ final class NetworkingTests: XCTestCase {
         XCTAssertNotEqual(apiKey, "")
     }
     
-    func test_네트워킹() async throws {
+    func test_NowPlaying_응답_받아오기() async throws {
         let nowPlaying = try? await sut.fetchNowPlaying()
         nowPlaying?.results.forEach { print($0) }
         

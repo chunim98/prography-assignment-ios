@@ -15,12 +15,17 @@ final class BackdropCarouselView: UIView {
     private let backdropCarouselVM = BackdropCarouselVM()
     private let bag = DisposeBag()
     
+    // MARK: Dependency Injection
+    
+    let nowPlayingInput = PublishSubject<NowPlaying>()
+    
     // MARK: Components
     
     let carouselCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(CarouselCell.self, forCellWithReuseIdentifier: CarouselCell.identifier)
         cv.setSinglelineLayout(spacing: 8, itemSize: CGSize(width: 316, height: 205))
+        cv.showsHorizontalScrollIndicator = false
         return cv
     }()
     
@@ -42,18 +47,18 @@ final class BackdropCarouselView: UIView {
         self.addSubview(carouselCV)
         
         carouselCV.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-                .inset(UIEdgeInsets(horizontal: 16, vertical: 8))
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: 16, vertical: 8))
         }
     }
     
     // MARK: Binding
     
     private func setBinding() {
-        let input = BackdropCarouselVM.Input()
+        let input = BackdropCarouselVM.Input(nowPlaying: nowPlayingInput.asObservable())
         
         let output = backdropCarouselVM.transform(input: input)
         
+        // 캐러셀 컬렉션 뷰 데이터 바인딩
         output.carouselCellDataArr
             .bind(to: carouselCV.rx.items(
                 cellIdentifier: CarouselCell.identifier,

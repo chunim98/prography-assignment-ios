@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512C27B42D5F1CFD0094CF49 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */; };
+		512C27BC2D5F4D130094CF49 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C27BB2D5F4D070094CF49 /* HomeVM.swift */; };
 		5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE802D5DCB5C00527C8E /* HomeVC.swift */; };
 		5131DE852D5DD10300527C8E /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */; };
 		5131DE862D5DD10300527C8E /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */; };
@@ -22,6 +24,9 @@
 		5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */; };
 		5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */; };
 		5131DEAC2D5E293400527C8E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEAB2D5E292D00527C8E /* MockData.swift */; };
+		5131DEAF2D5E2C9300527C8E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEAE2D5E2C8800527C8E /* NetworkManager.swift */; };
+		5131DEC32D5E42A800527C8E /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEC12D5E42A800527C8E /* NetworkingTests.swift */; };
+		5131DEC92D5E521400527C8E /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEC82D5E520D00527C8E /* NowPlaying.swift */; };
 		515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B12D5DC22C00FC0957 /* Assets.xcassets */; };
 		515C38BE2D5DC22C00FC0957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */; };
 		515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C38B02D5DC22C00FC0957 /* AppDelegate.swift */; };
@@ -31,7 +36,19 @@
 		515C38C92D5DC3E300FC0957 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 515C38C82D5DC3E300FC0957 /* SnapKit */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5131DEBC2D5E420900527C8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 515C388D2D5DC20A00FC0957 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 515C38942D5DC20A00FC0957;
+			remoteInfo = PrographyAssignment;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		512C27BB2D5F4D070094CF49 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		5131DE802D5DCB5C00527C8E /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -47,6 +64,10 @@
 		5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCellData.swift; sourceTree = "<group>"; };
 		5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackdropCarouselVM.swift; sourceTree = "<group>"; };
 		5131DEAB2D5E292D00527C8E /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		5131DEAE2D5E2C8800527C8E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5131DEB82D5E420900527C8E /* PrographyAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrographyAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5131DEC12D5E42A800527C8E /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
+		5131DEC82D5E520D00527C8E /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
 		515C38952D5DC20A00FC0957 /* PrographyAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrographyAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515C38B02D5DC22C00FC0957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515C38B12D5DC22C00FC0957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +78,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5131DEB52D5E420900527C8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		515C38922D5DC20A00FC0957 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +117,7 @@
 				5131DE872D5DD25B00527C8E /* Extentions */,
 				5131DE892D5DDD9B00527C8E /* Components */,
 				5131DEAA2D5E291F00527C8E /* Model */,
+				5131DEAD2D5E2BC400527C8E /* Managers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -124,6 +153,7 @@
 			children = (
 				5131DE8E2D5DE4E400527C8E /* Components */,
 				5131DE802D5DCB5C00527C8E /* HomeVC.swift */,
+				512C27BB2D5F4D070094CF49 /* HomeVM.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -179,14 +209,32 @@
 			isa = PBXGroup;
 			children = (
 				5131DEAB2D5E292D00527C8E /* MockData.swift */,
+				5131DEC82D5E520D00527C8E /* NowPlaying.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5131DEAD2D5E2BC400527C8E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5131DEAE2D5E2C8800527C8E /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5131DEC22D5E42A800527C8E /* PrographyAssignmentTests */ = {
+			isa = PBXGroup;
+			children = (
+				5131DEC12D5E42A800527C8E /* NetworkingTests.swift */,
+			);
+			path = PrographyAssignmentTests;
 			sourceTree = "<group>";
 		};
 		515C388C2D5DC20A00FC0957 = {
 			isa = PBXGroup;
 			children = (
 				515C38BA2D5DC22C00FC0957 /* PrographyAssignment */,
+				5131DEC22D5E42A800527C8E /* PrographyAssignmentTests */,
 				515C38962D5DC20A00FC0957 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -195,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				515C38952D5DC20A00FC0957 /* PrographyAssignment.app */,
+				5131DEB82D5E420900527C8E /* PrographyAssignmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +251,7 @@
 		515C38BA2D5DC22C00FC0957 /* PrographyAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */,
 				515C38B22D5DC22C00FC0957 /* Info.plist */,
 				5131DE7B2D5DC7A300527C8E /* Feature */,
 				5131DE7C2D5DC7AF00527C8E /* Common */,
@@ -212,6 +262,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5131DEB72D5E420900527C8E /* PrographyAssignmentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5131DEBE2D5E420900527C8E /* Build configuration list for PBXNativeTarget "PrographyAssignmentTests" */;
+			buildPhases = (
+				5131DEB42D5E420900527C8E /* Sources */,
+				5131DEB52D5E420900527C8E /* Frameworks */,
+				5131DEB62D5E420900527C8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5131DEBD2D5E420900527C8E /* PBXTargetDependency */,
+			);
+			name = PrographyAssignmentTests;
+			packageProductDependencies = (
+			);
+			productName = PrographyAssignmentTests;
+			productReference = 5131DEB82D5E420900527C8E /* PrographyAssignmentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		515C38942D5DC20A00FC0957 /* PrographyAssignment */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 515C38AB2D5DC20B00FC0957 /* Build configuration list for PBXNativeTarget "PrographyAssignment" */;
@@ -244,6 +314,10 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					5131DEB72D5E420900527C8E = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 515C38942D5DC20A00FC0957;
+					};
 					515C38942D5DC20A00FC0957 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -269,16 +343,25 @@
 			projectRoot = "";
 			targets = (
 				515C38942D5DC20A00FC0957 /* PrographyAssignment */,
+				5131DEB72D5E420900527C8E /* PrographyAssignmentTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5131DEB62D5E420900527C8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		515C38932D5DC20A00FC0957 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5131DE852D5DD10300527C8E /* Pretendard-SemiBold.otf in Resources */,
+				512C27B42D5F1CFD0094CF49 /* Secrets.xcconfig in Resources */,
 				5131DE862D5DD10300527C8E /* Pretendard-Bold.otf in Resources */,
 				515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */,
 				515C38BE2D5DC22C00FC0957 /* LaunchScreen.storyboard in Resources */,
@@ -288,6 +371,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5131DEB42D5E420900527C8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5131DEC32D5E42A800527C8E /* NetworkingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		515C38912D5DC20A00FC0957 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,7 +386,10 @@
 				5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */,
 				5131DE962D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift in Sources */,
 				5131DE9D2D5DF3C600527C8E /* CarouselGradientView.swift in Sources */,
+				512C27BC2D5F4D130094CF49 /* HomeVM.swift in Sources */,
 				5131DE9B2D5DEC0D00527C8E /* UIFont+.swift in Sources */,
+				5131DEAF2D5E2C9300527C8E /* NetworkManager.swift in Sources */,
+				5131DEC92D5E521400527C8E /* NowPlaying.swift in Sources */,
 				5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */,
 				5131DE992D5DEA1B00527C8E /* CarouselCell.swift in Sources */,
 				5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */,
@@ -312,6 +406,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5131DEBD2D5E420900527C8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 515C38942D5DC20A00FC0957 /* PrographyAssignment */;
+			targetProxy = 5131DEBC2D5E420900527C8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -325,6 +427,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5131DEBF2D5E420900527C8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4ZYD8FJ88F;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chunim.PrographyAssignmentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrographyAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PrographyAssignment";
+			};
+			name = Debug;
+		};
+		5131DEC02D5E420900527C8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4ZYD8FJ88F;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chunim.PrographyAssignmentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrographyAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PrographyAssignment";
+			};
+			name = Release;
+		};
 		515C38AC2D5DC20B00FC0957 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -395,6 +545,7 @@
 		};
 		515C38AE2D5DC20B00FC0957 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -517,6 +668,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5131DEBE2D5E420900527C8E /* Build configuration list for PBXNativeTarget "PrographyAssignmentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5131DEBF2D5E420900527C8E /* Debug */,
+				5131DEC02D5E420900527C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		515C38902D5DC20A00FC0957 /* Build configuration list for PBXProject "PrographyAssignment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

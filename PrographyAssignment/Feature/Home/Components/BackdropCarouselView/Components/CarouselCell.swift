@@ -60,6 +60,13 @@ final class CarouselCell: UICollectionViewCell {
         setAutoLayout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backImageView.image = nil
+        titleLabel.text = nil
+        overViewLabel.text = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -88,8 +95,6 @@ final class CarouselCell: UICollectionViewCell {
         
         titleLabel.text = data.title
         overViewLabel.text = data.overview
-//                let data = try? Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/w500/5ZoI48Puf5i5FwI6HOpunDuJOw0.jpg")!)
-//                backImageView.image = UIImage(data: data!)
     }
 }
 

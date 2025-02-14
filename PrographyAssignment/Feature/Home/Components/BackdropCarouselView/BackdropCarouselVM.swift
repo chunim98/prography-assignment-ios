@@ -8,12 +8,11 @@
 import UIKit
 
 import RxSwift
-import RxCocoa
 
 final class BackdropCarouselVM {
     
     struct Input {
-        
+        let nowPlaying: Observable<NowPlaying>
     }
     
     struct Output {
@@ -23,11 +22,19 @@ final class BackdropCarouselVM {
     private let bag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        let carouselCellDataArr = BehaviorSubject(value: MockData.backdropCarousel)
+        // 상위 뷰에서 받아온 NowPlaying타입을 CarouselCellData타입으로 변환
+        let carouselCellDataArr = input.nowPlaying
+            .map { nowPlaying in
+                nowPlaying.results.map {
+                    CarouselCellData(
+                        title: $0.title,
+                        overview: $0.overview,
+                        backDropPath: $0.backdropPath
+                    )
+                }
+            }
+            .share(replay: 1)
         
-        return Output(
-            carouselCellDataArr: carouselCellDataArr.asObservable()
-        )
+        return Output(carouselCellDataArr: carouselCellDataArr)
     }
-
 }
