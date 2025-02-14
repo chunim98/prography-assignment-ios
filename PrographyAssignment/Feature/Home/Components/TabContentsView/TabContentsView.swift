@@ -18,7 +18,7 @@ final class TabContentsView: UIView {
     private let tabContentsVM = TabContentsVM()
     private let bag = DisposeBag()
     
-    // MARK: Data Out
+    // MARK: Dependency Output
 
     let selectedSegmentIndexOutput = PublishSubject<Int>()
     
@@ -93,7 +93,7 @@ final class TabContentsView: UIView {
         segment.addSubview(underLineView)
         
         segment.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(vertical: 8))
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(vertical: 16))
         }
         underLineView.snp.makeConstraints {
             $0.height.equalTo(3)

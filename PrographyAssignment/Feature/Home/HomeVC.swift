@@ -46,7 +46,7 @@ final class HomeVC: UIViewController {
         }
         tabContentsView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(64)
+            $0.height.equalTo(80)
             $0.centerY.equalToSuperview()
         }
     }

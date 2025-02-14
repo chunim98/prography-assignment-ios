@@ -18,7 +18,7 @@ final class BackdropCarouselView: UIView {
     private let backdropCarouselVM = BackdropCarouselVM()
     private let bag = DisposeBag()
     
-    // MARK: Dependency Injection
+    // MARK: Dependency Input
     
     let nowPlayingInput = PublishSubject<NowPlaying>()
     
