@@ -64,3 +64,6 @@ fastlane/test_output
 # macOS
 .DS_Store
 
+# API Key
+PrographyAssignment/Secrets.xcconfig
+
