@@ -18,22 +18,22 @@ final class CarouselCell: UICollectionViewCell {
     
     // MARK: Components
     
-    let backImageView = {
+    private let backImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "prography_logo")
         return imageView
     }()
     
-    let gradientView = CarouselGradientView()
+    private let gradientView = CarouselGradientView()
     
-    let labelVStack = {
+    private let labelVStack = {
         let sv = UIStackView()
         sv.axis = .vertical
         sv.spacing = 4
         return sv
     }()
     
-    let titleLabel = {
+    private let titleLabel = {
         let label = UILabel()
         label.text = "Title" // temp
         label.font = .pretendardBold16
@@ -41,7 +41,7 @@ final class CarouselCell: UICollectionViewCell {
         return label
     }()
     
-    let overViewLabel = {
+    private let overViewLabel = {
         let label = UILabel()
         label.text = "대충 한 줄이 넘지 않게 구현해야 한다고 함" // temp
         label.font = .pretendardSemiBold11

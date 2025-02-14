@@ -11,7 +11,7 @@ final class CarouselGradientView: UIView {
     
     // MARK: Components
     
-    let gradientLayer = CAGradientLayer()
+    private let gradientLayer = CAGradientLayer()
     
     // MARK: Life Cycle
     

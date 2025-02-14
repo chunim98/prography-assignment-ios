@@ -20,8 +20,8 @@ final class HomeVC: UIViewController {
     
     // MARK: Components
     
-    let backdropCarouselView = BackdropCarouselView()
-    let tabContentsView = TabContentsView()
+    private let backdropCarouselView = BackdropCarouselView()
+    private let tabContentsView = TabContentsView()
         
     // MARK: Life Cycle
     

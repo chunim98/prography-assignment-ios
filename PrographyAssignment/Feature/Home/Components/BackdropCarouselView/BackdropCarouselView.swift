@@ -24,7 +24,7 @@ final class BackdropCarouselView: UIView {
     
     // MARK: Components
     
-    let carouselCV = {
+    private let carouselCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(CarouselCell.self, forCellWithReuseIdentifier: CarouselCell.identifier)
         cv.setSinglelineLayout(spacing: 8, itemSize: CGSize(width: 316, height: 205))
