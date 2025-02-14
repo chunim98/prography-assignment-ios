@@ -7,17 +7,21 @@
 
 import UIKit
 
-import SnapKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 final class HomeVC: UIViewController {
+    
+    // MARK: Properties
+    
     private let homeVM = HomeVM()
     private let bag = DisposeBag()
     
     // MARK: Components
     
     let backdropCarouselView = BackdropCarouselView()
+    let tabContentsView = TabContentsView()
         
     // MARK: Life Cycle
     
@@ -34,10 +38,16 @@ final class HomeVC: UIViewController {
     
     private func setAutoLayout() {
         view.addSubview(backdropCarouselView)
+        view.addSubview(tabContentsView)
         
         backdropCarouselView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(221)
+        }
+        tabContentsView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(64)
+            $0.centerY.equalToSuperview()
         }
     }
     
