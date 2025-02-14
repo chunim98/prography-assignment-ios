@@ -11,6 +11,9 @@ import Kingfisher
 import SnapKit
 
 final class CarouselCell: UICollectionViewCell {
+    
+    // MARK: Properties
+    
     static let identifier = "CarouselCell"
     
     // MARK: Components

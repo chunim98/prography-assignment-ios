@@ -7,11 +7,14 @@
 
 import UIKit
 
-import SnapKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 final class BackdropCarouselView: UIView {
+    
+    // MARK: Properties
+    
     private let backdropCarouselVM = BackdropCarouselVM()
     private let bag = DisposeBag()
     
