@@ -38,6 +38,7 @@
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
 		51E3386C2D5F900900DEECA8 /* OnlyOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E3386B2D5F900900DEECA8 /* OnlyOnce.swift */; };
+		51E338702D5FA28800DEECA8 /* PageTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
 		51E3386B2D5F900900DEECA8 /* OnlyOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyOnce.swift; sourceTree = "<group>"; };
+		51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 		5131DE8E2D5DE4E400527C8E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				51E3386E2D5FA25F00DEECA8 /* PageTableVC */,
 				51E338632D5F71FD00DEECA8 /* TabContentsView */,
 				5131DE932D5DE60300527C8E /* BackdropCarouselView */,
 			);
@@ -285,6 +288,14 @@
 				51E3386B2D5F900900DEECA8 /* OnlyOnce.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		51E3386E2D5FA25F00DEECA8 /* PageTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
+			);
+			path = PageTableVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +439,7 @@
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
 				5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */,
 				51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */,
+				51E338702D5FA28800DEECA8 /* PageTableVC.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
 				5131DEAC2D5E293400527C8E /* MockData.swift in Sources */,
 				515C38C12D5DC22C00FC0957 /* PrographyAssignment.xcdatamodeld in Sources */,
