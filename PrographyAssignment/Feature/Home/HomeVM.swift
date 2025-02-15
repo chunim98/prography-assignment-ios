@@ -17,33 +17,13 @@ final class HomeVM {
     }
     
     struct Output {
-        let nowPlaying: Observable<MovieInfo>
+
     }
     
     private let bag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        let nowPlaying = ReplaySubject<MovieInfo>.create(bufferSize: 1)
-        
-        // nowPlaying의 초기 값 설정
-        fetchNowPlaying()
-            .bind(to: nowPlaying)
-            .disposed(by: bag)
 
-        
-        return Output(nowPlaying: nowPlaying.asObservable())
-    }
-    
-    // MARK: Methods
-    
-    private func fetchNowPlaying() -> Observable<MovieInfo> {
-        Observable.create { obsever in
-            Task {
-                let result = try await TMDBNetworkManager.shered.fetchMovieList(.nowPlaying)
-                obsever.onNext(result)
-            }
-            
-            return Disposables.create()
-        }
+        return Output()
     }
 }

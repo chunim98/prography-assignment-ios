@@ -15,12 +15,8 @@ final class MovieListVC: UIViewController {
     
     // MARK: Properties
     
-    private let movieListVM = MovieListVM()
+    private let movieListVM: MovieListVM
     private let bag = DisposeBag()
-    
-    // MARK: Dependency Input
-    
-    let listCellDataArrInput = PublishSubject<[ListCellData]>()
     
     // MARK: Components
     
@@ -33,11 +29,20 @@ final class MovieListVC: UIViewController {
     }()
     
     // MARK: Life Cycle
-
+    
+    init(_ article: TMDBNetworkManager.Article) {
+        self.movieListVM = MovieListVM(article)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setAutoLayout()
         setBinding()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: Layout
@@ -50,9 +55,7 @@ final class MovieListVC: UIViewController {
     // MARK: Binding
     
     private func setBinding() {
-        let input = MovieListVM.Input(
-            listCellDataArr: listCellDataArrInput.asObservable()
-        )
+        let input = MovieListVM.Input()
         
         let output = movieListVM.transform(input: input)
         
@@ -68,5 +71,5 @@ final class MovieListVC: UIViewController {
 }
 
 #Preview {
-    MovieListVC()
+    MovieListVC(.nowPlaying)
 }

@@ -63,10 +63,8 @@ final class HomeVC: UIViewController {
         let input = HomeVM.Input()
         
         let output = homeVM.transform(input: input)
+
         
-        output.nowPlaying
-            .bind(to: backdropCarouselView.nowPlayingInput, pageTableVC.nowPlayingInput)
-            .disposed(by: bag)
     }
 }
 

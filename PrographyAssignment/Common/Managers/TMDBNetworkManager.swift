@@ -26,7 +26,7 @@ final class TMDBNetworkManager {
     
     // MARK: Methods
     
-#warning("나중에 이거 예외처리 할 것")
+    #warning("나중에 이거 예외처리 할 것")
     func fetchMovieList(_ article: Article) async throws -> MovieInfo {
         let url = URL(string: article.rawValue)!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
@@ -49,9 +49,9 @@ final class TMDBNetworkManager {
         return try decoder.decode(MovieInfo.self, from: data)
     }
 
-//    // 리퀘스트를 보내지는 않는 테스트용 메서드
-//    func fetchNowPlaying() async throws -> MovieInfo {
-//        let decoder = JSONDecoder()
-//        return try decoder.decode(MovieInfo.self, from: MockData.response)
-//    }
+    // 리퀘스트를 보내지는 않는 테스트용 메서드
+    func fetchMovieListMock() async throws -> MovieInfo {
+        let decoder = JSONDecoder()
+        return try decoder.decode(MovieInfo.self, from: MockData.response)
+    }
 }
