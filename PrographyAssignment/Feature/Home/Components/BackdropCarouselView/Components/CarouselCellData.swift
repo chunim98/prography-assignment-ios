@@ -6,13 +6,13 @@
 //
 
 struct CarouselCellData {
+    let backDropPath: String
     let title: String
     let overview: String
-    let backDropPath: String
     
-    init(title: String, overview: String, backDropPath: String) {
+    init(backDropPath: String, title: String, overview: String) {
+        self.backDropPath = "https://image.tmdb.org/t/p/original" + backDropPath
         self.title = title
         self.overview = overview
-        self.backDropPath = "https://image.tmdb.org/t/p/original" + backDropPath
     }
 }

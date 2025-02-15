@@ -8,6 +8,8 @@
 import UIKit
 
 import Kingfisher
+import RxSwift
+import RxCocoa
 import SnapKit
 
 final class ListCell: UITableViewCell {
@@ -15,7 +17,8 @@ final class ListCell: UITableViewCell {
     // MARK: Properties
     
     static let identifier = "ListCell"
-    
+    private let bag = DisposeBag()
+        
     // MARK: Components
     
     private let overallHStack = {
@@ -57,7 +60,7 @@ final class ListCell: UITableViewCell {
     
     private let overviewLabel = {
         let label = UILabel()
-        label.text = "대충 두 줄까지만 보여야 한다고 함\n밥 뭐 먹지" // temp
+        label.text = "대충 두 줄까지만\n보여야 한다고 함\n밥 뭐 먹지" // temp
         label.font = .pretendardMedium16
         label.textColor = .onSurfaceVariant
         label.numberOfLines = 2
@@ -72,11 +75,27 @@ final class ListCell: UITableViewCell {
         return label
     }()
     
+    private let genreCV = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        cv.register(GenreCell.self, forCellWithReuseIdentifier: GenreCell.identifier)
+        cv.setSinglelineLayout(spacing: 4, itemSize: CGSize(width: 40, height: 16))
+        cv.showsHorizontalScrollIndicator = false
+        return cv
+    }()
+    
     // MARK: Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setAutoLayout()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterImageView.image = nil
+        titleLabel.text = nil
+        overviewLabel.text = nil
+        rateLabel.text = nil
     }
     
     required init?(coder: NSCoder) {
@@ -93,9 +112,32 @@ final class ListCell: UITableViewCell {
         contentVStack.addArrangedSubview(titleLabel)
         contentVStack.addArrangedSubview(overviewLabel)
         contentVStack.addArrangedSubview(rateLabel)
+        contentVStack.addArrangedSubview(genreCV)
         
         overallHStack.snp.makeConstraints { $0.edges.equalToSuperview() }
         posterImageView.snp.makeConstraints { $0.width.equalTo(120) }
+        genreCV.snp.makeConstraints { $0.height.equalTo(16) }
+    }
+    
+    // MARK: Configure Components
+    
+    func configure(_ item: ListCellData) {
+        let url = URL(string: item.posterPath)
+        posterImageView.kf.indicatorType = .activity
+        posterImageView.kf.setImage(with: url)
+
+        titleLabel.text = item.title
+        overviewLabel.text = item.overview
+        rateLabel.text = String(item.voteAverage)
+        
+        // 장르 컬렉션 뷰 데이터 바인딩 (따로 바인딩 메서드는 안만드는 게 나은 듯)
+        Observable.just(item.genreIDS.map { String($0) })
+            .bind(to: genreCV.rx.items(
+                cellIdentifier: GenreCell.identifier,cellType: GenreCell.self
+            )) { index, item, cell in
+                cell.configure(item)
+            }
+            .disposed(by: bag)
     }
 }
 

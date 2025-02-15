@@ -38,6 +38,7 @@
 		51A09B632D60549D0002A2F7 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */; };
 		51A09B642D60549D0002A2F7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */; };
 		51A09B662D605D8E0002A2F7 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B652D605D8E0002A2F7 /* GenreCell.swift */; };
+		51A09B682D60638E0002A2F7 /* ListCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B672D60638B0002A2F7 /* ListCellData.swift */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -88,6 +89,7 @@
 		51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		51A09B652D605D8E0002A2F7 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
+		51A09B672D60638B0002A2F7 /* ListCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellData.swift; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		5131DE892D5DDD9B00527C8E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				51A09B652D605D8E0002A2F7 /* GenreCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -304,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				51A09B5F2D604F6D0002A2F7 /* ListCell.swift */,
-				51A09B652D605D8E0002A2F7 /* GenreCell.swift */,
+				51A09B672D60638B0002A2F7 /* ListCellData.swift */,
 				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
 			);
 			path = PageTableVC;
@@ -445,6 +448,7 @@
 				51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */,
 				5131DEAF2D5E2C9300527C8E /* NetworkManager.swift in Sources */,
 				51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */,
+				51A09B682D60638E0002A2F7 /* ListCellData.swift in Sources */,
 				5131DEC92D5E521400527C8E /* NowPlaying.swift in Sources */,
 				5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */,
 				5131DE992D5DEA1B00527C8E /* CarouselCell.swift in Sources */,

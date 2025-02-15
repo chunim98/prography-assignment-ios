@@ -23,6 +23,7 @@ final class GenreCell: UICollectionViewCell {
         label.font = .pretendardSemiBold11
         label.textColor = .onSurfaceVariant
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -54,7 +55,8 @@ final class GenreCell: UICollectionViewCell {
     
     private func setAutoLayout() {
         contentView.addSubview(genreLabel)
-        genreLabel.snp.makeConstraints { $0.edges.equalToSuperview().inset(1) }
+        let inset = UIEdgeInsets(horizontal: 4, vertical: 1)
+        genreLabel.snp.makeConstraints { $0.edges.equalToSuperview().inset(inset) }
     }
     
     // MARK: Configure Components

@@ -27,9 +27,9 @@ final class BackdropCarouselVM {
             .map { nowPlaying in
                 nowPlaying.results.map {
                     CarouselCellData(
+                        backDropPath: $0.backdropPath,
                         title: $0.title,
-                        overview: $0.overview,
-                        backDropPath: $0.backdropPath
+                        overview: $0.overview
                     )
                 }
             }
