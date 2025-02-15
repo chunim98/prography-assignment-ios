@@ -12,7 +12,7 @@ import RxSwift
 final class BackdropCarouselVM {
     
     struct Input {
-        let nowPlaying: Observable<NowPlaying>
+        let nowPlaying: Observable<MovieInfo>
     }
     
     struct Output {

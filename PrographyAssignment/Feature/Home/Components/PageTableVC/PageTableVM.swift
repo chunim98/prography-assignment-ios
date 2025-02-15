@@ -13,7 +13,7 @@ import RxCocoa
 final class PageTableVM {
     
     struct Input {
-        let nowPlaying: Observable<NowPlaying>
+        let nowPlaying: Observable<MovieInfo>
     }
     
     struct Output {

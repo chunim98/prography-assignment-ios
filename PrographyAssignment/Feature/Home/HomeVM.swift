@@ -17,13 +17,13 @@ final class HomeVM {
     }
     
     struct Output {
-        let nowPlaying: Observable<NowPlaying>
+        let nowPlaying: Observable<MovieInfo>
     }
     
     private let bag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        let nowPlaying = ReplaySubject<NowPlaying>.create(bufferSize: 1)
+        let nowPlaying = ReplaySubject<MovieInfo>.create(bufferSize: 1)
         
         // nowPlaying의 초기 값 설정
         fetchNowPlaying()
@@ -36,7 +36,7 @@ final class HomeVM {
     
     // MARK: Methods
     
-    private func fetchNowPlaying() -> Observable<NowPlaying> {
+    private func fetchNowPlaying() -> Observable<MovieInfo> {
         Observable.create { obsever in
             Task {
                 let result = try await NetworkManager.shered.fetchNowPlaying()

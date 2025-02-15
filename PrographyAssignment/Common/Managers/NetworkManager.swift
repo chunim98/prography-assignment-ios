@@ -18,7 +18,7 @@ final class NetworkManager {
     
     // MARK: Methods
     
-//    func fetchNowPlaying() async throws -> NowPlaying {
+//    func fetchNowPlaying() async throws -> MovieInfo {
 //        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing")!
 //        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
 //        let queryItems: [URLQueryItem] = [
@@ -38,12 +38,12 @@ final class NetworkManager {
 //        let (data, _) = try await URLSession.shared.data(for: request)
 //        
 //        let decoder = JSONDecoder()
-//        return try decoder.decode(NowPlaying.self, from: data)
+//        return try decoder.decode(MovieInfo.self, from: data)
 //    }
     
     // 리퀘스트를 보내지는 않는 테스트용 메서드
-    func fetchNowPlaying() async throws -> NowPlaying {
+    func fetchNowPlaying() async throws -> MovieInfo {
         let decoder = JSONDecoder()
-        return try decoder.decode(NowPlaying.self, from: MockData.response)
+        return try decoder.decode(MovieInfo.self, from: MockData.response)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  NowPlaying.swift
+//  MovieInfo.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/14/25.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct NowPlaying: Codable {
-    let dates: NowPlaying.Dates
+struct MovieInfo: Codable {
+    let dates: MovieInfo.Dates
     let page: Int
-    let results: [NowPlaying.Result]
+    let results: [MovieInfo.Result]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
@@ -32,7 +32,7 @@ struct NowPlaying: Codable {
         let backdropPath: String
         let genreIDS: [Int]
         let id: Int
-        let originalLanguage: OriginalLanguage
+        let originalLanguage: String
         let originalTitle: String
         let overview: String
         let popularity: Double
@@ -59,13 +59,6 @@ struct NowPlaying: Codable {
             case voteAverage = "vote_average"
             case voteCount = "vote_count"
         }
-    }
-
-    enum OriginalLanguage: String, Codable {
-        case en = "en"
-        case es = "es"
-        case fr = "fr"
-        case zh = "zh"
     }
 }
 

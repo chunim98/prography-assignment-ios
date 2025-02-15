@@ -14,7 +14,7 @@ final class PageTableVC: UIPageViewController {
     
     // MARK: Dependency Input
     
-    let nowPlayingInput = PublishSubject<NowPlaying>()
+    let nowPlayingInput = PublishSubject<MovieInfo>()
 
     // MARK: Dependency Output
     

@@ -20,7 +20,7 @@ final class BackdropCarouselView: UIView {
     
     // MARK: Dependency Input
     
-    let nowPlayingInput = PublishSubject<NowPlaying>()
+    let nowPlayingInput = PublishSubject<MovieInfo>()
     
     // MARK: Components
     
