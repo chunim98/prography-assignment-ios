@@ -39,7 +39,7 @@ final class HomeVM {
     private func fetchNowPlaying() -> Observable<MovieInfo> {
         Observable.create { obsever in
             Task {
-                let result = try await TMDBNetworkManager.shered.fetchNowPlaying()
+                let result = try await TMDBNetworkManager.shered.fetchMovieList(.nowPlaying)
                 obsever.onNext(result)
             }
             

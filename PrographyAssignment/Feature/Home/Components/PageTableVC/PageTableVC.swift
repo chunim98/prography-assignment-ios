@@ -28,11 +28,7 @@ final class PageTableVC: UIPageViewController {
     
     private var pages = [UIViewController]()
     private let view1 = MovieListVC()
-    private let view2 = {
-        let view = UIViewController()
-        view.view.backgroundColor = .red
-        return view
-    }()
+    private let view2 = TestVC()
     private let view3 = {
         let view = UIViewController()
         view.view.backgroundColor = .blue
