@@ -34,6 +34,9 @@
 		515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C38B82D5DC22C00FC0957 /* SceneDelegate.swift */; };
 		515C38C62D5DC3BC00FC0957 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 515C38C52D5DC3BC00FC0957 /* RxCocoa */; };
 		515C38C92D5DC3E300FC0957 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 515C38C82D5DC3E300FC0957 /* SnapKit */; };
+		51A09B602D604FE80002A2F7 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B5F2D604F6D0002A2F7 /* ListCell.swift */; };
+		51A09B632D60549D0002A2F7 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */; };
+		51A09B642D60549D0002A2F7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -80,6 +83,9 @@
 		515C38B32D5DC22C00FC0957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		515C38B82D5DC22C00FC0957 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		515C38BB2D5DC22C00FC0957 /* PrographyAssignment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrographyAssignment.xcdatamodel; sourceTree = "<group>"; };
+		51A09B5F2D604F6D0002A2F7 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -155,6 +161,8 @@
 			children = (
 				5131DE832D5DD10300527C8E /* Pretendard-Bold.otf */,
 				5131DE842D5DD10300527C8E /* Pretendard-SemiBold.otf */,
+				51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */,
+				51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -293,6 +301,7 @@
 		51E3386E2D5FA25F00DEECA8 /* PageTableVC */ = {
 			isa = PBXGroup;
 			children = (
+				51A09B5F2D604F6D0002A2F7 /* ListCell.swift */,
 				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
 			);
 			path = PageTableVC;
@@ -403,6 +412,8 @@
 				512C27B42D5F1CFD0094CF49 /* Secrets.xcconfig in Resources */,
 				5131DE862D5DD10300527C8E /* Pretendard-Bold.otf in Resources */,
 				515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */,
+				51A09B632D60549D0002A2F7 /* Pretendard-Regular.otf in Resources */,
+				51A09B642D60549D0002A2F7 /* Pretendard-Medium.otf in Resources */,
 				515C38BE2D5DC22C00FC0957 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +454,7 @@
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
 				5131DEAC2D5E293400527C8E /* MockData.swift in Sources */,
 				515C38C12D5DC22C00FC0957 /* PrographyAssignment.xcdatamodeld in Sources */,
+				51A09B602D604FE80002A2F7 /* ListCell.swift in Sources */,
 				5131DE9F2D5DFC2E00527C8E /* UICollectionView+.swift in Sources */,
 				515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */,
 			);

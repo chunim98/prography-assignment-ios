@@ -19,9 +19,9 @@ final class CarouselCell: UICollectionViewCell {
     // MARK: Components
     
     private let backImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "prography_logo")
-        return imageView
+        let iv = UIImageView()
+        iv.image = UIImage(named: "prography_logo") // temp
+        return iv
     }()
     
     private let gradientView = CarouselGradientView()
@@ -41,7 +41,7 @@ final class CarouselCell: UICollectionViewCell {
         return label
     }()
     
-    private let overViewLabel = {
+    private let overviewLabel = {
         let label = UILabel()
         label.text = "대충 한 줄이 넘지 않게 구현해야 한다고 함" // temp
         label.font = .pretendardSemiBold11
@@ -67,7 +67,7 @@ final class CarouselCell: UICollectionViewCell {
         super.prepareForReuse()
         backImageView.image = nil
         titleLabel.text = nil
-        overViewLabel.text = nil
+        overviewLabel.text = nil
     }
     
     required init?(coder: NSCoder) {
@@ -82,7 +82,7 @@ final class CarouselCell: UICollectionViewCell {
         contentView.addSubview(labelVStack)
         labelVStack.addArrangedSubview(UIView())
         labelVStack.addArrangedSubview(titleLabel)
-        labelVStack.addArrangedSubview(overViewLabel)
+        labelVStack.addArrangedSubview(overviewLabel)
         
         backImageView.snp.makeConstraints { $0.edges.equalToSuperview() }
         gradientView.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -97,7 +97,7 @@ final class CarouselCell: UICollectionViewCell {
         backImageView.kf.setImage(with: url)
         
         titleLabel.text = data.title
-        overViewLabel.text = data.overview
+        overviewLabel.text = data.overview
     }
 }
 
