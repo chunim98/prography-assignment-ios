@@ -290,6 +290,33 @@
 			path = PrographyAssignment;
 			sourceTree = "<group>";
 		};
+		51A09B772D60CC690002A2F7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				51A09B792D60CC8A0002A2F7 /* MovieListVC */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		51A09B782D60CC7F0002A2F7 /* ListCell */ = {
+			isa = PBXGroup;
+			children = (
+				51A09B5F2D604F6D0002A2F7 /* ListCell.swift */,
+				51A09B672D60638B0002A2F7 /* ListCellData.swift */,
+			);
+			path = ListCell;
+			sourceTree = "<group>";
+		};
+		51A09B792D60CC8A0002A2F7 /* MovieListVC */ = {
+			isa = PBXGroup;
+			children = (
+				51A09B782D60CC7F0002A2F7 /* ListCell */,
+				51A09B692D606D4C0002A2F7 /* MovieListVC.swift */,
+				51A09B6B2D6070DF0002A2F7 /* MovieListVM.swift */,
+			);
+			path = MovieListVC;
+			sourceTree = "<group>";
+		};
 		51E338632D5F71FD00DEECA8 /* TabContentsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,10 +337,7 @@
 		51E3386E2D5FA25F00DEECA8 /* PageTableVC */ = {
 			isa = PBXGroup;
 			children = (
-				51A09B5F2D604F6D0002A2F7 /* ListCell.swift */,
-				51A09B672D60638B0002A2F7 /* ListCellData.swift */,
-				51A09B692D606D4C0002A2F7 /* MovieListVC.swift */,
-				51A09B6B2D6070DF0002A2F7 /* MovieListVM.swift */,
+				51A09B772D60CC690002A2F7 /* Components */,
 				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
 			);
 			path = PageTableVC;
