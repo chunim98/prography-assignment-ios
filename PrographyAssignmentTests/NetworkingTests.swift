@@ -12,7 +12,7 @@ import XCTest
 final class NetworkingTests: XCTestCase {
 
     // 이 친구를 테스트(System Under Test)
-    var sut: NetworkManager!
+    var sut: TMDBNetworkManager!
 
     override func setUpWithError() throws {
         
@@ -20,7 +20,7 @@ final class NetworkingTests: XCTestCase {
         /// 먼저 부모 클래스의 setUpWithError 메소드를 호출하여, 만약 에러를 포착한다면 호출자에게 에러를 전파한다.
 
         try super.setUpWithError()
-        sut = NetworkManager.shered
+        sut = TMDBNetworkManager.shered
     }
 
     override func tearDownWithError() throws {
@@ -41,10 +41,23 @@ final class NetworkingTests: XCTestCase {
     }
     
     func test_NowPlaying_응답_받아오기() async throws {
-        let nowPlaying = try? await sut.fetchNowPlaying()
-        nowPlaying?.results.forEach { print($0) }
+        let data = try? await sut.fetchNowPlaying()
+        data?.results.forEach { print($0) }
         
-        XCTAssertNotNil(nowPlaying, "nil인듯")
+        XCTAssertNotNil(data, "nil인듯")
     }
 
+    func test_Popular_응답_받아오기() async throws {
+        let data = try? await sut.fetchPopular()
+        data?.results.forEach { print($0) }
+        
+        XCTAssertNotNil(data, "nil인듯")
+    }
+    
+    func test_TopRated_응답_받아오기() async throws {
+        let data = try? await sut.fetchTopRated()
+        data?.results.forEach { print($0) }
+        
+        XCTAssertNotNil(data, "nil인듯")
+    }
 }
