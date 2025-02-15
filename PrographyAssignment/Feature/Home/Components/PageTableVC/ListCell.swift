@@ -17,7 +17,7 @@ final class ListCell: UITableViewCell {
     // MARK: Properties
     
     static let identifier = "ListCell"
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
         
     // MARK: Components
     
@@ -87,6 +87,8 @@ final class ListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.selectionStyle = .none
         setAutoLayout()
     }
     
@@ -96,6 +98,7 @@ final class ListCell: UITableViewCell {
         titleLabel.text = nil
         overviewLabel.text = nil
         rateLabel.text = nil
+        bag = DisposeBag() // rx 바인딩 초기화
     }
     
     required init?(coder: NSCoder) {
@@ -114,7 +117,10 @@ final class ListCell: UITableViewCell {
         contentVStack.addArrangedSubview(rateLabel)
         contentVStack.addArrangedSubview(genreCV)
         
-        overallHStack.snp.makeConstraints { $0.edges.equalToSuperview() }
+        overallHStack.snp.makeConstraints {
+            let inset = UIEdgeInsets(left: 16, bottom: 16, right: 16)
+            $0.edges.equalToSuperview().inset(inset)
+        }
         posterImageView.snp.makeConstraints { $0.width.equalTo(120) }
         genreCV.snp.makeConstraints { $0.height.equalTo(16) }
     }
@@ -141,6 +147,6 @@ final class ListCell: UITableViewCell {
     }
 }
 
-#Preview(traits: .fixedLayout(width: 380, height: 160)) {
+#Preview(traits: .fixedLayout(width: 380, height: 160+16)) {
     ListCell()
 }

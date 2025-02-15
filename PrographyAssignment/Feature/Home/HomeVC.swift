@@ -20,16 +20,26 @@ final class HomeVC: UIViewController {
     
     // MARK: Components
     
+    private let overallVStack = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        return sv
+    }()
+    
     private let backdropCarouselView = BackdropCarouselView()
+    
     private let tabContentsView = TabContentsView()
+    
+    private let pageTableVC = PageTableVC()
         
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         setNavigationBar(titleImage: UIImage(named: "prography_logo"))
-        
+
         setAutoLayout()
         setBinding()
     }
@@ -37,18 +47,14 @@ final class HomeVC: UIViewController {
     // MARK: Layout
     
     private func setAutoLayout() {
-        view.addSubview(backdropCarouselView)
-        view.addSubview(tabContentsView)
+        view.addSubview(overallVStack)
+        overallVStack.addArrangedSubview(backdropCarouselView)
+        overallVStack.addArrangedSubview(tabContentsView)
+        overallVStack.addArrangedSubview(pageTableVC.view)
         
-        backdropCarouselView.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(221)
-        }
-        tabContentsView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(80)
-            $0.centerY.equalToSuperview()
-        }
+        overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
+        backdropCarouselView.snp.makeConstraints { $0.height.equalTo(221) }
+        tabContentsView.snp.makeConstraints { $0.height.equalTo(80) }
     }
     
     // MARK: Binding
@@ -59,10 +65,9 @@ final class HomeVC: UIViewController {
         let output = homeVM.transform(input: input)
         
         output.nowPlaying
-            .bind(to: backdropCarouselView.nowPlayingInput)
+            .bind(to: backdropCarouselView.nowPlayingInput, pageTableVC.nowPlayingInput)
             .disposed(by: bag)
     }
-
 }
 
 #Preview {
