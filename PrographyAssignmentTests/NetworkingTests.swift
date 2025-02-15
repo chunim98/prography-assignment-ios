@@ -41,21 +41,21 @@ final class NetworkingTests: XCTestCase {
     }
     
     func test_NowPlaying_응답_받아오기() async throws {
-        let data = try? await sut.fetchNowPlaying()
+        let data = try? await sut.fetchMovieList(.nowPlaying)
         data?.results.forEach { print($0) }
         
         XCTAssertNotNil(data, "nil인듯")
     }
 
     func test_Popular_응답_받아오기() async throws {
-        let data = try? await sut.fetchPopular()
+        let data = try? await sut.fetchMovieList(.popular)
         data?.results.forEach { print($0) }
         
         XCTAssertNotNil(data, "nil인듯")
     }
     
     func test_TopRated_응답_받아오기() async throws {
-        let data = try? await sut.fetchTopRated()
+        let data = try? await sut.fetchMovieList(.topRated)
         data?.results.forEach { print($0) }
         
         XCTAssertNotNil(data, "nil인듯")
