@@ -14,6 +14,10 @@ final class PageTableVC: UIPageViewController {
     // MARK: Properties
 
     fileprivate var pages = [UIViewController]()
+    fileprivate var currentIndex: Int {
+        guard let vc = viewControllers?.first else { return 0 }
+        return pages.firstIndex(of: vc) ?? 0
+    }
 
     // MARK: Interface
     
@@ -53,9 +57,7 @@ extension PageTableVC: UIPageViewControllerDelegate {
         previousViewControllers: [UIViewController],
         transitionCompleted completed: Bool
     ) {
-        guard completed, let vc = viewControllers?.first else { return }
-        let currentIndex = pages.firstIndex(of: vc) ?? 0
-        
+        guard completed else { return }
         changeIndexOut.onNext(currentIndex)
     }
 }
@@ -97,7 +99,12 @@ extension PageTableVC: UIPageViewControllerDataSource {
 extension Reactive where Base: PageTableVC {
     var seletedIndex: Binder<Int> {
         Binder(base) { base, index in
-            base.setViewControllers([base.pages[index]], direction: .forward, animated: true)
+            // 타입 이름이 길어서 앨리어스 설정
+            typealias Direction = UIPageViewController.NavigationDirection
+            // 이전 페이지 인덱스에 따라 전환 애니메이션 방향을 다르게 설정
+            let direction: Direction = base.currentIndex < index ? .forward : .reverse
+            
+            base.setViewControllers([base.pages[index]], direction: direction, animated: true)
         }
     }
     
