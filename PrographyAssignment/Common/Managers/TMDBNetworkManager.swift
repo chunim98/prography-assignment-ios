@@ -27,12 +27,12 @@ final class TMDBNetworkManager {
     // MARK: Methods
     
     #warning("나중에 이거 예외처리 할 것")
-    func fetchMovieList(_ article: Article) async throws -> MovieInfo {
+    func fetchMovieList(_ article: Article, _ page: Int) async throws -> MovieInfo {
         let url = URL(string: article.rawValue)!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "language", value: "ko"),
-            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "page", value: "\(page)"),
         ]
         components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
         
