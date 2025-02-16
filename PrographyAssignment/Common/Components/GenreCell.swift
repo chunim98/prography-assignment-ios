@@ -61,8 +61,8 @@ final class GenreCell: UICollectionViewCell {
     
     // MARK: Configure Components
     
-    func configure(_ text: String) {
-        genreLabel.text = text
+    func configure(_ id: Int) {
+        genreLabel.text = id.genreName
     }
 }
 

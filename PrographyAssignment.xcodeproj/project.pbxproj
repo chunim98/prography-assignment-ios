@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		512C073B2D6240A000EC996C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C073A2D6240A000EC996C /* HapticManager.swift */; };
 		512C073F2D62483A00EC996C /* Comparable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C073E2D62483500EC996C /* Comparable+.swift */; };
+		512C07452D62536B00EC996C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C07442D62536700EC996C /* Int+.swift */; };
 		512C27B42D5F1CFD0094CF49 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */; };
 		512C27BC2D5F4D130094CF49 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C27BB2D5F4D070094CF49 /* HomeVM.swift */; };
 		5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE802D5DCB5C00527C8E /* HomeVC.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		512C073A2D6240A000EC996C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		512C073E2D62483500EC996C /* Comparable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+.swift"; sourceTree = "<group>"; };
+		512C07442D62536700EC996C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		512C27BB2D5F4D070094CF49 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		5131DE802D5DCB5C00527C8E /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		5131DE872D5DD25B00527C8E /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				512C07442D62536700EC996C /* Int+.swift */,
 				512C073E2D62483500EC996C /* Comparable+.swift */,
 				51E338662D5F77E700DEECA8 /* UIColor+.swift */,
 				5131DE9E2D5DFC2B00527C8E /* UICollectionView+.swift */,
@@ -496,6 +499,7 @@
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
 				512C073F2D62483A00EC996C /* Comparable+.swift in Sources */,
 				5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */,
+				512C07452D62536B00EC996C /* Int+.swift in Sources */,
 				51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */,
 				51E338702D5FA28800DEECA8 /* PageTableVC.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
