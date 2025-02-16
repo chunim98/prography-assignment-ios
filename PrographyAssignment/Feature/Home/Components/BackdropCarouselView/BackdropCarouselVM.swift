@@ -50,8 +50,8 @@ final class BackdropCarouselVM {
         Observable.create { observer in
             Task {
                 #warning("Mock 데이터 사용중2")
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(.nowPlaying, 1)
-//                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
+//                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(.nowPlaying, 1)
+                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
                 observer.onNext(fetched.results)
             }
             

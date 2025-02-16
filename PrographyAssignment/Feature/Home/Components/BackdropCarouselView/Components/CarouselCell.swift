@@ -46,7 +46,6 @@ final class CarouselCell: UICollectionViewCell {
         label.text = "대충 한 줄이 넘지 않게 구현해야 한다고 함" // temp
         label.font = .pretendardSemiBold11
         label.textColor = .white
-        label.numberOfLines = 1
         return label
     }()
     

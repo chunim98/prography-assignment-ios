@@ -34,7 +34,6 @@ final class MovieListVM {
 
         // loadPage값이 변할 때마다 새로운 페이지 누적
         loadPage
-            .debug()
             .flatMapLatest(fetchListCellDataArr(page:))
             .withLatestFrom(listCellDataArr) { $1 + $0 } // 기존+신규
             .bind(to: listCellDataArr)
@@ -71,8 +70,8 @@ final class MovieListVM {
         Observable.create { observer in
             Task {
                 #warning("Mock 데이터 사용중")
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(self.article, page)
-//                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
+//                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(self.article, page)
+                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
                 let listCellDataArr = fetched.results.map {
                     ListCellData(
                         posterPath: $0.posterPath,
