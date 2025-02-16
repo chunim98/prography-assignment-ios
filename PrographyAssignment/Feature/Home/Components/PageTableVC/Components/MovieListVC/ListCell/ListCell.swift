@@ -76,7 +76,7 @@ final class ListCell: UITableViewCell {
     }()
     
     private let genreCV = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        let cv = GenreTagCollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(GenreCell.self, forCellWithReuseIdentifier: GenreCell.identifier)
         cv.setSinglelineLayout(spacing: 4, itemSize: CGSize(width: 40, height: 16))
         cv.showsHorizontalScrollIndicator = false
@@ -87,7 +87,6 @@ final class ListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.selectionStyle = .none
         setAutoLayout()
     }
@@ -144,6 +143,10 @@ final class ListCell: UITableViewCell {
                 cell.configure(item)
             }
             .disposed(by: bag)
+        
+        // 데이터 바인딩 끝나고, 폰트 길이에 맞게 레이아웃 재계산
+        genreCV.genreIds = item.genreIDS
+        genreCV.collectionViewLayout.invalidateLayout()
     }
 }
 

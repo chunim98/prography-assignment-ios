@@ -10,6 +10,7 @@
 		512C073B2D6240A000EC996C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C073A2D6240A000EC996C /* HapticManager.swift */; };
 		512C073F2D62483A00EC996C /* Comparable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C073E2D62483500EC996C /* Comparable+.swift */; };
 		512C07452D62536B00EC996C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C07442D62536700EC996C /* Int+.swift */; };
+		512C07492D62655700EC996C /* GenreTagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C07482D62654800EC996C /* GenreTagCollectionView.swift */; };
 		512C27B42D5F1CFD0094CF49 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */; };
 		512C27BC2D5F4D130094CF49 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512C27BB2D5F4D070094CF49 /* HomeVM.swift */; };
 		5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DE802D5DCB5C00527C8E /* HomeVC.swift */; };
@@ -65,6 +66,7 @@
 		512C073A2D6240A000EC996C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		512C073E2D62483500EC996C /* Comparable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+.swift"; sourceTree = "<group>"; };
 		512C07442D62536700EC996C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		512C07482D62654800EC996C /* GenreTagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTagCollectionView.swift; sourceTree = "<group>"; };
 		512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		512C27BB2D5F4D070094CF49 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		5131DE802D5DCB5C00527C8E /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				51A09B652D605D8E0002A2F7 /* GenreCell.swift */,
+				512C07482D62654800EC996C /* GenreTagCollectionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */,
 				51A09B682D60638E0002A2F7 /* ListCellData.swift in Sources */,
 				5131DEC92D5E521400527C8E /* MovieInfo.swift in Sources */,
+				512C07492D62655700EC996C /* GenreTagCollectionView.swift in Sources */,
 				51A09B6C2D6070E20002A2F7 /* MovieListVM.swift in Sources */,
 				51A09B6A2D606D4C0002A2F7 /* MovieListVC.swift in Sources */,
 				5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */,

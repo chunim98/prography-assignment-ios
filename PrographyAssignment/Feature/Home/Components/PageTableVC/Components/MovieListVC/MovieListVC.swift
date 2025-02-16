@@ -60,9 +60,9 @@ final class MovieListVC: UIViewController {
     
     private func setBinding() {
         let input = MovieListVM.Input(currentCellIndex: currentCellIndexIn.asObservable())
-        
         let output = movieListVM.transform(input: input)
         
+        // 테이블 뷰 데이터 바인딩
         output.listCellDataArr
             .bind(to: listTV.rx.items(
                 cellIdentifier: ListCell.identifier,cellType: ListCell.self
@@ -74,7 +74,6 @@ final class MovieListVC: UIViewController {
             }
             .disposed(by: bag)
     }
-    
 }
 
 #Preview {

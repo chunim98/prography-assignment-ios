@@ -23,7 +23,6 @@ final class GenreCell: UICollectionViewCell {
         label.font = .pretendardSemiBold11
         label.textColor = .onSurfaceVariant
         label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -38,7 +37,7 @@ final class GenreCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         
-        // 레이아웃 구성
+        // 레이아웃
         setAutoLayout()
     }
     
@@ -55,8 +54,7 @@ final class GenreCell: UICollectionViewCell {
     
     private func setAutoLayout() {
         contentView.addSubview(genreLabel)
-        let inset = UIEdgeInsets(horizontal: 4, vertical: 1)
-        genreLabel.snp.makeConstraints { $0.edges.equalToSuperview().inset(inset) }
+        genreLabel.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
     // MARK: Configure Components
