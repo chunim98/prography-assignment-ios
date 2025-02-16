@@ -12,9 +12,7 @@ import RxCocoa
 
 final class BackdropCarouselVM {
     
-    struct Input {
-        let nowPlaying: Observable<MovieInfo>
-    }
+    struct Input {}
     
     struct Output {
         let carouselCellDataArr: Observable<[CarouselCellData]>

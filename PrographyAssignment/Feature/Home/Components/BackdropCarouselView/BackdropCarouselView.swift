@@ -18,10 +18,6 @@ final class BackdropCarouselView: UIView {
     private let backdropCarouselVM = BackdropCarouselVM()
     private let bag = DisposeBag()
     
-    // MARK: Dependency Input
-    
-    let nowPlayingInput = PublishSubject<MovieInfo>()
-    
     // MARK: Components
     
     private let carouselCV = {
@@ -57,8 +53,7 @@ final class BackdropCarouselView: UIView {
     // MARK: Binding
     
     private func setBinding() {
-        let input = BackdropCarouselVM.Input(nowPlaying: nowPlayingInput.asObservable())
-        
+        let input = BackdropCarouselVM.Input()
         let output = backdropCarouselVM.transform(input: input)
         
         // 캐러셀 컬렉션 뷰 데이터 바인딩
