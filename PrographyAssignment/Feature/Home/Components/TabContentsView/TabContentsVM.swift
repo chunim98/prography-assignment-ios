@@ -13,12 +13,12 @@ import RxCocoa
 final class TabContentsVM {
     
     struct Input {
-        let selectedSegmentIndex: Observable<Int>
+        let selectedIndex: Observable<Int>
     }
     
     struct Output {
         let underLinePositionWillUpdate: Observable<CGFloat>
-        let selectedSegmentIndex: Observable<Int>
+        let colorWillChange: Observable<Int>
     }
     
     private let bag = DisposeBag()
@@ -26,15 +26,15 @@ final class TabContentsVM {
     func transform(input: Input) -> Output {
         
         // 언더라인 뷰의 포지션을 맞추기위한 오프셋을 전달
-        let underLinePositionWillUpdate = input.selectedSegmentIndex
+        let underLinePositionWillUpdate = input.selectedIndex
             .map { CGFloat($0) }
-
-        // 현재 선택된 세그먼트 인덱스를 외부로 전달
-        let selectedSegmentIndex = input.selectedSegmentIndex
+        
+        // 선택 결과에 따라 세그먼트의 색을 재설정
+        let colorWillChange = input.selectedIndex
         
         return Output(
             underLinePositionWillUpdate: underLinePositionWillUpdate,
-            selectedSegmentIndex: selectedSegmentIndex
+            colorWillChange: colorWillChange
         )
     }
 

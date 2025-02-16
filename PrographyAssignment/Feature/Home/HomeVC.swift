@@ -39,7 +39,6 @@ final class HomeVC: UIViewController {
         
         view.backgroundColor = .white
         setNavigationBar(titleImage: UIImage(named: "prography_logo"))
-
         setAutoLayout()
         setBinding()
     }
@@ -60,11 +59,18 @@ final class HomeVC: UIViewController {
     // MARK: Binding
     
     private func setBinding() {
-        let input = HomeVM.Input()
+        let changeIndex = Observable.merge(
+            tabContentsView.rx.changeIndex,
+            pageTableVC.rx.changeIndex
+        )
         
+        let input = HomeVM.Input(changeIndex: changeIndex)
         let output = homeVM.transform(input: input)
 
-        
+        // 선택된 인덱스 상태 업데이트
+        output.selectedIndex
+            .bind(to: tabContentsView.rx.selectedIndex, pageTableVC.rx.seletedIndex)
+            .disposed(by: bag)
     }
 }
 

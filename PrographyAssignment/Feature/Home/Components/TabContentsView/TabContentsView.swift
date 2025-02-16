@@ -17,50 +17,27 @@ final class TabContentsView: UIView {
     
     private let tabContentsVM = TabContentsVM()
     private let bag = DisposeBag()
+    private let once = OnlyOnce()
     
-    // MARK: Dependency Output
+    // MARK: Interface
 
-    let selectedSegmentIndexOutput = PublishSubject<Int>()
+    fileprivate let selectedIndexIn = PublishSubject<Int>()
     
     // MARK: Components
     
-    private let segment = {
-        let seg = UISegmentedControl()
-        let image = UIImage()
-        
-        seg.insertSegment(withTitle: "Now Playing", at: 0, animated: true)
-        seg.insertSegment(withTitle: "Popular", at: 1, animated: true)
-        seg.insertSegment(withTitle: "Top Rated", at: 2, animated: true)
-        seg.selectedSegmentIndex = 0
-        
-        // 텍스트 색상 변경
-        seg.setTitleTextAttributes(
-            [
-                NSAttributedString.Key.foregroundColor: UIColor.onSurfaceVariant,
-                NSAttributedString.Key.font: UIFont.pretendardBold14!,
-            ],
-            for: .normal
-        )
-        seg.setTitleTextAttributes(
-            [
-                NSAttributedString.Key.foregroundColor: UIColor.brandColor,
-                NSAttributedString.Key.font: UIFont.pretendardBold14!,
-            ],
-            for: .selected
-        )
-        
-        // 배경 및 구분선 투명하게 변경
-        seg.setBackgroundImage(image, for: .normal, barMetrics: .default)
-        seg.setBackgroundImage(image, for: .selected, barMetrics: .default)
-        seg.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
-        seg.setDividerImage(
-            image,
-            forLeftSegmentState: .selected,
-            rightSegmentState: .normal,
-            barMetrics: .default
-        )
-        
-        return seg
+    private let contentsHStack = UIStackView()
+    
+    fileprivate let buttons: [UIButton] = {
+        ["Now Playing", "Popular", "Top Rated"].map { title in
+            var config = UIButton.Configuration.plain()
+            config.attributedTitle = AttributedString(
+                title,
+                attributes: UIFont.pretendardBold14.attributeContainer
+            )
+            config.baseForegroundColor = .brandColor // temp
+            config.baseBackgroundColor = .white
+            return UIButton(configuration: config)
+        }
     }()
     
     private let underLineView = {
@@ -79,7 +56,7 @@ final class TabContentsView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setUnderLinePosition()
+        once.excute { setUnderLinePosition() }
     }
     
     required init?(coder: NSCoder) {
@@ -89,17 +66,19 @@ final class TabContentsView: UIView {
     // MARK: Layout
     
     private func setAutoLayout() {
-        self.addSubview(segment)
-        segment.addSubview(underLineView)
+        self.addSubview(contentsHStack)
+        self.addSubview(underLineView)
+        buttons.forEach { contentsHStack.addArrangedSubview($0) }
         
-        segment.snp.makeConstraints {
+        contentsHStack.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(vertical: 16))
+            $0.height.equalTo(48)
         }
         underLineView.snp.makeConstraints {
             $0.height.equalTo(3)
             $0.width.equalTo(78)
-            $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview()
+            $0.bottom.equalTo(contentsHStack.snp.bottom)
         }
     }
     
@@ -110,8 +89,8 @@ final class TabContentsView: UIView {
         ///
         /// 이렇게 안하면, setBinding 시점에
         /// 없는 제약을 업데이트 하려 한다면서 에러 뱉음ㅡㅡ
-        
-        let offset = (segment.bounds.width/3) / 2
+       
+        let offset = (contentsHStack.bounds.width/3) / 2
         let lineOffset = underLineView.bounds.width / 2
         
         underLineView.snp.updateConstraints {
@@ -123,39 +102,61 @@ final class TabContentsView: UIView {
     // MARK: Binding
     
     private func setBinding() {
-        
-        let selectedSegmentIndex = segment
-            .rx.selectedSegmentIndex
-            .asObservable()
-        
-        let input = TabContentsVM.Input(selectedSegmentIndex: selectedSegmentIndex)
-        
+        let input = TabContentsVM.Input(selectedIndex: selectedIndexIn.asObservable())
         let output = tabContentsVM.transform(input: input)
         
         // 언더라인 뷰의 포지션을 맞추기위한 오프셋을 전달
         output.underLinePositionWillUpdate
+            .map { CGFloat($0) }
             .bind(with: self) { owner, index in
-                let tabWidth = owner.segment.bounds.width / 3
+                let tabWidth = owner.contentsHStack.bounds.width / 3
                 let offset = tabWidth / 2
                 let lineOffset = owner.underLineView.bounds.width / 2
                 
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.2) {
                     owner.underLineView.snp.updateConstraints {
                         let inset = UIEdgeInsets(left: tabWidth*index+offset-lineOffset)
                         $0.leading.equalToSuperview().inset(inset)
                     }
-                    owner.segment.layoutIfNeeded()
+                    owner.layoutIfNeeded()
                 }
             }
             .disposed(by: bag)
         
-        // 현재 선택된 세그먼트 인덱스를 외부로 전달
-        output.selectedSegmentIndex
-            .bind(to: selectedSegmentIndexOutput)
+        // 선택 결과에 따라 세그먼트의 색을 재설정
+        output.colorWillChange
+            .bind(with: self) { owner, target in
+                owner.buttons.enumerated().forEach { index, button in
+                    if target == index {
+                        button.configuration?.baseForegroundColor = .brandColor
+                    } else {
+                        button.configuration?.baseForegroundColor = .onSurfaceVariant
+                    }
+                }
+            }
             .disposed(by: bag)
     }
 }
 
 #Preview(traits: .fixedLayout(width: 412, height: 80)) {
     TabContentsView()
+}
+
+// MARK: - Reactive
+
+extension Reactive where Base: TabContentsView {
+    var selectedIndex: Binder<Int> {
+        Binder(base) { base, index in
+            base.selectedIndexIn.onNext(index)
+        }
+    }
+    
+    // 3개의 버튼 배열의 탭 이벤트를 하나로 묶고, 인덱스로 변환
+    var changeIndex: Observable<Int> {
+        Observable.merge(
+            base.buttons.enumerated().map { index, button in
+                button.rx.tap.map { _ in index }
+            }
+        )
+    }
 }
