@@ -18,6 +18,10 @@ final class MovieListVC: UIViewController {
     private let movieListVM: MovieListVM
     private let bag = DisposeBag()
     
+    // MARK: Interface
+    
+    fileprivate let currentCellIndexIn = PublishSubject<Int>()
+    
     // MARK: Components
     
     private let listTV = {
@@ -55,15 +59,18 @@ final class MovieListVC: UIViewController {
     // MARK: Binding
     
     private func setBinding() {
-        let input = MovieListVM.Input()
+        let input = MovieListVM.Input(currentCellIndex: currentCellIndexIn.asObservable())
         
         let output = movieListVM.transform(input: input)
         
         output.listCellDataArr
             .bind(to: listTV.rx.items(
                 cellIdentifier: ListCell.identifier,cellType: ListCell.self
-            )) { index, item, cell in
+            )) { [weak self] index, item, cell in
+                guard let self else { return }
+                
                 cell.configure(item)
+                self.rx.currentCellIndex.onNext(index)
             }
             .disposed(by: bag)
     }
@@ -72,4 +79,14 @@ final class MovieListVC: UIViewController {
 
 #Preview {
     MovieListVC(.nowPlaying)
+}
+
+// MARK: - Reactive
+
+extension Reactive where Base: MovieListVC {
+    var currentCellIndex: Binder<Int> {
+        Binder(base) { base, index in
+            base.currentCellIndexIn.onNext(index)
+        }
+    }
 }
