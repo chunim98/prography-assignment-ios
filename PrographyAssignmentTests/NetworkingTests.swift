@@ -32,7 +32,7 @@ final class NetworkingTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    // MARK: Testing
+    // MARK: Tests
     
     func test_xcconfig_접근() {
         let apiKey = Bundle.main.infoDictionary?["TMDB_API_KEY"] as? String ?? ""

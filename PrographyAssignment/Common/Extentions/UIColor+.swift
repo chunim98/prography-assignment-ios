@@ -26,4 +26,8 @@ extension UIColor {
     static var onSurface: UIColor {
         UIColor(hex: 0x1D1B20)
     }
+    
+    static var textDefault: UIColor {
+        UIColor(hex: 0x1E1E1E)
+    }
 }
