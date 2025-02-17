@@ -153,10 +153,8 @@ extension Reactive where Base: TabContentsView {
     
     // 3개의 버튼 배열의 탭 이벤트를 하나로 묶고, 인덱스로 변환
     var changeIndex: Observable<Int> {
-        Observable.merge(
-            base.buttons.enumerated().map { index, button in
-                button.rx.tap.map { _ in index }
-            }
-        )
+        Observable.merge(base.buttons.enumerated().map { index, button in
+            button.rx.tap.map { _ in index }
+        })
     }
 }
