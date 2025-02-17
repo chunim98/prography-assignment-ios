@@ -48,6 +48,27 @@ final class TMDBNetworkManager {
         let decoder = JSONDecoder()
         return try decoder.decode(MovieInfo.self, from: data)
     }
+    
+    func fetchMovieDetails(_ id: Int) async throws -> MovieDetails {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)")!
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        let queryItems: [URLQueryItem] = [
+          URLQueryItem(name: "language", value: "ko"),
+        ]
+        components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
+
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 10
+        request.allHTTPHeaderFields = [
+          "accept": "application/json",
+          "Authorization": "Bearer " + apiKey
+        ]
+
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decoder = JSONDecoder()
+        return try decoder.decode(MovieDetails.self, from: data)
+    }
 
     // 리퀘스트를 보내지는 않는 테스트용 메서드
     func fetchMovieListMock() async throws -> MovieInfo {
