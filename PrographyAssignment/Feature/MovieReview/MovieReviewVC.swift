@@ -24,6 +24,8 @@ final class MovieReviewVC: UIViewController {
     private let productInfoCardView = PosterCardView()
     
     private let starLineView = StarLineView()
+    
+    private let detailsView = DetailsView()
 
     // MARK: Life Cycle
     
@@ -41,8 +43,9 @@ final class MovieReviewVC: UIViewController {
         view.addSubview(overallVStack)
         overallVStack.addArrangedSubview(productInfoCardView)
         overallVStack.addArrangedSubview(starLineView)
+        overallVStack.addArrangedSubview(detailsView)
         
-        overallVStack.snp.makeConstraints { $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide) }
+        overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         productInfoCardView.snp.makeConstraints { $0.height.equalTo(247) }
         starLineView.snp.makeConstraints { $0.height.equalTo(60) }
     }
