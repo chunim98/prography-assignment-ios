@@ -1,5 +1,5 @@
 //
-//  InfoCardGradientView.swift
+//  PosterCardGradientView.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/17/25.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InfoCardGradientView: UIView {
+final class PosterCardGradientView: UIView {
     
     // MARK: Components
     

@@ -21,7 +21,7 @@ final class MovieReviewVC: UIViewController {
         return sv
     }()
     
-    private let productInfoCardView = ProductInfoCardView()
+    private let productInfoCardView = PosterCardView()
     
     private let starLineView = StarLineView()
 
@@ -33,7 +33,6 @@ final class MovieReviewVC: UIViewController {
         view.backgroundColor = .white
         setNavigationBar(titleImage: UIImage(named: "prography_logo"))
         setAutoLayout()
-        starLineView.rx.rate.onNext(3) // temp
     }
     
     // MARK: Layout

@@ -1,5 +1,5 @@
 //
-//  ProductInfoCardView.swift
+//  PosterCardView.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/17/25.
@@ -11,11 +11,11 @@ import Kingfisher
 import RxSwift
 import SnapKit
 
-final class ProductInfoCardView: UIView {
+final class PosterCardView: UIView {
     
     // MARK: Components
     
-    private let gradientView = InfoCardGradientView()
+    private let gradientView = PosterCardGradientView()
     
     fileprivate let posterImageView = {
         let iv = UIImageView()
@@ -47,12 +47,12 @@ final class ProductInfoCardView: UIView {
 }
 
 #Preview {
-    ProductInfoCardView()
+    PosterCardView()
 }
 
 // MARK: - Reactive
 
-extension Reactive where Base: ProductInfoCardView {
+extension Reactive where Base: PosterCardView {
     var posterPath: Binder<String> {
         Binder(base) { base, path in
             let url = URL(string: path)

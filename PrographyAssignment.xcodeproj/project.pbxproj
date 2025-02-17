@@ -39,8 +39,8 @@
 		515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C38B82D5DC22C00FC0957 /* SceneDelegate.swift */; };
 		515C38C62D5DC3BC00FC0957 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 515C38C52D5DC3BC00FC0957 /* RxCocoa */; };
 		515C38C92D5DC3E300FC0957 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 515C38C82D5DC3E300FC0957 /* SnapKit */; };
-		5186E9AF2D6303C800B2A6A4 /* InfoCardGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E9AE2D6303C800B2A6A4 /* InfoCardGradientView.swift */; };
-		5186E9B12D63088E00B2A6A4 /* ProductInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E9B02D63088400B2A6A4 /* ProductInfoCardView.swift */; };
+		5186E9AF2D6303C800B2A6A4 /* PosterCardGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E9AE2D6303C800B2A6A4 /* PosterCardGradientView.swift */; };
+		5186E9B12D63088E00B2A6A4 /* PosterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E9B02D63088400B2A6A4 /* PosterCardView.swift */; };
 		5186E9B32D63109300B2A6A4 /* StarLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E9B22D63108E00B2A6A4 /* StarLineView.swift */; };
 		5186E9B52D63145400B2A6A4 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E9B42D63144F00B2A6A4 /* UIImage+.swift */; };
 		51A09B602D604FE80002A2F7 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B5F2D604F6D0002A2F7 /* ListCell.swift */; };
@@ -101,8 +101,8 @@
 		515C38B32D5DC22C00FC0957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		515C38B82D5DC22C00FC0957 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		515C38BB2D5DC22C00FC0957 /* PrographyAssignment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrographyAssignment.xcdatamodel; sourceTree = "<group>"; };
-		5186E9AE2D6303C800B2A6A4 /* InfoCardGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardGradientView.swift; sourceTree = "<group>"; };
-		5186E9B02D63088400B2A6A4 /* ProductInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoCardView.swift; sourceTree = "<group>"; };
+		5186E9AE2D6303C800B2A6A4 /* PosterCardGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCardGradientView.swift; sourceTree = "<group>"; };
+		5186E9B02D63088400B2A6A4 /* PosterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCardView.swift; sourceTree = "<group>"; };
 		5186E9B22D63108E00B2A6A4 /* StarLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarLineView.swift; sourceTree = "<group>"; };
 		5186E9B42D63144F00B2A6A4 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		51A09B5F2D604F6D0002A2F7 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
@@ -327,10 +327,18 @@
 		5186E9AD2D6303C100B2A6A4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5186E9AE2D6303C800B2A6A4 /* InfoCardGradientView.swift */,
-				5186E9B02D63088400B2A6A4 /* ProductInfoCardView.swift */,
+				5186E9B62D6323C600B2A6A4 /* PosterCardView */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5186E9B62D6323C600B2A6A4 /* PosterCardView */ = {
+			isa = PBXGroup;
+			children = (
+				5186E9B02D63088400B2A6A4 /* PosterCardView.swift */,
+				5186E9AE2D6303C800B2A6A4 /* PosterCardGradientView.swift */,
+			);
+			path = PosterCardView;
 			sourceTree = "<group>";
 		};
 		51A09B772D60CC690002A2F7 /* Components */ = {
@@ -512,8 +520,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5186E9B12D63088E00B2A6A4 /* ProductInfoCardView.swift in Sources */,
-				5186E9AF2D6303C800B2A6A4 /* InfoCardGradientView.swift in Sources */,
+				5186E9B12D63088E00B2A6A4 /* PosterCardView.swift in Sources */,
+				5186E9AF2D6303C800B2A6A4 /* PosterCardGradientView.swift in Sources */,
 				5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */,
 				5131DE962D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift in Sources */,
 				5131DE9D2D5DF3C600527C8E /* CarouselGradientView.swift in Sources */,
