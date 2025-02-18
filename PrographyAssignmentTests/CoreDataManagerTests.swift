@@ -41,13 +41,13 @@ final class CoreDataManagerTests: XCTestCase {
         //        sut.create(with: mockData)
         let result = sut.readAll()
         
-        result.forEach {
-            print("movieId: \($0.movieId)")
-            print("posterPath: \($0.posterPath)")
-            print("personalRate: \($0.personalRate)")
-            print("date: \($0.date)")
-            print("commentData: \($0.commentData)")
-        }
+//        result.forEach {
+//            print("movieId: \($0.movieId)")
+//            print("posterPath: \($0.posterPath)")
+//            print("personalRate: \($0.personalRate)")
+//            print("date: \($0.date)")
+//            print("commentData: \($0.commentData)")
+//        }
         
         XCTAssertFalse(result.isEmpty)
     }
@@ -55,13 +55,13 @@ final class CoreDataManagerTests: XCTestCase {
     func testReadWithMovieId() {
         let result = sut.read(movieId: 12121212)
         
-        if let result {
-            print("movieId: \(result.movieId)")
-            print("posterPath: \(result.posterPath)")
-            print("personalRate: \(result.personalRate)")
-            print("date: \(result.date)")
-            print("commentData: \(result.commentData)")
-        }
+//        if let result {
+//            print("movieId: \(result.movieId)")
+//            print("posterPath: \(result.posterPath)")
+//            print("personalRate: \(result.personalRate)")
+//            print("date: \(result.date)")
+//            print("commentData: \(result.commentData)")
+//        }
         
         XCTAssertNotNil(result)
     }
@@ -70,13 +70,13 @@ final class CoreDataManagerTests: XCTestCase {
         sut.delete(mockData)
         let result = sut.readAll()
         
-        result.forEach {
-            print("movieId: \($0.movieId)")
-            print("posterPath: \($0.posterPath)")
-            print("personalRate: \($0.personalRate)")
-            print("date: \($0.date)")
-            print("commentData: \($0.commentData)")
-        }
+//        result.forEach {
+//            print("movieId: \($0.movieId)")
+//            print("posterPath: \($0.posterPath)")
+//            print("personalRate: \($0.personalRate)")
+//            print("date: \($0.date)")
+//            print("commentData: \($0.commentData)")
+//        }
         
         XCTAssertTrue(result.isEmpty)
     }
@@ -85,13 +85,13 @@ final class CoreDataManagerTests: XCTestCase {
         sut.update(with: mockData)
         let result = sut.readAll()
         
-        result.forEach {
-            print("결과 - movieId: \($0.movieId)")
-            print("결과 - posterPath: \($0.posterPath)")
-            print("결과 - personalRate: \($0.personalRate)")
-            print("결과 - date: \($0.date)")
-            print("결과 - commentData: \($0.commentData)")
-        }
+//        result.forEach {
+//            print("결과 - movieId: \($0.movieId)")
+//            print("결과 - posterPath: \($0.posterPath)")
+//            print("결과 - personalRate: \($0.personalRate)")
+//            print("결과 - date: \($0.date)")
+//            print("결과 - commentData: \($0.commentData)")
+//        }
         
         XCTAssertFalse(result.isEmpty)
     }
