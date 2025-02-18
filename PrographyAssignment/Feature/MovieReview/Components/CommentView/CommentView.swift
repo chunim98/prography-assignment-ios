@@ -64,10 +64,8 @@ final class CommentView: UIView {
         overallVStack.addArrangedSubview(commentReadView)
         commentReadView.addSubview(commentWriteView)
         
-        
         overallVStack.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: 16))
-            $0.width.equalTo(412)
             $0.height.equalTo(116)
         }
         commentWriteView.snp.makeConstraints { $0.edges.equalToSuperview() }

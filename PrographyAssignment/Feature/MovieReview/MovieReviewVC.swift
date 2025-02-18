@@ -20,6 +20,10 @@ final class MovieReviewVC: UIViewController {
     
     // MARK: Components
     
+    fileprivate let pullDownBarButton = PullDownBarButton()
+    
+    fileprivate let saveBarButton = SaveBarButton()
+    
     private let overallVStack = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -40,7 +44,10 @@ final class MovieReviewVC: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        setNavigationBar(titleImage: UIImage(named: "prography_logo"))
+        setNavigationBar(
+            rightBarButtonItems: [pullDownBarButton],
+            titleImage: UIImage(named: "prography_logo")
+        )
         setAutoLayout()
         setBinding()
     }
@@ -83,13 +90,24 @@ final class MovieReviewVC: UIViewController {
         
         // 리뷰 상태 바인딩
         output.state
-            .bind(to: commentView.rx.state)
+            .bind(to: commentView.rx.state, self.rx.barButtons)
             .disposed(by: bag)
     }
 }
 
 #Preview {
     let vc = MovieReviewVC()
-    vc.movieReviewVM = MovieReviewVM(822119)
+//    vc.movieReviewVM = MovieReviewVM(822119)
     return UINavigationController(rootViewController: vc)
+}
+
+// MARK: - Reactive
+
+extension Reactive where Base: MovieReviewVC {
+    var barButtons: Binder<ReviewState> {
+        Binder(base) {
+            $0.navigationItem.rightBarButtonItem = [.create, .edit].contains($1)
+            ? $0.saveBarButton : $0.pullDownBarButton
+        }
+    }
 }

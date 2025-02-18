@@ -66,6 +66,7 @@ final class MovieReviewVM {
 
         // 코멘트 뷰의 텍스트가 업데이트되면, 리뷰 데이터 업데이트
         input.updatedText
+            .distinctUntilChanged()
             .withLatestFrom(reviewData) { text, review in
                 review.updated(commentData: review.commentData.map { $0.updated(comment: text) }
                                ?? ReviewData.CommentData(comment: text, date: Date()))
@@ -75,7 +76,7 @@ final class MovieReviewVM {
         
         return Output(
             movieDetails: movieDetails,
-            reviewData: reviewData,
+            reviewData: reviewData.asObservable(),
             state: reviewState.asObservable().distinctUntilChanged()
         )
     }
