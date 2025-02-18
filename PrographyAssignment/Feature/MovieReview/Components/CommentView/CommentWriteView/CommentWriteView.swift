@@ -24,7 +24,7 @@ final class CommentWriteView: UIStackView {
     
     // MARK: Components
     
-    private let textView = {
+    fileprivate let textView = {
         let tv = UITextView()
         tv.textContainer.lineFragmentPadding = 0 // 좌우 여백 제거
         tv.textContainerInset = .zero // 상하 여백 제거
@@ -101,7 +101,11 @@ final class CommentWriteView: UIStackView {
 // MARK: - Reactive
 
 extension Reactive where Base: CommentWriteView {
-    var text: Observable<String> {
+    var commentData: Binder<ReviewData.CommentData> {
+        Binder(base) { $0.textView.text = $1.comment }
+    }
+    
+    var updatedText: Observable<String> {
         base.trimmedTextOut.asObservable()
     }
 }

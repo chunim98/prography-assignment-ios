@@ -19,7 +19,7 @@ final class CommentReadView: UIStackView {
         return sv
     }()
     
-    private let textView = {
+    fileprivate let textView = {
         let tv = UITextView()
         tv.text = "너클즈, 테일즈와 함께 평화로운 일상을 보내던 초특급 히어로 어쩌구 저쩌구.." // temp
         tv.textContainer.lineFragmentPadding = 0 // 좌우 여백 제거
@@ -32,7 +32,7 @@ final class CommentReadView: UIStackView {
         return tv
     }()
     
-    private let dateLabel = {
+    fileprivate let dateLabel = {
         let label = UILabel()
         label.text = "2025-01-27" // temp
         label.textColor = .textDefault
@@ -76,5 +76,10 @@ final class CommentReadView: UIStackView {
 // MARK: - Reactive
 
 extension Reactive where Base: CommentReadView {
-    #warning("나중에 데이터 바인딩 로직 추가 요망")
+    var commentData: Binder<ReviewData.CommentData> {
+        Binder(base) {
+            $0.textView.text = $1.comment
+            $0.dateLabel.text = $1.date.string
+        }
+    }
 }

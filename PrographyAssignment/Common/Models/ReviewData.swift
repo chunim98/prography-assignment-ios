@@ -19,3 +19,42 @@ struct ReviewData {
         let date: Date
     }
 }
+
+extension ReviewData {
+    // 멤버와이즈 생성자 유지하려고 확장에다가 선언
+    init() {
+        self.movieId = 0
+        self.posterPath = ""
+        self.personalRate = 0
+        self.date = Date()
+        self.commentData = nil
+    }
+    
+    func updated(
+        movieId: Int? = nil,
+        posterPath: String? = nil,
+        personalRate: Int? = nil,
+        date: Date? = nil,
+        commentData: CommentData?? = nil // 옵셔널을 유지하기 위해 중첩 옵셔널 사용
+    ) -> Self {
+        ReviewData(
+            movieId: movieId ?? self.movieId,
+            posterPath: posterPath ?? self.posterPath,
+            personalRate: personalRate ?? self.personalRate,
+            date: date ?? self.date,
+            commentData: commentData ?? self.commentData
+        )
+    }
+}
+
+extension ReviewData.CommentData {
+    func updated(
+        comment: String? = nil,
+        date: Date? = nil
+    ) -> Self {
+        ReviewData.CommentData(
+            comment: comment ?? self.comment,
+            date: date ?? self.date
+        )
+    }
+}

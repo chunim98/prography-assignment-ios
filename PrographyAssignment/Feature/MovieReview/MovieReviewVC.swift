@@ -28,9 +28,11 @@ final class MovieReviewVC: UIViewController {
     
     private let posterCardView = PosterCardView()
     
-    private let starLineView = StarLineView()
+    private let starButtonsView = StarButtonsView()
     
     private let detailsView = DetailsView()
+    
+    private let commentView = CommentView()
 
     // MARK: Life Cycle
     
@@ -48,12 +50,13 @@ final class MovieReviewVC: UIViewController {
     private func setAutoLayout() {
         view.addSubview(overallVStack)
         overallVStack.addArrangedSubview(posterCardView)
-        overallVStack.addArrangedSubview(starLineView)
+        overallVStack.addArrangedSubview(starButtonsView)
         overallVStack.addArrangedSubview(detailsView)
+        overallVStack.addArrangedSubview(commentView)
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         posterCardView.snp.makeConstraints { $0.height.equalTo(247) }
-        starLineView.snp.makeConstraints { $0.height.equalTo(60) }
+        starButtonsView.snp.makeConstraints { $0.height.equalTo(60) }
     }
 
     // MARK: Binding
@@ -61,21 +64,32 @@ final class MovieReviewVC: UIViewController {
     private func setBinding() {
         guard let movieReviewVM else { return }
         
-        let input = MovieReviewVM.Input()
+        let input = MovieReviewVM.Input(
+            starButtonsTap: starButtonsView.rx.tap,
+            updatedText: commentView.rx.updatedText
+        )
         let output = movieReviewVM.transform(input: input)
         
+        // 영화 세부정보 데이터 바인딩
         output.movieDetails
             .bind(to: posterCardView.rx.movieDetails, detailsView.rx.movieDetails)
             .disposed(by: bag)
         
-        output.rate
-            .bind(to: starLineView.rx.rate)
+        // 리뷰 데이터 바인딩
+        output.reviewData
+            .debug()
+            .bind(to: starButtonsView.rx.rate)
+            .disposed(by: bag)
+        
+        // 리뷰 상태 바인딩
+        output.state
+            .bind(to: commentView.rx.state)
             .disposed(by: bag)
     }
 }
 
 #Preview {
     let vc = MovieReviewVC()
-//    vc.movieReviewVM = MovieReviewVM(822119)
+    vc.movieReviewVM = MovieReviewVM(822119)
     return UINavigationController(rootViewController: vc)
 }

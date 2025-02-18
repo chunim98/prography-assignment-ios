@@ -41,16 +41,15 @@ final class CommentView: UIView {
         return sv
     }()
     
-    private let commentWriteView = CommentWriteView()
+    fileprivate let commentWriteView = CommentWriteView()
     
-    private let commentReadView = CommentReadView()
+    fileprivate let commentReadView = CommentReadView()
     
     // MARK: Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setAutoLayout()
-        commentWriteView.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -77,4 +76,24 @@ final class CommentView: UIView {
 
 #Preview(traits: .fixedLayout(width: 412, height: 116)) {
     CommentView()
+}
+
+// MARK: - Reactive
+
+extension Reactive where Base: CommentView {
+    var state: Binder<ReviewState> {
+        Binder(base) { $0.commentWriteView.isHidden = ($1 == .read) }
+    }
+    
+    var text: Binder<ReviewData> {
+        Binder(base) {
+            guard let data = $1.commentData else { return }
+            $0.commentReadView.rx.commentData.onNext(data)
+            $0.commentWriteView.rx.commentData.onNext(data)
+        }
+    }
+    
+    var updatedText: Observable<String> {
+        base.commentWriteView.rx.updatedText
+    }
 }

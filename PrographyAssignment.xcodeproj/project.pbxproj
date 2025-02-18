@@ -70,6 +70,9 @@
 		51EB407C2D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40782D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift */; };
 		51EB407D2D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40792D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift */; };
 		51EB407E2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB407A2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift */; };
+		51EB40812D649C170069DF1E /* StarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40802D649C150069DF1E /* StarButtonsView.swift */; };
+		51EB40832D64A6A80069DF1E /* ReviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40822D64A6990069DF1E /* ReviewState.swift */; };
+		51EB40852D64C14F0069DF1E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40842D64C14C0069DF1E /* Date+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +150,9 @@
 		51EB40782D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		51EB40792D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		51EB407A2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51EB40802D649C150069DF1E /* StarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButtonsView.swift; sourceTree = "<group>"; };
+		51EB40822D64A6990069DF1E /* ReviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewState.swift; sourceTree = "<group>"; };
+		51EB40842D64C14C0069DF1E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +247,7 @@
 		5131DE872D5DD25B00527C8E /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				51EB40842D64C14C0069DF1E /* Date+.swift */,
 				5186E9B42D63144F00B2A6A4 /* UIImage+.swift */,
 				512C07442D62536700EC996C /* Int+.swift */,
 				512C073E2D62483500EC996C /* Comparable+.swift */,
@@ -330,6 +337,7 @@
 				5186E9AD2D6303C100B2A6A4 /* Components */,
 				515998642D6301740013D4C8 /* MovieReviewVC.swift */,
 				5186E9D32D63923200B2A6A4 /* MovieReviewVM.swift */,
+				51EB40822D64A6990069DF1E /* ReviewState.swift */,
 			);
 			path = MovieReview;
 			sourceTree = "<group>";
@@ -367,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				5186E9B62D6323C600B2A6A4 /* PosterCardView */,
+				51EB407F2D649BE30069DF1E /* StarButtonsView */,
 				5186E9B72D63242400B2A6A4 /* DetailView */,
 				5186E9C22D6352AB00B2A6A4 /* CommentView */,
 			);
@@ -469,6 +478,14 @@
 				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
 			);
 			path = PageTableVC;
+			sourceTree = "<group>";
+		};
+		51EB407F2D649BE30069DF1E /* StarButtonsView */ = {
+			isa = PBXGroup;
+			children = (
+				51EB40802D649C150069DF1E /* StarButtonsView.swift */,
+			);
+			path = StarButtonsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -603,9 +620,11 @@
 				5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */,
 				5186E9C12D63380B00B2A6A4 /* MovieDetails.swift in Sources */,
 				5131DE962D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift in Sources */,
+				51EB40832D64A6A80069DF1E /* ReviewState.swift in Sources */,
 				5186E9D42D63923500B2A6A4 /* MovieReviewVM.swift in Sources */,
 				5186E9C62D63587D00B2A6A4 /* CommentWriteView.swift in Sources */,
 				5131DE9D2D5DF3C600527C8E /* CarouselGradientView.swift in Sources */,
+				51EB40852D64C14F0069DF1E /* Date+.swift in Sources */,
 				512C27BC2D5F4D130094CF49 /* HomeVM.swift in Sources */,
 				51E3386C2D5F900900DEECA8 /* OnlyOnce.swift in Sources */,
 				5131DE9B2D5DEC0D00527C8E /* UIFont+.swift in Sources */,
@@ -634,6 +653,7 @@
 				5186E9C42D63535E00B2A6A4 /* CommentView.swift in Sources */,
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
 				5186E9CD2D63710100B2A6A4 /* CommentWriteVM.swift in Sources */,
+				51EB40812D649C170069DF1E /* StarButtonsView.swift in Sources */,
 				512C073F2D62483A00EC996C /* Comparable+.swift in Sources */,
 				515998652D6301740013D4C8 /* MovieReviewVC.swift in Sources */,
 				5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */,
