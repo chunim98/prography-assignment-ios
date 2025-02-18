@@ -80,7 +80,10 @@ final class CommentView: UIView {
 
 extension Reactive where Base: CommentView {
     var state: Binder<ReviewState> {
-        Binder(base) { $0.commentWriteView.isHidden = ($1 == .read) }
+        Binder(base) {
+            $0.commentWriteView.isHidden = ($1 == .read)
+            if $1 == .readOnlyRate { $0.commentWriteView.rx.endEditing.onNext(()) }
+        }
     }
     
     var text: Binder<ReviewData> {

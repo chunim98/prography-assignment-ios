@@ -32,6 +32,6 @@ final class SaveBarButton: UIBarButtonItem {
 // MARK: - Reactive
 
 extension Reactive where Base: SaveBarButton {
-    var event: Observable<BarButtonEvent> { base.rx.tap.map { _ in .delete } }
+    var event: Observable<BarButtonEvent> { base.rx.tap.map { _ in .save } }
 }
 

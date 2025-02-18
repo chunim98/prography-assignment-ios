@@ -15,12 +15,14 @@ final class MovieReviewVM {
     struct Input {
         let starButtonsTap: Observable<Int>
         let updatedText: Observable<String>
+        let barButtonEvent: Observable<BarButtonEvent>
     }
     
     struct Output {
         let movieDetails: Observable<MovieDetails>
         let reviewData: Observable<ReviewData>
         let state: Observable<ReviewState>
+        let dismissEvent: Observable<Void>
     }
     
     private let movieId: Int
@@ -39,7 +41,7 @@ final class MovieReviewVM {
         movieDetails
             .map { CoreDataManager.shared.read(movieId: $0.id) }
             .compactMap { $0.map { // 옵셔널 map
-                $0.commentData == nil ? ReviewState.read : ReviewState.readOnlyRate
+                $0.commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             } }
             .bind(to: reviewState)
             .disposed(by: bag)
@@ -50,9 +52,10 @@ final class MovieReviewVM {
             .bind(to: reviewData)
             .disposed(by: bag)
         
-        // 별점 건드리는 순간, 편집 상태로 업데이트
+        // 별점 건드리는 순간, 편집 상태로 업데이트 (최초 작성은 제외)
         input.starButtonsTap
-            .map { _ in ReviewState.edit }
+            .withLatestFrom(reviewState)
+            .compactMap { $0 == .create ? nil : ReviewState.edit }
             .bind(to: reviewState)
             .disposed(by: bag)
         
@@ -62,6 +65,15 @@ final class MovieReviewVM {
                 $1.updated(personalRate: ($0+1 == $1.personalRate) ? $0 : $0+1)
             }
             .bind(to: reviewData)
+            .disposed(by: bag)
+        
+        // 코멘트 뷰의 텍스트가 업데이트되면, 편집 상태로 업데이트 (최초 작성은 제외)
+        input.updatedText
+            .debug()
+            .distinctUntilChanged()
+            .withLatestFrom(reviewState)
+            .compactMap { $0 == .create ? nil : ReviewState.edit }
+            .bind(to: reviewState)
             .disposed(by: bag)
 
         // 코멘트 뷰의 텍스트가 업데이트되면, 리뷰 데이터 업데이트
@@ -74,10 +86,70 @@ final class MovieReviewVM {
             .bind(to: reviewData)
             .disposed(by: bag)
         
+        // 바 버튼 이벤트가 편집이면, 편집 상태로 업데이트
+        input.barButtonEvent
+            .compactMap { $0 == .edit ? ReviewState.edit : nil }
+            .bind(to: reviewState)
+            .disposed(by: bag)
+        
+        // 바 버튼 이벤트가 삭제이면, 리뷰 데이터 지우고 화면 닫기
+        let dismissEvent = input.barButtonEvent
+            .filter { $0 == .delete }
+            .withLatestFrom(reviewData) { CoreDataManager.shared.delete($1) }
+        
+        // 바 버튼 이벤트가 저장이고 최초 작성이면, 리뷰 저장하고 읽기 상태로 업데이트
+        input .barButtonEvent
+            .withLatestFrom(reviewState) { ($0 == .save) && ($1 == .create) }
+            .filter { $0 }
+            .withLatestFrom(Observable.combineLatest(reviewData, movieDetails)) { _, combined in
+                let (review, details) = combined
+                let commentData = review.commentData.flatMap {
+                    $0.comment.isEmpty
+                    ? nil : ReviewData.CommentData(comment: $0.comment, date: Date())
+                }
+                let reviewData = ReviewData(
+                    movieId: details.id,
+                    posterPath: details.posterPath,
+                    personalRate: review.personalRate,
+                    date: Date(),
+                    commentData: commentData
+                )
+                
+                CoreDataManager.shared.create(with: reviewData)
+                return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
+            }
+            .bind(to: reviewState)
+            .disposed(by: bag)
+        
+        // 바 버튼 이벤트가 저장이고 최초 작성이 아니면, 리뷰 갱신하고 읽기 상태로 업데이트
+        input .barButtonEvent
+            .withLatestFrom(reviewState) { ($0 == .save) && ($1 != .create) }
+            .filter { $0 }
+            .withLatestFrom(Observable.combineLatest(reviewData, movieDetails)) { _, combined in
+                let (review, details) = combined
+                let commentData = review.commentData.flatMap {
+                    $0.comment.isEmpty
+                    ? nil : ReviewData.CommentData(comment: $0.comment, date: Date())
+                }
+                let reviewData = ReviewData(
+                    movieId: details.id,
+                    posterPath: details.posterPath,
+                    personalRate: review.personalRate,
+                    date: Date(),
+                    commentData: commentData
+                )
+                
+                CoreDataManager.shared.update(with: reviewData)
+                return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
+            }
+            .bind(to: reviewState)
+            .disposed(by: bag)
+
         return Output(
             movieDetails: movieDetails,
             reviewData: reviewData.asObservable(),
-            state: reviewState.asObservable().distinctUntilChanged()
+            state: reviewState.asObservable().distinctUntilChanged(),
+            dismissEvent: dismissEvent
         )
     }
     

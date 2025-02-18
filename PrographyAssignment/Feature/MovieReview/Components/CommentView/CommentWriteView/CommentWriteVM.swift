@@ -31,6 +31,7 @@ final class CommentWriteVM {
         let trimmedText = input.text
             .startWith("") // withLatestFrom 때문에 초기값 할당
             .compactMap { $0?.trimmingCharacters(in: .whitespaces) }
+            .skip(until: input.didBeginEditing)
 
         // 입력을 시작하면 플레이스홀더 숨김
         // 입력을 끝냈을 때, 텍스트가 입력되어 있지 않다면 플레이스 홀더 표시

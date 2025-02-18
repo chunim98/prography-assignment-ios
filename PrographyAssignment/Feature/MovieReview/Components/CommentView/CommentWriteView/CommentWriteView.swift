@@ -30,10 +30,11 @@ final class CommentWriteView: UIStackView {
         tv.textContainerInset = .zero // 상하 여백 제거
         tv.textColor = .textDefault
         tv.font = .pretendardMedium16
+        tv.returnKeyType = .done // 키보드 리턴키를 "완료"로 변경
         return tv
     }()
     
-    private let placeholderLabel = {
+    fileprivate let placeholderLabel = {
         let label = UILabel()
         label.text = "후기를 작성해주세요."
         label.textColor = UIColor(hex: 0xB3B3B3)
@@ -102,7 +103,14 @@ final class CommentWriteView: UIStackView {
 
 extension Reactive where Base: CommentWriteView {
     var commentData: Binder<ReviewData.CommentData> {
-        Binder(base) { $0.textView.text = $1.comment }
+        Binder(base) {
+            $0.textView.text = $1.comment
+            $0.placeholderLabel.isHidden = true
+        }
+    }
+    
+    var endEditing: Binder<Void> {
+        Binder(base) { base, _ in base.textView.endEditing(true) }
     }
     
     var updatedText: Observable<String> {

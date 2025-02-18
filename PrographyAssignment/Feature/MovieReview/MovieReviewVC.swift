@@ -71,9 +71,13 @@ final class MovieReviewVC: UIViewController {
     private func setBinding() {
         guard let movieReviewVM else { return }
         
+        let barButtonEvent = Observable
+            .merge(pullDownBarButton.rx.event, saveBarButton.rx.event)
+        
         let input = MovieReviewVM.Input(
             starButtonsTap: starButtonsView.rx.tap,
-            updatedText: commentView.rx.updatedText
+            updatedText: commentView.rx.updatedText,
+            barButtonEvent: barButtonEvent
         )
         let output = movieReviewVM.transform(input: input)
         
@@ -84,20 +88,24 @@ final class MovieReviewVC: UIViewController {
         
         // 리뷰 데이터 바인딩
         output.reviewData
-            .debug()
-            .bind(to: starButtonsView.rx.rate)
+            .bind(to: starButtonsView.rx.rate, commentView.rx.text)
             .disposed(by: bag)
         
         // 리뷰 상태 바인딩
         output.state
+            .debug()
             .bind(to: commentView.rx.state, self.rx.barButtons)
+            .disposed(by: bag)
+        
+        output.dismissEvent
+            .bind(onNext: {print("삭제됨")})
             .disposed(by: bag)
     }
 }
 
 #Preview {
     let vc = MovieReviewVC()
-//    vc.movieReviewVM = MovieReviewVM(822119)
+    vc.movieReviewVM = MovieReviewVM(822119)
     return UINavigationController(rootViewController: vc)
 }
 
