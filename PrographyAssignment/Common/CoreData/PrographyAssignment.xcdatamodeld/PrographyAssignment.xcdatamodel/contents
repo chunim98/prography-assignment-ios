@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D60" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CommentCoreData" representedClassName="CommentCoreData" syncable="YES">
+        <attribute name="comment" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="reviewData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReviewCoreData" inverseName="commentData" inverseEntity="ReviewCoreData"/>
+    </entity>
+    <entity name="ReviewCoreData" representedClassName="ReviewCoreData" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="movieId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="personalRate" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posterPath" attributeType="String"/>
+        <relationship name="commentData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CommentCoreData" inverseName="reviewData" inverseEntity="CommentCoreData"/>
+    </entity>
 </model>

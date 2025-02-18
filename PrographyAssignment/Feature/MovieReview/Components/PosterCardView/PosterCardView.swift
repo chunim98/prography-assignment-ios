@@ -53,9 +53,9 @@ final class PosterCardView: UIView {
 // MARK: - Reactive
 
 extension Reactive where Base: PosterCardView {
-    var posterPath: Binder<String> {
-        Binder(base) { base, path in
-            let url = URL(string: path)
+    var movieDetails: Binder<MovieDetails> {
+        Binder(base) { base, details in
+            let url = URL(string: "https://image.tmdb.org/t/p/original"+details.posterPath)
             Task { @MainActor in
                 base.posterImageView.kf.indicatorType = .activity
                 base.posterImageView.kf.setImage(with: url)

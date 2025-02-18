@@ -8,6 +8,9 @@
 import Foundation
 
 extension Int {
+    var int16: Int16 { Int16(self) }
+    var int32: Int32 { Int32(self) }
+    
     var genreName: String {
         let genres: [Int: String] = [
             28: "액션",
@@ -34,3 +37,6 @@ extension Int {
         return genres[self] ?? "알 수 없음"
     }
 }
+
+extension Int32 { var int: Int { Int(self) } }
+extension Int16 { var int: Int { Int(self) } }

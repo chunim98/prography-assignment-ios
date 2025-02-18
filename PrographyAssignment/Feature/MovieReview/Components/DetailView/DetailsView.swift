@@ -38,7 +38,6 @@ final class DetailsView: UIView {
         label.text = "Title" // temp
         label.textColor = .black
         label.font = .pretendardBold45
-        label.backgroundColor = .gray // temp
         return label
     }()
     
@@ -47,7 +46,6 @@ final class DetailsView: UIView {
         label.text = "/ rate" // temp
         label.textColor = .black
         label.font = .pretendardBold16
-        label.backgroundColor = .gray // temp
         return label
     }()
     
@@ -56,7 +54,6 @@ final class DetailsView: UIView {
         cv.register(GenreCell.self, forCellWithReuseIdentifier: GenreCell.identifier)
         cv.setSinglelineLayout(spacing: 4, itemSize: CGSize(width: 40, height: 16))
         cv.showsHorizontalScrollIndicator = false
-        cv.backgroundColor = .gray // temp
         return cv
     }()
     
@@ -69,7 +66,6 @@ final class DetailsView: UIView {
         tv.textColor = .black.withAlphaComponent(0.8)
         tv.isEditable = false
         tv.isSelectable = false
-        tv.backgroundColor = .gray // temp
         return tv
     }()
     
@@ -114,6 +110,7 @@ extension Reactive where Base: DetailsView {
         Binder(base) { base, details in
             base.titleLabel.text = details.title
             base.rateLabel.text = String(format: "/ %.1f", details.voteAverage)
+            base.overviewTextView.text = details.overview
             
             let genreIds = details.genres.map { $0.id }
             

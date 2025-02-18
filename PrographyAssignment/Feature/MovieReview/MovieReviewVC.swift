@@ -13,6 +13,11 @@ import SnapKit
 
 final class MovieReviewVC: UIViewController {
     
+    // MARK: Properties
+    
+    var movieReviewVM: MovieReviewVM?
+    private let bag = DisposeBag()
+    
     // MARK: Components
     
     private let overallVStack = {
@@ -21,7 +26,7 @@ final class MovieReviewVC: UIViewController {
         return sv
     }()
     
-    private let productInfoCardView = PosterCardView()
+    private let posterCardView = PosterCardView()
     
     private let starLineView = StarLineView()
     
@@ -35,23 +40,42 @@ final class MovieReviewVC: UIViewController {
         view.backgroundColor = .white
         setNavigationBar(titleImage: UIImage(named: "prography_logo"))
         setAutoLayout()
+        setBinding()
     }
     
     // MARK: Layout
     
     private func setAutoLayout() {
         view.addSubview(overallVStack)
-        overallVStack.addArrangedSubview(productInfoCardView)
+        overallVStack.addArrangedSubview(posterCardView)
         overallVStack.addArrangedSubview(starLineView)
         overallVStack.addArrangedSubview(detailsView)
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
-        productInfoCardView.snp.makeConstraints { $0.height.equalTo(247) }
+        posterCardView.snp.makeConstraints { $0.height.equalTo(247) }
         starLineView.snp.makeConstraints { $0.height.equalTo(60) }
     }
 
+    // MARK: Binding
+    
+    private func setBinding() {
+        guard let movieReviewVM else { return }
+        
+        let input = MovieReviewVM.Input()
+        let output = movieReviewVM.transform(input: input)
+        
+        output.movieDetails
+            .bind(to: posterCardView.rx.movieDetails, detailsView.rx.movieDetails)
+            .disposed(by: bag)
+        
+        output.rate
+            .bind(to: starLineView.rx.rate)
+            .disposed(by: bag)
+    }
 }
 
 #Preview {
-    UINavigationController(rootViewController: MovieReviewVC())
+    let vc = MovieReviewVC()
+//    vc.movieReviewVM = MovieReviewVM(822119)
+    return UINavigationController(rootViewController: vc)
 }

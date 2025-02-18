@@ -49,6 +49,7 @@ final class CommentWriteView: UIStackView {
         // 자체 속성 설정
         self.directionalLayoutMargins = .init(horizontal: 16, vertical: 12)
         self.isLayoutMarginsRelativeArrangement = true
+        self.backgroundColor = .white
         self.layer.borderColor = UIColor.brandColor.cgColor
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8

@@ -70,9 +70,9 @@ final class TMDBNetworkManager {
         return try decoder.decode(MovieDetails.self, from: data)
     }
 
-    // 리퀘스트를 보내지는 않는 테스트용 메서드
+    // 리퀘스트를 보내지는 않는 디버깅용 메서드
     func fetchMovieListMock() async throws -> MovieInfo {
         let decoder = JSONDecoder()
-        return try decoder.decode(MovieInfo.self, from: MockData.response)
+        return try decoder.decode(MovieInfo.self, from: MockData.movieInfo)
     }
 }

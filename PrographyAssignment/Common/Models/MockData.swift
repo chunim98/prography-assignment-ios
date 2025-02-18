@@ -8,7 +8,7 @@
 import Foundation
 
 final class MockData {
-    static let response = """
+    static let movieInfo = """
 {
   "dates": {
     "maximum": "2025-02-19",
