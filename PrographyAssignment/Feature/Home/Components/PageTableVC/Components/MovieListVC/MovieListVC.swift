@@ -24,7 +24,7 @@ final class MovieListVC: UIViewController {
     
     // MARK: Components
     
-    private let listTV = {
+    fileprivate let listTV = {
         let tv = UITableView(frame: .zero, style: .plain)
         tv.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         tv.separatorStyle = .none
@@ -87,5 +87,9 @@ extension Reactive where Base: MovieListVC {
         Binder(base) { base, index in
             base.currentCellIndexIn.onNext(index)
         }
+    }
+    
+    var modelSelected: Observable<MovieId> {
+        base.listTV.rx.modelSelected(MovieId.self).asObservable()
     }
 }

@@ -93,7 +93,6 @@ final class MovieReviewVC: UIViewController {
         
         // 리뷰 상태 바인딩
         output.state
-            .debug()
             .bind(to: commentView.rx.state, self.rx.barButtons)
             .disposed(by: bag)
         

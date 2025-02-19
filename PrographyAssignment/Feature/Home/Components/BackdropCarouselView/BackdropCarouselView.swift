@@ -20,7 +20,7 @@ final class BackdropCarouselView: UIView {
     
     // MARK: Components
     
-    private let carouselCV = {
+    fileprivate let carouselCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(CarouselCell.self, forCellWithReuseIdentifier: CarouselCell.identifier)
         cv.setSinglelineLayout(spacing: 8, itemSize: CGSize(width: 316, height: 205))
@@ -71,3 +71,12 @@ final class BackdropCarouselView: UIView {
 #Preview(traits: .fixedLayout(width: 412, height: 221)) {
     BackdropCarouselView()
 }
+
+// MARK: - Reactive
+
+extension Reactive where Base: BackdropCarouselView {
+    var modelSelected: Observable<MovieId> {
+        base.carouselCV.rx.modelSelected(MovieId.self).asObservable()
+    }
+}
+

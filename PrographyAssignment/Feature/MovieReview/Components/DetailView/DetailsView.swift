@@ -35,7 +35,6 @@ final class DetailsView: UIView {
     
     fileprivate let titleLabel = {
         let label = UILabel()
-        label.text = "Title" // temp
         label.textColor = .black
         label.font = .pretendardBold45
         return label
@@ -43,7 +42,6 @@ final class DetailsView: UIView {
     
     fileprivate let rateLabel = {
         let label = UILabel()
-        label.text = "/ rate" // temp
         label.textColor = .black
         label.font = .pretendardBold16
         return label
@@ -59,7 +57,6 @@ final class DetailsView: UIView {
     
     fileprivate let overviewTextView = {
         let tv = UITextView()
-        tv.text = "너클즈, 테일즈와 함께 평화로운 일상을 보내던 초특급 히어로 어쩌구 저쩌구.."
         tv.textContainer.lineFragmentPadding = 0 // 좌우 여백 제거
         tv.textContainerInset = .zero // 상하 여백 제거
         tv.font = .pretendardMedium16

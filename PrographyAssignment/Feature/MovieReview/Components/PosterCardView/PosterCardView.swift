@@ -19,7 +19,6 @@ final class PosterCardView: UIView {
     
     fileprivate let posterImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "mock_poster") // temp
         iv.contentMode = .scaleAspectFit
         return iv
     }()

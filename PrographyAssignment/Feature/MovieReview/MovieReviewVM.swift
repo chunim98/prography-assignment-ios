@@ -69,7 +69,6 @@ final class MovieReviewVM {
         
         // 코멘트 뷰의 텍스트가 업데이트되면, 편집 상태로 업데이트 (최초 작성은 제외)
         input.updatedText
-            .debug()
             .distinctUntilChanged()
             .withLatestFrom(reviewState)
             .compactMap { $0 == .create ? nil : ReviewState.edit }

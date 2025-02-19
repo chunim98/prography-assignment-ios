@@ -19,7 +19,6 @@ final class GenreCell: UICollectionViewCell {
     
     private let genreLabel = {
         let label = UILabel()
-        label.text = "Genre" // temp
         label.font = .pretendardSemiBold11
         label.textColor = .onSurfaceVariant
         label.textAlignment = .center

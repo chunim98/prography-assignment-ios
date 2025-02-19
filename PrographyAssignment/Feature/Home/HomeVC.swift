@@ -73,10 +73,15 @@ final class HomeVC: UIViewController {
             tabContentsView.rx.changeIndex,
             pageTableVC.rx.changeIndex
         )
+        let modelSelected = Observable.merge(
+            backdropCarouselView.rx.modelSelected,
+            pageTableVC.rx.modelSelected
+        )
         
         let input = HomeVM.Input(
             changeIndex: changeIndex,
-            panGestureEvent: panGesture.rx.event.asObservable()
+            panGestureEvent: panGesture.rx.event.asObservable(),
+            modelSelected: modelSelected
         )
         let output = homeVM.transform(input: input)
         
@@ -88,6 +93,11 @@ final class HomeVC: UIViewController {
         // 제스처에 따라 캐러셀 뷰 사이즈 조절
         output.panGestureEvent
             .bind(to: self.rx.carouselSizeAdjustment)
+            .disposed(by: bag)
+        
+        // 선택한 영화의 리뷰 화면으로 이동
+        output.pushMovieReview
+            .bind(to: self.rx.pushMovieReview)
             .disposed(by: bag)
     }
 }
@@ -118,6 +128,15 @@ extension Reactive where Base: HomeVC {
                 base.backdropCarouselView.snp.updateConstraints { $0.height.equalTo(targetHeight) }
                 base.overallVStack.layoutIfNeeded()
             }
+        }
+    }
+    
+    var pushMovieReview: Binder<Int> {
+        Binder(base) {
+            let vc = MovieReviewVC()
+            vc.movieReviewVM = .init($1)
+            vc.hidesBottomBarWhenPushed = true
+            $0.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

@@ -25,15 +25,14 @@ final class BackdropCarouselVM {
         
         // carouselCellDataArr 초기값 설정
         fetchMovieList()
-            .map { fetched in
-                fetched.map {
-                    CarouselCellData(
-                        backDropPath: $0.backdropPath,
-                        title: $0.title,
-                        overview: $0.overview
-                    )
-                }
-            }
+            .map { fetched in fetched.map {
+                CarouselCellData(
+                    backDropPath: $0.backdropPath,
+                    title: $0.title,
+                    overview: $0.overview,
+                    id: $0.id
+                )
+            } }
             .bind(to: carouselCellDataArr)
             .disposed(by: bag)
         
@@ -48,8 +47,8 @@ final class BackdropCarouselVM {
         Observable.create { observer in
             Task {
                 #warning("Mock 데이터 사용중2")
-//                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(.nowPlaying, 1)
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
+                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(.nowPlaying, 1)
+//                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
                 observer.onNext(fetched.results)
             }
             

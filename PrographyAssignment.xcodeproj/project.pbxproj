@@ -76,6 +76,7 @@
 		51EB40882D64D4840069DF1E /* PullDownBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40872D64D4820069DF1E /* PullDownBarButton.swift */; };
 		51EB408A2D64E3610069DF1E /* SaveBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40892D64E35B0069DF1E /* SaveBarButton.swift */; };
 		51EB408C2D64E3B40069DF1E /* BarButtonEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB408B2D64E39A0069DF1E /* BarButtonEvent.swift */; };
+		51EB40902D6524E10069DF1E /* MovieId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB408F2D6524D20069DF1E /* MovieId.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		51EB40872D64D4820069DF1E /* PullDownBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullDownBarButton.swift; sourceTree = "<group>"; };
 		51EB40892D64E35B0069DF1E /* SaveBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBarButton.swift; sourceTree = "<group>"; };
 		51EB408B2D64E39A0069DF1E /* BarButtonEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonEvent.swift; sourceTree = "<group>"; };
+		51EB408F2D6524D20069DF1E /* MovieId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				5131DE872D5DD25B00527C8E /* Extentions */,
 				5131DE892D5DDD9B00527C8E /* Components */,
 				5131DEAA2D5E291F00527C8E /* Models */,
+				51EB408E2D6524B70069DF1E /* Protocols */,
 				5131DEAD2D5E2BC400527C8E /* Managers */,
 				51E3386A2D5F8FFF00DEECA8 /* Utils */,
 			);
@@ -280,9 +283,9 @@
 		5131DE8E2D5DE4E400527C8E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				51E3386E2D5FA25F00DEECA8 /* PageTableVC */,
-				51E338632D5F71FD00DEECA8 /* TabContentsView */,
 				5131DE932D5DE60300527C8E /* BackdropCarouselView */,
+				51E338632D5F71FD00DEECA8 /* TabContentsView */,
+				51E3386E2D5FA25F00DEECA8 /* PageTableVC */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -290,9 +293,9 @@
 		5131DE932D5DE60300527C8E /* BackdropCarouselView */ = {
 			isa = PBXGroup;
 			children = (
+				5131DEA02D5DFECF00527C8E /* Components */,
 				5131DE912D5DE5DB00527C8E /* BackdropCarouselView.swift */,
 				5131DEA82D5E230D00527C8E /* BackdropCarouselVM.swift */,
-				5131DEA02D5DFECF00527C8E /* Components */,
 			);
 			path = BackdropCarouselView;
 			sourceTree = "<group>";
@@ -505,6 +508,14 @@
 			path = BarButtons;
 			sourceTree = "<group>";
 		};
+		51EB408E2D6524B70069DF1E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				51EB408F2D6524D20069DF1E /* MovieId.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -665,6 +676,7 @@
 				5186E9BB2D63367800B2A6A4 /* DetailsVM.swift in Sources */,
 				51A09B6A2D606D4C0002A2F7 /* MovieListVC.swift in Sources */,
 				5131DEA92D5E231200527C8E /* BackdropCarouselVM.swift in Sources */,
+				51EB40902D6524E10069DF1E /* MovieId.swift in Sources */,
 				5131DE992D5DEA1B00527C8E /* CarouselCell.swift in Sources */,
 				5186E9B32D63109300B2A6A4 /* StarLineView.swift in Sources */,
 				5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */,

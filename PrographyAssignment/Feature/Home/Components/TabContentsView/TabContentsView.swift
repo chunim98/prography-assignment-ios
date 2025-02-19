@@ -34,7 +34,7 @@ final class TabContentsView: UIView {
                 title,
                 attributes: UIFont.pretendardBold14.attributeContainer
             )
-            config.baseForegroundColor = .brandColor // temp
+            config.baseForegroundColor = .brandColor
             config.baseBackgroundColor = .white
             return UIButton(configuration: config)
         }

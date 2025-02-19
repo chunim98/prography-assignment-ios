@@ -29,8 +29,7 @@ final class ListCell: UITableViewCell {
     
     private let posterImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "prography_logo") // temp
-        iv.backgroundColor = .gray // temp
+        iv.backgroundColor = .lightGray
         iv.layer.cornerRadius = 16
         iv.clipsToBounds = true
         return iv
@@ -52,7 +51,6 @@ final class ListCell: UITableViewCell {
     
     private let titleLabel = {
         let label = UILabel()
-        label.text = "Title" // temp
         label.font = .pretendardBold22
         label.textColor = .onSurface
         return label
@@ -60,7 +58,6 @@ final class ListCell: UITableViewCell {
     
     private let overviewLabel = {
         let label = UILabel()
-        label.text = "대충 두 줄까지만\n보여야 한다고 함\n밥 뭐 먹지" // temp
         label.font = .pretendardMedium16
         label.textColor = .onSurfaceVariant
         label.numberOfLines = 2
@@ -69,7 +66,6 @@ final class ListCell: UITableViewCell {
     
     private let rateLabel = {
         let label = UILabel()
-        label.text = "rate" // temp
         label.font = .pretendardSemiBold14
         label.textColor = .onSurfaceVariant
         return label

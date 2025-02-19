@@ -70,18 +70,18 @@ final class MovieListVM {
         Observable.create { observer in
             Task {
                 #warning("Mock 데이터 사용중")
-//                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(self.article, page)
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
+                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(self.article, page)
+//                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
                 let listCellDataArr = fetched.results.map {
                     ListCellData(
                         posterPath: $0.posterPath,
                         title: $0.title,
                         overview: $0.overview,
                         voteAverage: $0.voteAverage,
-                        genreIDS: $0.genreIDS
+                        genreIDS: $0.genreIDS,
+                        id: $0.id
                     )
                 }
-                try await Task.sleep(nanoseconds: 500000000)
                 observer.onNext(listCellDataArr)
                 observer.onCompleted()
             }

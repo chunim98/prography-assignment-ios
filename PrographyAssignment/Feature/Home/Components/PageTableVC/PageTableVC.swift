@@ -26,9 +26,9 @@ final class PageTableVC: UIPageViewController {
 
     // MARK: Components
     
-    private let nowPlayingVC = MovieListVC(.nowPlaying)
-    private let popularVC = MovieListVC(.popular)
-    private let topRatedVC = MovieListVC(.topRated)
+    fileprivate let nowPlayingVC = MovieListVC(.nowPlaying)
+    fileprivate let popularVC = MovieListVC(.popular)
+    fileprivate let topRatedVC = MovieListVC(.topRated)
     
     // MARK: Life Cycle
     
@@ -110,5 +110,13 @@ extension Reactive where Base: PageTableVC {
     
     var changeIndex: Observable<Int> {
         base.changeIndexOut.asObservable()
+    }
+    
+    var modelSelected: Observable<MovieId> {
+        Observable.merge(
+            base.nowPlayingVC.rx.modelSelected,
+            base.popularVC.rx.modelSelected,
+            base.topRatedVC.rx.modelSelected
+        )
     }
 }

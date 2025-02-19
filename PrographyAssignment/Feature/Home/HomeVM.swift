@@ -15,11 +15,13 @@ final class HomeVM {
     struct Input {
         let changeIndex: Observable<Int>
         let panGestureEvent: Observable<UIPanGestureRecognizer>
+        let modelSelected: Observable<MovieId>
     }
     
     struct Output {
         let selectedIndex: Observable<Int>
         let panGestureEvent: Observable<UIPanGestureRecognizer>
+        let pushMovieReview: Observable<Int>
     }
     
     private let bag = DisposeBag()
@@ -31,10 +33,15 @@ final class HomeVM {
         input.changeIndex
             .bind(to: selectedIndex)
             .disposed(by: bag)
+        
+        // 선택한 영화의 리뷰 화면으로 이동
+        let pushMovieReview = input.modelSelected
+            .map { $0.id }
 
         return Output(
             selectedIndex: selectedIndex.asObservable(),
-            panGestureEvent: input.panGestureEvent
+            panGestureEvent: input.panGestureEvent,
+            pushMovieReview: pushMovieReview
         )
     }
 }

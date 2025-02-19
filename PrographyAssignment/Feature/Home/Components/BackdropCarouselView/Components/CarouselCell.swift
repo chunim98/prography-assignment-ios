@@ -20,7 +20,6 @@ final class CarouselCell: UICollectionViewCell {
     
     private let backImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "prography_logo") // temp
         return iv
     }()
     
@@ -35,7 +34,6 @@ final class CarouselCell: UICollectionViewCell {
     
     private let titleLabel = {
         let label = UILabel()
-        label.text = "Title" // temp
         label.font = .pretendardBold16
         label.textColor = .white
         return label
@@ -43,7 +41,6 @@ final class CarouselCell: UICollectionViewCell {
     
     private let overviewLabel = {
         let label = UILabel()
-        label.text = "대충 한 줄이 넘지 않게 구현해야 한다고 함" // temp
         label.font = .pretendardSemiBold11
         label.textColor = .white
         return label
@@ -55,7 +52,7 @@ final class CarouselCell: UICollectionViewCell {
         super.init(frame: frame)
         
         // 콘텐츠 뷰 구성
-        contentView.backgroundColor = .gray
+        contentView.backgroundColor = .lightGray
         contentView.layer.cornerRadius = 28
         contentView.clipsToBounds = true
         
