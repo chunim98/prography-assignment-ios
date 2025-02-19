@@ -33,6 +33,7 @@ final class MovieReviewVM {
     func transform(input: Input) -> Output {
         let reviewState = BehaviorSubject<ReviewState>(value: .create)
         let reviewData = BehaviorSubject(value: ReviewData())
+        let dismissEvent = PublishSubject<Void>()
         
         // 영화 아이디로 영화 세부정보 불러오기
         let movieDetails = fetchMovieDetails(movieId).share(replay: 1)
@@ -92,9 +93,11 @@ final class MovieReviewVM {
             .disposed(by: bag)
         
         // 바 버튼 이벤트가 삭제이면, 리뷰 데이터 지우고 화면 닫기
-        let dismissEvent = input.barButtonEvent
+        input.barButtonEvent
             .filter { $0 == .delete }
             .withLatestFrom(reviewData) { CoreDataManager.shared.delete($1) }
+            .bind(to: dismissEvent)
+            .disposed(by: bag)
         
         // 바 버튼 이벤트가 저장이고 최초 작성이면, 리뷰 저장하고 읽기 상태로 업데이트
         input .barButtonEvent
@@ -143,12 +146,19 @@ final class MovieReviewVM {
             }
             .bind(to: reviewState)
             .disposed(by: bag)
+        
+        // 바 버튼 이벤트가 닫기이면, 화면만 닫기
+        input.barButtonEvent
+            .filter { $0 == .dismiss }
+            .map { _ in }
+            .bind(to: dismissEvent)
+            .disposed(by: bag)
 
         return Output(
             movieDetails: movieDetails,
             reviewData: reviewData.asObservable(),
             state: reviewState.asObservable().distinctUntilChanged(),
-            dismissEvent: dismissEvent
+            dismissEvent: dismissEvent.asObservable()
         )
     }
     

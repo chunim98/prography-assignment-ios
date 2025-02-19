@@ -8,5 +8,5 @@
 import Foundation
 
 enum BarButtonEvent {
-    case edit, delete, save
+    case edit, delete, save, dismiss
 }

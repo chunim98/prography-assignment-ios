@@ -20,6 +20,8 @@ final class MovieReviewVC: UIViewController {
     
     // MARK: Components
     
+    private let backBarButton = BackBarButton()
+    
     fileprivate let pullDownBarButton = PullDownBarButton()
     
     fileprivate let saveBarButton = SaveBarButton()
@@ -45,6 +47,7 @@ final class MovieReviewVC: UIViewController {
 
         view.backgroundColor = .white
         setNavigationBar(
+            leftBarButtonItems: [backBarButton],
             rightBarButtonItems: [pullDownBarButton],
             titleImage: UIImage(named: "prography_logo")
         )
@@ -72,7 +75,7 @@ final class MovieReviewVC: UIViewController {
         guard let movieReviewVM else { return }
         
         let barButtonEvent = Observable
-            .merge(pullDownBarButton.rx.event, saveBarButton.rx.event)
+            .merge(backBarButton.rx.event, pullDownBarButton.rx.event, saveBarButton.rx.event)
         
         let input = MovieReviewVM.Input(
             starButtonsTap: starButtonsView.rx.tap,
@@ -97,7 +100,7 @@ final class MovieReviewVC: UIViewController {
             .disposed(by: bag)
         
         output.dismissEvent
-            .bind(onNext: {print("삭제됨")})
+            .bind(to: self.rx.dismiss)
             .disposed(by: bag)
     }
 }
@@ -115,6 +118,12 @@ extension Reactive where Base: MovieReviewVC {
         Binder(base) {
             $0.navigationItem.rightBarButtonItem = [.create, .edit].contains($1)
             ? $0.saveBarButton : $0.pullDownBarButton
+        }
+    }
+    
+    var dismiss: Binder<Void> {
+        Binder(base) { base, _ in
+            base.navigationController?.popViewController(animated: true)
         }
     }
 }

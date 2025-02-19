@@ -41,6 +41,7 @@ extension UIViewController {
 
     // 스크롤 해도 색이 변하지 않는 네비게이션 바 구성
     func setNavigationBar(
+        backBarButtonItem: UIBarButtonItem? = nil,
         leftBarButtonItems: [UIBarButtonItem]? = nil,
         rightBarButtonItems: [UIBarButtonItem]? = nil,
         title: String? = nil,
@@ -62,6 +63,9 @@ extension UIViewController {
         }
         if let titleImage {
             self.navigationItem.titleView = UIImageView(image: titleImage)
+        }
+        if let backBarButtonItem {
+            navigationItem.backBarButtonItem = backBarButtonItem
         }
         if let leftBarButtonItems {
             navigationItem.leftBarButtonItems = leftBarButtonItems
