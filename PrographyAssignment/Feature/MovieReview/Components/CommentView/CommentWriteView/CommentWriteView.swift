@@ -30,7 +30,6 @@ final class CommentWriteView: UIStackView {
         tv.textContainerInset = .zero // 상하 여백 제거
         tv.textColor = .textDefault
         tv.font = .pretendardMedium16
-        tv.returnKeyType = .done // 키보드 리턴키를 "완료"로 변경
         return tv
     }()
     

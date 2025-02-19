@@ -20,6 +20,8 @@ final class MovieReviewVC: UIViewController {
     
     // MARK: Components
     
+    private let tapGesture = UITapGestureRecognizer()
+    
     private let backBarButton = BackBarButton()
     
     fileprivate let pullDownBarButton = PullDownBarButton()
@@ -32,20 +34,28 @@ final class MovieReviewVC: UIViewController {
         return sv
     }()
     
+    private let tapAreaVStack = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        return sv
+    }()
+    
     private let posterCardView = PosterCardView()
     
     private let starButtonsView = StarButtonsView()
     
     private let detailsView = DetailsView()
     
-    private let commentView = CommentView()
+    fileprivate let commentView = CommentView()
 
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
+        tapAreaVStack.addGestureRecognizer(tapGesture)
+        
         setNavigationBar(
             leftBarButtonItems: [backBarButton],
             rightBarButtonItems: [pullDownBarButton],
@@ -59,12 +69,17 @@ final class MovieReviewVC: UIViewController {
     
     private func setAutoLayout() {
         view.addSubview(overallVStack)
-        overallVStack.addArrangedSubview(posterCardView)
-        overallVStack.addArrangedSubview(starButtonsView)
-        overallVStack.addArrangedSubview(detailsView)
+        overallVStack.addArrangedSubview(tapAreaVStack)
         overallVStack.addArrangedSubview(commentView)
+        tapAreaVStack.addArrangedSubview(posterCardView)
+        tapAreaVStack.addArrangedSubview(starButtonsView)
+        tapAreaVStack.addArrangedSubview(detailsView)
         
-        overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
+        overallVStack.snp.makeConstraints {
+            $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top).inset(-10)
+        }
         posterCardView.snp.makeConstraints { $0.height.equalTo(247) }
         starButtonsView.snp.makeConstraints { $0.height.equalTo(60) }
     }
@@ -80,7 +95,8 @@ final class MovieReviewVC: UIViewController {
         let input = MovieReviewVM.Input(
             starButtonsTap: starButtonsView.rx.tap,
             updatedText: commentView.rx.updatedText,
-            barButtonEvent: barButtonEvent
+            barButtonEvent: barButtonEvent,
+            tapGestureEvent: tapGesture.rx.event.asObservable()
         )
         let output = movieReviewVM.transform(input: input)
         
@@ -99,8 +115,14 @@ final class MovieReviewVC: UIViewController {
             .bind(to: commentView.rx.state, self.rx.barButtons)
             .disposed(by: bag)
         
+        // 화면 닫기
         output.dismissEvent
             .bind(to: self.rx.dismiss)
+            .disposed(by: bag)
+        
+        // 키보드 닫기
+        output.hideKeyBoardEvent
+            .bind(to: self.rx.hideKeyBoardEvent)
             .disposed(by: bag)
     }
 }
@@ -125,5 +147,9 @@ extension Reactive where Base: MovieReviewVC {
         Binder(base) { base, _ in
             base.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    var hideKeyBoardEvent: Binder<Void> {
+        Binder(base) { base, _ in base.commentView.endEditing(true) }
     }
 }

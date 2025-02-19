@@ -30,7 +30,7 @@ final class CommentWriteVM {
         // 텍스트를 가져와서 시작과 끝 공백을 제거
         let trimmedText = input.text
             .startWith("") // withLatestFrom 때문에 초기값 할당
-            .compactMap { $0?.trimmingCharacters(in: .whitespaces) }
+            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
             .skip(until: input.didBeginEditing)
 
         // 입력을 시작하면 플레이스홀더 숨김

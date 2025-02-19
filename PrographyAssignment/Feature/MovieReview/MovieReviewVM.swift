@@ -5,7 +5,7 @@
 //  Created by 신정욱 on 2/18/25.
 //
 
-import Foundation
+import UIKit
 
 import RxSwift
 import RxCocoa
@@ -16,6 +16,7 @@ final class MovieReviewVM {
         let starButtonsTap: Observable<Int>
         let updatedText: Observable<String>
         let barButtonEvent: Observable<BarButtonEvent>
+        let tapGestureEvent: Observable<UITapGestureRecognizer>
     }
     
     struct Output {
@@ -23,6 +24,7 @@ final class MovieReviewVM {
         let reviewData: Observable<ReviewData>
         let state: Observable<ReviewState>
         let dismissEvent: Observable<Void>
+        let hideKeyBoardEvent: Observable<Void>
     }
     
     private let movieId: Int
@@ -153,12 +155,19 @@ final class MovieReviewVM {
             .map { _ in }
             .bind(to: dismissEvent)
             .disposed(by: bag)
+        
+        let hideKeyBoardEvent = Observable.merge(
+            input.tapGestureEvent.map { _ in },
+            input.barButtonEvent.filter { $0 == .save }.map { _ in }
+        )
+        
 
         return Output(
             movieDetails: movieDetails,
             reviewData: reviewData.asObservable(),
             state: reviewState.asObservable().distinctUntilChanged(),
-            dismissEvent: dismissEvent.asObservable()
+            dismissEvent: dismissEvent.asObservable(),
+            hideKeyBoardEvent: hideKeyBoardEvent
         )
     }
     
@@ -166,7 +175,7 @@ final class MovieReviewVM {
     
     private func fetchMovieDetails(_ id: Int) -> Observable<MovieDetails> {
         Observable.create { observer in
-            Task {
+            Task { @MainActor in
                 let fetched = try await TMDBNetworkManager.shered.fetchMovieDetails(id)
                 observer.onNext(fetched)
             }
