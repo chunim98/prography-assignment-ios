@@ -2,7 +2,7 @@
 //  CommentCoreData+CoreDataProperties.swift
 //  PrographyAssignment
 //
-//  Created by 신정욱 on 2/18/25.
+//  Created by 신정욱 on 2/19/25.
 //
 //
 

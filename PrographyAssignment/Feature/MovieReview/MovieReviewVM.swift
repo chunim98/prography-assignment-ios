@@ -116,6 +116,7 @@ final class MovieReviewVM {
                     posterPath: details.posterPath,
                     personalRate: review.personalRate,
                     date: Date(),
+                    title: details.title,
                     commentData: commentData
                 )
                 
@@ -140,6 +141,7 @@ final class MovieReviewVM {
                     posterPath: details.posterPath,
                     personalRate: review.personalRate,
                     date: Date(),
+                    title: details.title,
                     commentData: commentData
                 )
                 

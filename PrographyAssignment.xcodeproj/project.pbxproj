@@ -61,6 +61,12 @@
 		51BAE84E2D65BB50002D7679 /* BackBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE84D2D65BB49002D7679 /* BackBarButton.swift */; };
 		51BAE8512D65E35E002D7679 /* MyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8502D65E35E002D7679 /* MyVC.swift */; };
 		51BAE8542D65E730002D7679 /* FilterOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */; };
+		51BAE8582D66213D002D7679 /* ReviewedMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8572D66213D002D7679 /* ReviewedMovieCell.swift */; };
+		51BAE85C2D6627A2002D7679 /* ReviewedMovieCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE85B2D6627A0002D7679 /* ReviewedMovieCellData.swift */; };
+		51BAE8612D66289A002D7679 /* CommentCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE85D2D66289A002D7679 /* CommentCoreData+CoreDataClass.swift */; };
+		51BAE8622D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE85E2D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift */; };
+		51BAE8632D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE85F2D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift */; };
+		51BAE8642D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -69,10 +75,6 @@
 		51EB40702D64657C0069DF1E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB406F2D6465730069DF1E /* CoreDataManager.swift */; };
 		51EB40722D6465E80069DF1E /* ReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40712D6465E40069DF1E /* ReviewData.swift */; };
 		51EB40762D6484D50069DF1E /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40752D6484D50069DF1E /* CoreDataManagerTests.swift */; };
-		51EB407B2D6488F50069DF1E /* CommentCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40772D6488F50069DF1E /* CommentCoreData+CoreDataClass.swift */; };
-		51EB407C2D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40782D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift */; };
-		51EB407D2D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40792D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift */; };
-		51EB407E2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB407A2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift */; };
 		51EB40812D649C170069DF1E /* StarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40802D649C150069DF1E /* StarButtonsView.swift */; };
 		51EB40832D64A6A80069DF1E /* ReviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40822D64A6990069DF1E /* ReviewState.swift */; };
 		51EB40852D64C14F0069DF1E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EB40842D64C14C0069DF1E /* Date+.swift */; };
@@ -148,6 +150,12 @@
 		51BAE84D2D65BB49002D7679 /* BackBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackBarButton.swift; sourceTree = "<group>"; };
 		51BAE8502D65E35E002D7679 /* MyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVC.swift; sourceTree = "<group>"; };
 		51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionButton.swift; sourceTree = "<group>"; };
+		51BAE8572D66213D002D7679 /* ReviewedMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewedMovieCell.swift; sourceTree = "<group>"; };
+		51BAE85B2D6627A0002D7679 /* ReviewedMovieCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewedMovieCellData.swift; sourceTree = "<group>"; };
+		51BAE85D2D66289A002D7679 /* CommentCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		51BAE85E2D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51BAE85F2D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -156,10 +164,6 @@
 		51EB406F2D6465730069DF1E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		51EB40712D6465E40069DF1E /* ReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewData.swift; sourceTree = "<group>"; };
 		51EB40752D6484D50069DF1E /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
-		51EB40772D6488F50069DF1E /* CommentCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		51EB40782D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		51EB40792D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		51EB407A2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		51EB40802D649C150069DF1E /* StarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButtonsView.swift; sourceTree = "<group>"; };
 		51EB40822D64A6990069DF1E /* ReviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewState.swift; sourceTree = "<group>"; };
 		51EB40842D64C14C0069DF1E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -231,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				515C38B72D5DC22C00FC0957 /* PrographyAssignment.xcdatamodeld */,
-				51EB40772D6488F50069DF1E /* CommentCoreData+CoreDataClass.swift */,
-				51EB40782D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift */,
-				51EB40792D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift */,
-				51EB407A2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift */,
+				51BAE85D2D66289A002D7679 /* CommentCoreData+CoreDataClass.swift */,
+				51BAE85E2D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift */,
+				51BAE85F2D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift */,
+				51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -484,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				51BAE8552D661D9A002D7679 /* FilterOptionButton */,
+				51BAE8562D66210B002D7679 /* ReviewedMovieCell */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -494,6 +499,15 @@
 				51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */,
 			);
 			path = FilterOptionButton;
+			sourceTree = "<group>";
+		};
+		51BAE8562D66210B002D7679 /* ReviewedMovieCell */ = {
+			isa = PBXGroup;
+			children = (
+				51BAE8572D66213D002D7679 /* ReviewedMovieCell.swift */,
+				51BAE85B2D6627A0002D7679 /* ReviewedMovieCellData.swift */,
+			);
+			path = ReviewedMovieCell;
 			sourceTree = "<group>";
 		};
 		51E338632D5F71FD00DEECA8 /* TabContentsView */ = {
@@ -690,11 +704,8 @@
 				51E3386C2D5F900900DEECA8 /* OnlyOnce.swift in Sources */,
 				5131DE9B2D5DEC0D00527C8E /* UIFont+.swift in Sources */,
 				51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */,
-				51EB407B2D6488F50069DF1E /* CommentCoreData+CoreDataClass.swift in Sources */,
 				51BAE84E2D65BB50002D7679 /* BackBarButton.swift in Sources */,
-				51EB407C2D6488F50069DF1E /* CommentCoreData+CoreDataProperties.swift in Sources */,
-				51EB407D2D6488F50069DF1E /* ReviewCoreData+CoreDataClass.swift in Sources */,
-				51EB407E2D6488F50069DF1E /* ReviewCoreData+CoreDataProperties.swift in Sources */,
+				51BAE8582D66213D002D7679 /* ReviewedMovieCell.swift in Sources */,
 				5131DEAF2D5E2C9300527C8E /* TMDBNetworkManager.swift in Sources */,
 				51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */,
 				51EB40702D64657C0069DF1E /* CoreDataManager.swift in Sources */,
@@ -715,6 +726,10 @@
 				5131DE992D5DEA1B00527C8E /* CarouselCell.swift in Sources */,
 				5186E9B32D63109300B2A6A4 /* StarsView.swift in Sources */,
 				5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */,
+				51BAE8612D66289A002D7679 /* CommentCoreData+CoreDataClass.swift in Sources */,
+				51BAE8622D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift in Sources */,
+				51BAE8632D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift in Sources */,
+				51BAE8642D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift in Sources */,
 				51A09B662D605D8E0002A2F7 /* GenreCell.swift in Sources */,
 				5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */,
 				51BAE8542D65E730002D7679 /* FilterOptionButton.swift in Sources */,
@@ -726,6 +741,7 @@
 				515998652D6301740013D4C8 /* MovieReviewVC.swift in Sources */,
 				5131DE922D5DE5DB00527C8E /* BackdropCarouselView.swift in Sources */,
 				512C07452D62536B00EC996C /* Int+.swift in Sources */,
+				51BAE85C2D6627A2002D7679 /* ReviewedMovieCellData.swift in Sources */,
 				51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */,
 				51E338702D5FA28800DEECA8 /* PageTableVC.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,

@@ -22,7 +22,7 @@ final class FilterOptionButton: UIView {
         button.clipsToBounds = true
         return button
     }()
-
+    
     // All과 별 심볼들을 한 배열에 담기 (UIView로 업캐스팅)
     fileprivate var symbolViews: [UIView] = {
         let label = UILabel()
@@ -36,7 +36,7 @@ final class FilterOptionButton: UIView {
         
         return views + [label]
     }()
-
+    
     private let listImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "list")?.resizeImage(newWidth: 24)
@@ -62,17 +62,14 @@ final class FilterOptionButton: UIView {
         symbolViews.forEach { button.addSubview($0) }
         button.addSubview(listImageView)
         
-        button.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(16)
-            $0.width.equalTo(380) // temp
-            $0.height.equalTo(64) // temp
-        }
+        button.snp.makeConstraints { $0.edges.equalToSuperview().inset(16) }
         symbolViews.forEach { $0.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16)
         } }
         listImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview(); $0.trailing.equalToSuperview().inset(28)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(28)
         }
     }
 }

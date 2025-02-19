@@ -26,30 +26,7 @@ final class CoreDataManager {
     private init() {}
     
     // MARK: CRUD Methods
-    
-//    func read() -> [ReviewData] {
-//        let empty = [ReviewData]() // nil을 반환하는 것 보다 빈 배열 반환하는 게 나음
-//        guard let context = context else { return empty } // 임시 저장소 접근한다는 뜻
-//        
-//        let order = NSSortDescriptor(key: "date", ascending: false) // 어떤 친구 기준으로 소팅할건지?
-//        let request = NSFetchRequest<NSManagedObject>(entityName: entityName) // 엔티티에 접근한다는 신청서
-//        request.sortDescriptors = [order] // 왠지 모르겠지만 얘는 배열에 담아서 줘야함
-//        
-//        guard let data = try? context.fetch(request) as? [ReviewCoreData] // fetch() 배열만 리턴함
-//        else { return empty }
-//
-//        return data.map { coreData in
-//            ReviewData(
-//                movieId: coreData.movieId.int,
-//                posterPath: coreData.posterPath,
-//                personalRate: coreData.personalRate.int,
-//                commentData: coreData.commentData.map { // 옵셔널 타입에도 map 있다!
-//                    ReviewData.CommentData(comment: $0.comment, date: Date())
-//                }
-//            )
-//        }
-//    }
-    
+
     func readAll() -> [ReviewData] {
         guard let context = context else { return [] }
         
@@ -63,6 +40,7 @@ final class CoreDataManager {
                 posterPath: $0.posterPath,
                 personalRate: $0.personalRate.int,
                 date: $0.date,
+                title: $0.title,
                 commentData: $0.commentData.map { // 옵셔널 타입에도 map 있다!
                     ReviewData.CommentData(comment: $0.comment, date: $0.date)
                 }
@@ -83,6 +61,7 @@ final class CoreDataManager {
                 posterPath: $0.posterPath,
                 personalRate: $0.personalRate.int,
                 date: $0.date,
+                title: $0.title,
                 commentData: $0.commentData.map { // 옵셔널 타입에도 map 있다!
                     ReviewData.CommentData(comment: $0.comment, date: $0.date)
                 }
@@ -103,6 +82,7 @@ final class CoreDataManager {
         reviewCoreData.posterPath = reviewData.posterPath
         reviewCoreData.personalRate = reviewData.personalRate.int16
         reviewCoreData.date = reviewData.date
+        reviewCoreData.title = reviewData.title
         reviewCoreData.commentData = reviewData.commentData.flatMap { // 옵셔널 타입에도 flatMap 있다!
             // 하위 코어데이터 객체 만들어서 넘겨주기
             let subEntity = NSEntityDescription.entity(forEntityName: subEntityName, in: context)
@@ -145,6 +125,7 @@ final class CoreDataManager {
         reviewCoreData.posterPath = reviewData.posterPath
         reviewCoreData.personalRate = reviewData.personalRate.int16
         reviewCoreData.date = reviewData.date
+        reviewCoreData.title = reviewData.title
         reviewCoreData.commentData = reviewData.commentData.flatMap {
             let subEntity = NSEntityDescription.entity(forEntityName: subEntityName, in: context)
             guard let subEntity else { return nil }
@@ -157,35 +138,4 @@ final class CoreDataManager {
         
         appDelegate?.saveContext()
     }
-    
-    
-//    /// 테스트 못해봄, 사용하게 될 경우 테스트 해볼 것
-//    func update(target: LogData, from: [SymptomCardData]) {
-//        guard let context = context else { return }
-//        var replacementCardDataArr = [SymptomCardCoreData]() // 대체할 SymptomCardData 담을 배열 준비
-//
-//        // 교체할 하위 엔티티 객체 값 설정하고 배열에 추가
-//        guard let cardDataEntity = NSEntityDescription.entity(forEntityName: "SymptomCardCoreData", in: context) else { return } // 하위 엔티티 만들고
-//        from.forEach { // 받아온 데이터들로 for문 돌려준다
-//            guard let cardDataObject = NSManagedObject(entity: cardDataEntity, insertInto: context) as? SymptomCardCoreData else { return } // CardData인스턴스 만들기(꼴랑 인스하나 만드는데 엄청 복잡하네;;)
-//            cardDataObject.name = $0.name
-//            cardDataObject.hex = $0.hex.to32
-//            cardDataObject.isNegative = $0.isNegative
-//            cardDataObject.rate = $0.rate.to16
-//            // 일단 배열에 담아주기
-//            replacementCardDataArr.append(cardDataObject)
-//        }
-//        
-//        // 상위 엔티티 객체 가져오기
-//        let request = NSFetchRequest<NSManagedObject>(entityName: entityName) // 요청서
-//        request.predicate = NSPredicate(format: "date = %@", target.date as CVarArg) // 가져올 객체들의 조건 설정
-//        do {
-//            guard let logData = try context.fetch(request) as? [LogCoreData] else { return } // 요청서를 통해서 객체 가져오기
-//            for i in logData { i.addToSymptomCards((NSOrderedSet(array: replacementCardDataArr))) } // date는 냅두고 내부데이터만 업데이트
-//            
-//            appDelegate?.saveContext() // 앱델리게이트의 메서드로 해도됨
-//        } catch {
-//            print("업데이트 실패")
-//        }
-//    }
 }

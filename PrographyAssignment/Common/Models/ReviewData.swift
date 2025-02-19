@@ -12,6 +12,7 @@ struct ReviewData {
     let posterPath: String
     let personalRate: Int
     let date: Date
+    let title: String
     let commentData: CommentData?
     
     struct CommentData {
@@ -27,6 +28,7 @@ extension ReviewData {
         self.posterPath = ""
         self.personalRate = 0
         self.date = Date()
+        self.title = ""
         self.commentData = nil
     }
     
@@ -35,6 +37,7 @@ extension ReviewData {
         posterPath: String? = nil,
         personalRate: Int? = nil,
         date: Date? = nil,
+        title: String? = nil,
         commentData: CommentData?? = nil // 옵셔널을 유지하기 위해 중첩 옵셔널 사용
     ) -> Self {
         ReviewData(
@@ -42,6 +45,7 @@ extension ReviewData {
             posterPath: posterPath ?? self.posterPath,
             personalRate: personalRate ?? self.personalRate,
             date: date ?? self.date,
+            title: title ?? self.title,
             commentData: commentData ?? self.commentData
         )
     }
