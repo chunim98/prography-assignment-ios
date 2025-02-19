@@ -483,9 +483,17 @@
 		51BAE8522D65E642002D7679 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */,
+				51BAE8552D661D9A002D7679 /* FilterOptionButton */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		51BAE8552D661D9A002D7679 /* FilterOptionButton */ = {
+			isa = PBXGroup;
+			children = (
+				51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */,
+			);
+			path = FilterOptionButton;
 			sourceTree = "<group>";
 		};
 		51E338632D5F71FD00DEECA8 /* TabContentsView */ = {

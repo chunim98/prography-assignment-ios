@@ -8,7 +8,6 @@
 import UIKit
 
 import RxSwift
-import RxCocoa
 import SnapKit
 
 final class FilterOptionButton: UIView {
@@ -23,15 +22,21 @@ final class FilterOptionButton: UIView {
         button.clipsToBounds = true
         return button
     }()
-    
-    private let allLabel = {
+
+    // All과 별 심볼들을 한 배열에 담기 (UIView로 업캐스팅)
+    fileprivate var symbolViews: [UIView] = {
         let label = UILabel()
         label.text = "All"
         label.textColor = .black
         label.font = .pretendardBold16
-        return label
+        
+        let views = (0...5)
+            .map { StarsView(rate: $0) }
+            .map { $0.isHidden = true; return $0 }
+        
+        return views + [label]
     }()
-    
+
     private let listImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "list")?.resizeImage(newWidth: 24)
@@ -54,7 +59,7 @@ final class FilterOptionButton: UIView {
     
     private func setAutoLayout() {
         self.addSubview(button)
-        button.addSubview(allLabel)
+        symbolViews.forEach { button.addSubview($0) }
         button.addSubview(listImageView)
         
         button.snp.makeConstraints {
@@ -62,9 +67,10 @@ final class FilterOptionButton: UIView {
             $0.width.equalTo(380) // temp
             $0.height.equalTo(64) // temp
         }
-        allLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview(); $0.leading.equalToSuperview().inset(16)
-        }
+        symbolViews.forEach { $0.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
+        } }
         listImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview(); $0.trailing.equalToSuperview().inset(28)
         }
@@ -73,4 +79,17 @@ final class FilterOptionButton: UIView {
 
 #Preview(traits: .fixedLayout(width: 412, height: 96)) {
     FilterOptionButton()
+}
+
+// MARK: - Reactive
+
+extension Reactive where Base: FilterOptionButton {
+    // 선택된 옵션의 심볼만 표시
+    var optionSelected: Binder<Int> {
+        Binder(base) { base, optionNum in
+            base.symbolViews.enumerated().forEach { index, view in
+                view.isHidden = !(index == optionNum)
+            }
+        }
+    }
 }

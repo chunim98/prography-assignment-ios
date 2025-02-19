@@ -21,7 +21,7 @@ final class StarsView: UIView {
     }()
     
     fileprivate let imageViews: [UIImageView] = {
-        Array(0..<5).map { _ in
+        (0..<5).map { _ in
             let iv = UIImageView()
             iv.image = UIImage(named: "star")?
                 .withTintColor(UIColor(hex: 0xB1B1B1))
@@ -37,6 +37,11 @@ final class StarsView: UIView {
         setAutoLayout()
     }
     
+    convenience init(rate: Int) {
+        self.init(frame: .zero)
+        self.rx.rate.onNext(rate)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,7 +52,7 @@ final class StarsView: UIView {
         self.addSubview(overallHStack)
         imageViews.forEach { overallHStack.addArrangedSubview($0) }
         
-        overallHStack.snp.makeConstraints { $0.centerX.verticalEdges.equalToSuperview() }
+        overallHStack.snp.makeConstraints { $0.edges.equalToSuperview() }
         imageViews.forEach { $0.snp.makeConstraints { $0.size.equalTo(16) } }
     }
 }
