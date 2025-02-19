@@ -50,7 +50,12 @@ final class MyVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        reviewedMovieCV.setMultilineLayout(spacing: 8, itemCount: 3, itemHeight: 240)
+        reviewedMovieCV.setMultilineLayout(
+            spacing: 8,
+            itemCount: 3,
+            itemHeight: 240,
+            sectionInset: UIEdgeInsets(bottom: 32)
+        )
     }
 
     // MARK: Layout
@@ -58,7 +63,7 @@ final class MyVC: UIViewController {
     private func setAutoLayout() {
         view.addSubview(overallVStack)
         overallVStack.addArrangedSubview(filterOptionButton)
-        overallVStack.addArrangedSubview(UIView()) // temp
+        overallVStack.addArrangedSubview(reviewedMovieCV)
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         filterOptionButton.snp.makeConstraints { $0.height.equalTo(96) }

@@ -26,7 +26,8 @@ extension UICollectionView {
     func setMultilineLayout(
         spacing: CGFloat,
         itemCount: CGFloat,
-        itemHeight: CGFloat
+        itemHeight: CGFloat,
+        sectionInset: UIEdgeInsets = .zero
     ) {
         var totalInterSpace: CGFloat { (itemCount-1) * spacing }
         let itemSize = CGSize(
@@ -39,6 +40,7 @@ extension UICollectionView {
         flowLayout.itemSize = itemSize
         flowLayout.minimumInteritemSpacing = spacing // 스크롤 방향 기준 아이템 간 간격
         flowLayout.minimumLineSpacing = spacing // 스크롤 방향 기준 열 간격
+        flowLayout.sectionInset = sectionInset
         
         self.collectionViewLayout = flowLayout
     }
