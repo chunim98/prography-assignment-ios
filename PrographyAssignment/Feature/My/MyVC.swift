@@ -17,6 +17,7 @@ final class MyVC: UIViewController {
     
     private let myVM = MyVM()
     private let bag = DisposeBag()
+    private let once = OnlyOnce()
 
     // MARK: Components
 
@@ -50,12 +51,7 @@ final class MyVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        reviewedMovieCV.setMultilineLayout(
-            spacing: 8,
-            itemCount: 3,
-            itemHeight: 240,
-            sectionInset: UIEdgeInsets(bottom: 32)
-        )
+        once.excute { setFlowLayout() }
     }
 
     // MARK: Layout
@@ -67,6 +63,16 @@ final class MyVC: UIViewController {
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         filterOptionButton.snp.makeConstraints { $0.height.equalTo(96) }
+    }
+    
+    private func setFlowLayout() {
+        view.layoutIfNeeded()
+        reviewedMovieCV.setMultilineLayout(
+            spacing: 8,
+            itemCount: 3,
+            itemSize: CGSize(width: 121.3, height: 240),
+            sectionInset: UIEdgeInsets(horizontal: 16) + UIEdgeInsets(bottom: 32)
+        )
     }
 
     // MARK: Binding

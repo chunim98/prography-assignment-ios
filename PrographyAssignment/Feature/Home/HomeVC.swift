@@ -103,7 +103,7 @@ final class HomeVC: UIViewController {
 }
 
 #Preview {
-    UINavigationController(rootViewController: HomeVC())
+    TabBarVC()
 }
 
 // MARK: Reactive

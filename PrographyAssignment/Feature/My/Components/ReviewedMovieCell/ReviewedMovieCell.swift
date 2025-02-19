@@ -74,6 +74,7 @@ final class ReviewedMovieCell: UICollectionViewCell {
         overallVStack.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(vertical: 8))
         }
+        titleVStack.snp.makeConstraints { $0.height.equalTo(36) }
     }
     
     // MARK: Configure Components
