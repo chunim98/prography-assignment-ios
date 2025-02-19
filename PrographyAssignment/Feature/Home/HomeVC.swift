@@ -106,7 +106,7 @@ final class HomeVC: UIViewController {
     TabBarVC()
 }
 
-// MARK: Reactive
+// MARK: - Reactive
 
 extension Reactive where Base: HomeVC {
     // 캐러셀 뷰 사이즈 조절 로직

@@ -12,10 +12,14 @@ import RxCocoa
 
 final class MyVM {
     
-    struct Input {}
+    struct Input {
+        let modelSelected: Observable<MovieId>
+        let viewWillAppearEvent: Observable<Void>
+    }
     
     struct Output {
         let reviewedMovieCellDataArr: Observable<[ReviewedMovieCellData]>
+        let pushMovieReview: Observable<Int>
     }
     
     private let bag = DisposeBag()
@@ -23,7 +27,20 @@ final class MyVM {
     func transform(_ input: Input) -> Output {
         let reviewedMovieCellDataArr = BehaviorSubject(value: fetchReviewedMovieCellDataArr())
         
-        return Output(reviewedMovieCellDataArr: reviewedMovieCellDataArr.asObservable())
+        // 화면이 표시될 때마다 리스트 정보 갱신
+        input.viewWillAppearEvent
+            .compactMap { [weak self] _ in self?.fetchReviewedMovieCellDataArr() }
+            .bind(to: reviewedMovieCellDataArr)
+            .disposed(by: bag)
+        
+        // 선택한 영화의 리뷰 화면으로 이동
+        let pushMovieReview = input.modelSelected
+            .map { $0.id }
+        
+        return Output(
+            reviewedMovieCellDataArr: reviewedMovieCellDataArr.asObservable(),
+            pushMovieReview: pushMovieReview
+        )
     }
     
     // MARK: Methods

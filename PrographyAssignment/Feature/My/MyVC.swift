@@ -18,6 +18,10 @@ final class MyVC: UIViewController {
     private let myVM = MyVM()
     private let bag = DisposeBag()
     private let once = OnlyOnce()
+    
+    // MARK: Interface
+    
+    private let viewWillAppearEvent = PublishSubject<Void>()
 
     // MARK: Components
 
@@ -53,6 +57,11 @@ final class MyVC: UIViewController {
         super.viewDidLayoutSubviews()
         once.excute { setFlowLayout() }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewWillAppearEvent.onNext(())
+    }
 
     // MARK: Layout
     
@@ -78,7 +87,10 @@ final class MyVC: UIViewController {
     // MARK: Binding
     
     private func setBinding() {
-        let input = MyVM.Input()
+        let input = MyVM.Input(
+            modelSelected: reviewedMovieCV.rx.modelSelected(MovieId.self).asObservable(),
+            viewWillAppearEvent: viewWillAppearEvent.asObservable()
+        )
         let output = myVM.transform(input)
         
         // 리뷰한 영화 셀 데이터 바인딩
@@ -90,9 +102,27 @@ final class MyVC: UIViewController {
                 cell.configure(item)
             }
             .disposed(by: bag)
+        
+        // 선택한 영화의 리뷰 화면으로 이동
+        output.pushMovieReview
+            .bind(to: self.rx.pushMovieReview)
+            .disposed(by: bag)
     }
 }
 
 #Preview {
     UINavigationController(rootViewController: MyVC())
+}
+
+// MARK: - Reactive
+
+extension Reactive where Base: MyVC {
+    var pushMovieReview: Binder<Int> {
+        Binder(base) {
+            let vc = MovieReviewVC()
+            vc.movieReviewVM = .init($1)
+            vc.hidesBottomBarWhenPushed = true
+            $0.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

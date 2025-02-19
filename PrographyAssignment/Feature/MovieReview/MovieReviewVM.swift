@@ -140,7 +140,7 @@ final class MovieReviewVM {
                     movieId: details.id,
                     posterPath: details.posterPath,
                     personalRate: review.personalRate,
-                    date: Date(),
+                    date: review.date,
                     title: details.title,
                     commentData: commentData
                 )
