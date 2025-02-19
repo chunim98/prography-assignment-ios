@@ -59,6 +59,8 @@
 		51A09B6A2D606D4C0002A2F7 /* MovieListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B692D606D4C0002A2F7 /* MovieListVC.swift */; };
 		51A09B6C2D6070E20002A2F7 /* MovieListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B6B2D6070DF0002A2F7 /* MovieListVM.swift */; };
 		51BAE84E2D65BB50002D7679 /* BackBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE84D2D65BB49002D7679 /* BackBarButton.swift */; };
+		51BAE8512D65E35E002D7679 /* MyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8502D65E35E002D7679 /* MyVC.swift */; };
+		51BAE8542D65E730002D7679 /* FilterOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -144,6 +146,8 @@
 		51A09B692D606D4C0002A2F7 /* MovieListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListVC.swift; sourceTree = "<group>"; };
 		51A09B6B2D6070DF0002A2F7 /* MovieListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListVM.swift; sourceTree = "<group>"; };
 		51BAE84D2D65BB49002D7679 /* BackBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackBarButton.swift; sourceTree = "<group>"; };
+		51BAE8502D65E35E002D7679 /* MyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVC.swift; sourceTree = "<group>"; };
+		51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionButton.swift; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			children = (
 				5131DE822D5DCB6000527C8E /* Home */,
 				515998632D6301280013D4C8 /* MovieReview */,
+				51BAE84F2D65E33F002D7679 /* My */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -466,6 +471,23 @@
 			path = MovieListVC;
 			sourceTree = "<group>";
 		};
+		51BAE84F2D65E33F002D7679 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				51BAE8522D65E642002D7679 /* Components */,
+				51BAE8502D65E35E002D7679 /* MyVC.swift */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		51BAE8522D65E642002D7679 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				51BAE8532D65E64B002D7679 /* FilterOptionButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		51E338632D5F71FD00DEECA8 /* TabContentsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +696,7 @@
 				5186E9B52D63145400B2A6A4 /* UIImage+.swift in Sources */,
 				512C07492D62655700EC996C /* GenreTagCollectionView.swift in Sources */,
 				51EB408C2D64E3B40069DF1E /* BarButtonEvent.swift in Sources */,
+				51BAE8512D65E35E002D7679 /* MyVC.swift in Sources */,
 				51A09B6C2D6070E20002A2F7 /* MovieListVM.swift in Sources */,
 				5186E9D22D637CD900B2A6A4 /* CommentReadView.swift in Sources */,
 				51EB40882D64D4840069DF1E /* PullDownBarButton.swift in Sources */,
@@ -686,6 +709,7 @@
 				5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */,
 				51A09B662D605D8E0002A2F7 /* GenreCell.swift in Sources */,
 				5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */,
+				51BAE8542D65E730002D7679 /* FilterOptionButton.swift in Sources */,
 				5186E9C42D63535E00B2A6A4 /* CommentView.swift in Sources */,
 				515C38C02D5DC22C00FC0957 /* AppDelegate.swift in Sources */,
 				5186E9CD2D63710100B2A6A4 /* CommentWriteVM.swift in Sources */,
