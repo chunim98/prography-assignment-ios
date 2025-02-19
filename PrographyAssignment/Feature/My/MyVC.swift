@@ -15,6 +15,7 @@ final class MyVC: UIViewController {
     
     // MARK: Properties
     
+    private let myVM = MyVM()
     private let bag = DisposeBag()
 
     // MARK: Components
@@ -28,11 +29,12 @@ final class MyVC: UIViewController {
     fileprivate let filterOptionButton = FilterOptionButton()
     
     private let reviewedMovieCV = {
-//        let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
-//        cv.register(CarouselCell.self, forCellWithReuseIdentifier: CarouselCell.identifier)
-//        cv.setSinglelineLayout(spacing: 8, itemSize: CGSize(width: 316, height: 205))
-//        cv.showsHorizontalScrollIndicator = false
-//        return cv
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        cv.register(
+            ReviewedMovieCell.self,
+            forCellWithReuseIdentifier: ReviewedMovieCell.identifier
+        )
+        return cv
     }()
 
     // MARK: Life Cycle
@@ -43,6 +45,12 @@ final class MyVC: UIViewController {
         view.backgroundColor = .white
         setNavigationBar(titleImage: UIImage(named: "prography_logo"))
         setAutoLayout()
+        setBinding()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        reviewedMovieCV.setMultilineLayout(spacing: 8, itemCount: 3, itemHeight: 240)
     }
 
     // MARK: Layout
@@ -57,6 +65,21 @@ final class MyVC: UIViewController {
     }
 
     // MARK: Binding
+    
+    private func setBinding() {
+        let input = MyVM.Input()
+        let output = myVM.transform(input)
+        
+        // 리뷰한 영화 셀 데이터 바인딩
+        output.reviewedMovieCellDataArr
+            .bind(to: reviewedMovieCV.rx.items(
+                cellIdentifier: ReviewedMovieCell.identifier,
+                cellType: ReviewedMovieCell.self
+            )) { index, item, cell in
+                cell.configure(item)
+            }
+            .disposed(by: bag)
+    }
 }
 
 #Preview {

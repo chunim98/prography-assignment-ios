@@ -7,7 +7,7 @@
 
 import UIKit
 
-import RxSwift
+import Kingfisher
 import SnapKit
 
 final class ReviewedMovieCell: UICollectionViewCell {
@@ -36,6 +36,8 @@ final class ReviewedMovieCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.backgroundColor = .lightGray
         iv.contentMode = .scaleAspectFill
+        iv.layer.cornerRadius = 16
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -73,23 +75,19 @@ final class ReviewedMovieCell: UICollectionViewCell {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(vertical: 8))
         }
     }
+    
+    // MARK: Configure Components
+
+    func configure(_ data: ReviewedMovieCellData) {
+        let url = URL(string: data.posterPath)
+        posterImageView.kf.indicatorType = .activity
+        posterImageView.kf.setImage(with: url)
+        
+        titleLabel.text = data.title
+        starsView.rx.rate.onNext(data.personalRate)
+    }
 }
 
 #Preview(traits: .fixedLayout(width: 120, height: 240)) {
     ReviewedMovieCell()
-}
-
-// MARK: - Reactive
-
-extension Reactive where Base: ReviewedMovieCell {
-    // 점수에 맞게 색 채우기
-//    var rate: Binder<Int> {
-//        Binder(base) { base, rate in
-//            base.imageViews.enumerated().forEach { index, imageView in
-//                let isSelected = (index+1 <= rate)
-//                let color = isSelected ? .brandColor : UIColor(hex: 0xB1B1B1)
-//                imageView.image = imageView.image?.withTintColor(color)
-//            }
-//        }
-//    }
 }

@@ -67,6 +67,7 @@
 		51BAE8622D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE85E2D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift */; };
 		51BAE8632D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE85F2D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift */; };
 		51BAE8642D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */; };
+		51BAE8662D662E0D002D7679 /* MyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8652D662E0B002D7679 /* MyVM.swift */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -156,6 +157,7 @@
 		51BAE85E2D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		51BAE85F2D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51BAE8652D662E0B002D7679 /* MyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVM.swift; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			children = (
 				51BAE8522D65E642002D7679 /* Components */,
 				51BAE8502D65E35E002D7679 /* MyVC.swift */,
+				51BAE8652D662E0B002D7679 /* MyVM.swift */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				51E3386C2D5F900900DEECA8 /* OnlyOnce.swift in Sources */,
 				5131DE9B2D5DEC0D00527C8E /* UIFont+.swift in Sources */,
 				51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */,
+				51BAE8662D662E0D002D7679 /* MyVM.swift in Sources */,
 				51BAE84E2D65BB50002D7679 /* BackBarButton.swift in Sources */,
 				51BAE8582D66213D002D7679 /* ReviewedMovieCell.swift in Sources */,
 				5131DEAF2D5E2C9300527C8E /* TMDBNetworkManager.swift in Sources */,
