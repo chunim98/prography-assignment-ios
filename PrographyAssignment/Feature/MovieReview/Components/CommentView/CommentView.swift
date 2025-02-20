@@ -40,17 +40,6 @@ final class CommentView: UIView {
         return label
     }()
     
-    private let textFieldVStack = {
-        let sv = UIStackView()
-        sv.directionalLayoutMargins = .init(horizontal: 16, vertical: 12)
-        sv.isLayoutMarginsRelativeArrangement = true
-        sv.layer.borderColor = UIColor.brandColor.cgColor
-        sv.layer.borderWidth = 1
-        sv.layer.cornerRadius = 8
-        sv.clipsToBounds = true
-        return sv
-    }()
-    
     fileprivate let commentWriteView = CommentWriteView()
     
     fileprivate let commentReadView = CommentReadView()
@@ -89,18 +78,22 @@ final class CommentView: UIView {
         )
         let output = commentVM.transform(input)
         
+        // 편집, 최초작성 상태인 경우, 텍스트뷰에 코멘트 데이터를 바인딩하지 않음
         output.commentData
             .bind(to: commentReadView.rx.commentData, commentWriteView.rx.commentData)
             .disposed(by: bag)
         
+        // 상태가 읽기로 바뀐 경우, 작성 종료
         output.endEditingEvent
             .bind(with: self) { owner, _ in owner.endEditing(true) }
             .disposed(by: bag)
         
+        // 이미 코멘트가 있는 읽기 상태인 경우, 코멘트 작성 뷰를 숨김
         output.isCommentWriteViewHidden
             .bind(to: commentWriteView.rx.isHidden)
             .disposed(by: bag)
         
+        // 편집 상태이거나, 코멘트가 비어있지 않은 경우 플레이스 홀더 숨김
         output.isPlaceHolderHidden
             .bind(to: commentWriteView.rx.isPlaceholderHidden)
             .disposed(by: bag)
