@@ -9,9 +9,12 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 import SnapKit
 
 final class MyVC: UIViewController {
+    
+    typealias RxDataSource = RxCollectionViewSectionedAnimatedDataSource
     
     // MARK: Properties
     
@@ -103,13 +106,8 @@ final class MyVC: UIViewController {
         let output = myVM.transform(input)
         
         // 리뷰한 영화 셀 데이터 바인딩
-        output.reviewedMovieCellDataArr
-            .bind(to: reviewedMovieCV.rx.items(
-                cellIdentifier: ReviewedMovieCell.identifier,
-                cellType: ReviewedMovieCell.self
-            )) { index, item, cell in
-                cell.configure(item)
-            }
+        output.reviewedMovieSectionArr
+            .bind(to: reviewedMovieCV.rx.items(dataSource: getReviewedMovieCellDataSource()))
             .disposed(by: bag)
         
         // 선택한 영화의 리뷰 화면으로 이동
@@ -124,7 +122,28 @@ final class MyVC: UIViewController {
         output.selectedOption
             .bind(to: filterOptionButton.rx.optionSelected)
             .disposed(by: bag)
-            
+    }
+    
+    // MARK: Rx Data Sources
+    
+    private func getReviewedMovieCellDataSource() -> RxDataSource<ReviewedMovieSection> {
+        let animeConfig = AnimationConfiguration(
+            insertAnimation: .fade,
+            reloadAnimation: .fade,
+            deleteAnimation: .fade
+        )
+        
+        return RxDataSource<ReviewedMovieSection>(
+            animationConfiguration: animeConfig
+        ) { _, collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ReviewedMovieCell.identifier,
+                for: indexPath
+            ) as? ReviewedMovieCell
+            else { return UICollectionViewCell() }
+            cell.configure(item)
+            return cell
+        }
     }
 }
 

@@ -20,7 +20,7 @@ final class MyVM {
     }
     
     struct Output {
-        let reviewedMovieCellDataArr: Observable<[ReviewedMovieCellData]>
+        let reviewedMovieSectionArr: Observable<[ReviewedMovieSection]>
         let pushMovieReview: Observable<Int>
         let optionListAppearance: Observable<Bool>
         let selectedOption: Observable<Int>
@@ -61,14 +61,15 @@ final class MyVM {
             .disposed(by: bag)
 
         // 조건에 맞는 리스트를 내보내기 (6의 경우 All)
-        let reviewedMovieCellDataArr = Observable
+        let reviewedMovieSectionArr = Observable
             .combineLatest(reviewedMovieCellDataArr_, selectedOption) { dataArr, index in
                 index == 6 ? dataArr : dataArr.filter { $0.personalRate == index }
             }
+            .map { $0.sectionDataArr }
             
         
         return Output(
-            reviewedMovieCellDataArr: reviewedMovieCellDataArr,
+            reviewedMovieSectionArr: reviewedMovieSectionArr,
             pushMovieReview: pushMovieReview,
             optionListAppearance: optionListAppearance.asObservable(),
             selectedOption: selectedOption
