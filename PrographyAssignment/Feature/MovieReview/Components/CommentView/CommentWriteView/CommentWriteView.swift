@@ -20,7 +20,7 @@ final class CommentWriteView: UIStackView {
     
     // MARK: Interface
     
-    fileprivate let trimmedTextOut = PublishSubject<String>()
+    fileprivate let trimmedText = PublishSubject<String>()
     
     // MARK: Components
     
@@ -77,8 +77,8 @@ final class CommentWriteView: UIStackView {
     private func setBinding() {
         let input = CommentWriteVM.Input(
             text: textView.rx.text.asObservable(),
-            didBeginEditing: textView.rx.didBeginEditing.asObservable(),
-            didEndEditing: textView.rx.didEndEditing.asObservable()
+            didBeginEditingEvent: textView.rx.didBeginEditing.asObservable(),
+            didEndEditingEvent: textView.rx.didEndEditing.asObservable()
         )
         let output = commentWriteVM.trasform(input)
         
@@ -89,7 +89,7 @@ final class CommentWriteView: UIStackView {
         
         // 좌우 공백이 제거된 텍스트 외부로 방출
         output.trimmedText
-            .bind(to: trimmedTextOut)
+            .bind(to: trimmedText)
             .disposed(by: bag)
     }
 }
@@ -113,7 +113,7 @@ extension Reactive where Base: CommentWriteView {
     }
     
     var updatedText: Observable<String> {
-        base.trimmedTextOut.asObservable()
+        base.trimmedText.asObservable()
     }
 }
 

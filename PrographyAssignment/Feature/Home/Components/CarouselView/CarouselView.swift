@@ -75,7 +75,7 @@ final class CarouselView: UIView {
 // MARK: - Reactive
 
 extension Reactive where Base: CarouselView {
-    var modelSelected: Observable<MovieId> {
+    var selectedModel: Observable<MovieId> {
         base.carouselCV.rx.modelSelected(MovieId.self).asObservable()
     }
 }

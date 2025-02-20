@@ -93,16 +93,16 @@ final class MovieReviewVC: UIViewController {
             .merge(backBarButton.rx.event, pullDownBarButton.rx.event, saveBarButton.rx.event)
         
         let input = MovieReviewVM.Input(
-            starButtonsTap: starButtonsView.rx.tap,
+            tappedStarIndex: starButtonsView.rx.tappedStarIndex,
             updatedText: commentView.rx.updatedText,
             barButtonEvent: barButtonEvent,
-            tapGestureEvent: tapGesture.rx.event.asObservable()
+            tapGesture: tapGesture.rx.event.asObservable()
         )
         let output = movieReviewVM.transform(input: input)
         
         // 영화 세부정보 데이터 바인딩
         output.movieDetail
-            .bind(to: posterCardView.rx.movieDetail, detailView.rx.movieDetail)
+            .bind(to: posterCardView.rx.posterPath, detailView.rx.movieDetail)
             .disposed(by: bag)
         
         // 리뷰 데이터 바인딩
@@ -112,17 +112,17 @@ final class MovieReviewVC: UIViewController {
         
         // 리뷰 상태 바인딩
         output.state
-            .bind(to: commentView.rx.state, self.rx.barButtons)
+            .bind(to: commentView.rx.state, self.rx.rightBarButtonAppearance)
             .disposed(by: bag)
         
         // 화면 닫기
         output.dismissEvent
-            .bind(to: self.rx.dismiss)
+            .bind(to: self.rx.dismissBinder)
             .disposed(by: bag)
         
         // 키보드 닫기
         output.hideKeyBoardEvent
-            .bind(to: self.rx.hideKeyBoardEvent)
+            .bind(to: self.rx.hideKeyBoardBinder)
             .disposed(by: bag)
     }
 }
@@ -136,20 +136,21 @@ final class MovieReviewVC: UIViewController {
 // MARK: - Reactive
 
 extension Reactive where Base: MovieReviewVC {
-    var barButtons: Binder<ReviewState> {
+    
+    fileprivate var rightBarButtonAppearance: Binder<ReviewState> {
         Binder(base) {
             $0.navigationItem.rightBarButtonItem = [.create, .edit].contains($1)
             ? $0.saveBarButton : $0.pullDownBarButton
         }
     }
     
-    var dismiss: Binder<Void> {
+    fileprivate var dismissBinder: Binder<Void> {
         Binder(base) { base, _ in
             base.navigationController?.popViewController(animated: true)
         }
     }
     
-    var hideKeyBoardEvent: Binder<Void> {
+    fileprivate  var hideKeyBoardBinder: Binder<Void> {
         Binder(base) { base, _ in base.commentView.endEditing(true) }
     }
 }

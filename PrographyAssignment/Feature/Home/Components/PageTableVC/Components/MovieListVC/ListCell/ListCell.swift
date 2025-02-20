@@ -131,7 +131,7 @@ final class ListCell: UITableViewCell {
         overviewLabel.text = data.overview
         rateLabel.text = String(format: "★ %.1f", data.voteAverage)
         
-        // 장르 컬렉션 뷰 데이터 바인딩 (따로 바인딩 메서드는 안만드는 게 나은 듯)
+        // 장르 컬렉션 뷰 데이터 바인딩 (뷰모델까지는 필요 없을 듯)
         Observable.just(data.genreIDS)
             .bind(to: genreCV.rx.items(
                 cellIdentifier: GenreCell.identifier,cellType: GenreCell.self

@@ -58,9 +58,7 @@ final class GenreCell: UICollectionViewCell {
     
     // MARK: Configure Components
     
-    func configure(_ id: Int) {
-        genreLabel.text = id.genreName
-    }
+    func configure(_ id: Int) { genreLabel.text = id.genreName }
 }
 
 #Preview(traits: .fixedLayout(width: 40, height: 16)) {

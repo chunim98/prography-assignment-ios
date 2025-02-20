@@ -14,13 +14,6 @@ final class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        self.selectedIndex = 1
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        tabBar.frame.size.height = 80 + view.safeAreaInsets.bottom
-//        tabBar.frame.origin.y = view.frame.height - 80 - view.safeAreaInsets.bottom
     }
     
     // MARK: Configure Tab Bar

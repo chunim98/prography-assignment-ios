@@ -69,35 +69,35 @@ final class HomeVC: UIViewController {
     // MARK: Binding
     
     private func setBinding() {
-        let changeIndex = Observable.merge(
-            tabContentsView.rx.changeIndex,
-            pageTableVC.rx.changeIndex
+        let changedIndex = Observable.merge(
+            tabContentsView.rx.changedIndex,
+            pageTableVC.rx.changedIndex
         )
-        let modelSelected = Observable.merge(
-            carouselView.rx.modelSelected,
-            pageTableVC.rx.modelSelected
+        let selectedModel = Observable.merge(
+            carouselView.rx.selectedModel,
+            pageTableVC.rx.selectedModel
         )
         
         let input = HomeVM.Input(
-            changeIndex: changeIndex,
-            panGestureEvent: panGesture.rx.event.asObservable(),
-            modelSelected: modelSelected
+            changedIndex: changedIndex,
+            panGesture: panGesture.rx.event.asObservable(),
+            selectedModel: selectedModel
         )
         let output = homeVM.transform(input: input)
         
         // 선택된 인덱스 상태 업데이트
-        output.selectedIndex
-            .bind(to: tabContentsView.rx.selectedIndex, pageTableVC.rx.seletedIndex)
+        output.currentIndex
+            .bind(to: tabContentsView.rx.tabIndex, pageTableVC.rx.pageIndex)
             .disposed(by: bag)
         
-        // 제스처에 따라 캐러셀 뷰 사이즈 조절
-        output.panGestureEvent
-            .bind(to: self.rx.carouselSizeAdjustment)
+        // 제스처에 따라 캐러셀 뷰 높이 조절
+        output.panGesture
+            .bind(to: self.rx.carouselViewHeight)
             .disposed(by: bag)
         
         // 선택한 영화의 리뷰 화면으로 이동
-        output.pushMovieReview
-            .bind(to: self.rx.pushMovieReview)
+        output.movieId
+            .bind(to: self.rx.pushMovieReviewBinder)
             .disposed(by: bag)
     }
 }
@@ -109,8 +109,8 @@ final class HomeVC: UIViewController {
 // MARK: - Reactive
 
 extension Reactive where Base: HomeVC {
-    // 캐러셀 뷰 사이즈 조절 로직
-    var carouselSizeAdjustment: Binder<UIPanGestureRecognizer> {
+    // 캐러셀 뷰 높이 조절 로직
+    fileprivate var carouselViewHeight: Binder<UIPanGestureRecognizer> {
         Binder(base) { base, gesture in
             let changeY = gesture.translation(in: base.headerContainer).y // y축 움직이만 사용할 것임
             gesture.setTranslation(.zero, in: base.headerContainer) // 연속된 제스처라 호출마다 0으로 초기화
@@ -131,7 +131,7 @@ extension Reactive where Base: HomeVC {
         }
     }
     
-    var pushMovieReview: Binder<Int> {
+    fileprivate var pushMovieReviewBinder: Binder<Int> {
         Binder(base) {
             let vc = MovieReviewVC()
             vc.movieReviewVM = .init($1)

@@ -20,7 +20,7 @@ final class MovieListVC: UIViewController {
     
     // MARK: Interface
     
-    fileprivate let currentCellIndexIn = PublishSubject<Int>()
+    fileprivate let currentCellIndex = PublishSubject<Int>()
     
     // MARK: Components
     
@@ -59,7 +59,7 @@ final class MovieListVC: UIViewController {
     // MARK: Binding
     
     private func setBinding() {
-        let input = MovieListVM.Input(currentCellIndex: currentCellIndexIn.asObservable())
+        let input = MovieListVM.Input(currentCellIndex: currentCellIndex.asObservable())
         let output = movieListVM.transform(input: input)
         
         // 테이블 뷰 데이터 바인딩
@@ -67,10 +67,8 @@ final class MovieListVC: UIViewController {
             .bind(to: listTV.rx.items(
                 cellIdentifier: ListCell.identifier,cellType: ListCell.self
             )) { [weak self] index, data, cell in
-                guard let self else { return }
-                
                 cell.configure(data)
-                self.rx.currentCellIndex.onNext(index)
+                self?.currentCellIndex.onNext(index)
             }
             .disposed(by: bag)
     }
@@ -83,13 +81,7 @@ final class MovieListVC: UIViewController {
 // MARK: - Reactive
 
 extension Reactive where Base: MovieListVC {
-    var currentCellIndex: Binder<Int> {
-        Binder(base) { base, index in
-            base.currentCellIndexIn.onNext(index)
-        }
-    }
-    
-    var modelSelected: Observable<MovieId> {
+    var selectedModel: Observable<MovieId> {
         base.listTV.rx.modelSelected(MovieId.self).asObservable()
     }
 }

@@ -21,8 +21,7 @@ final class PageTableVC: UIPageViewController {
 
     // MARK: Interface
     
-    fileprivate let selectedIndexIn = PublishSubject<Int>()
-    fileprivate let changeIndexOut = PublishSubject<Int>()
+    fileprivate let changedIndex = PublishSubject<Int>()
 
     // MARK: Components
     
@@ -58,7 +57,7 @@ extension PageTableVC: UIPageViewControllerDelegate {
         transitionCompleted completed: Bool
     ) {
         guard completed else { return }
-        changeIndexOut.onNext(currentIndex)
+        changedIndex.onNext(currentIndex)
     }
 }
 
@@ -97,7 +96,7 @@ extension PageTableVC: UIPageViewControllerDataSource {
 // MARK: - Reactive
 
 extension Reactive where Base: PageTableVC {
-    var seletedIndex: Binder<Int> {
+    var pageIndex: Binder<Int> {
         Binder(base) { base, index in
             // 타입 이름이 길어서 앨리어스 설정
             typealias Direction = UIPageViewController.NavigationDirection
@@ -108,15 +107,15 @@ extension Reactive where Base: PageTableVC {
         }
     }
     
-    var changeIndex: Observable<Int> {
-        base.changeIndexOut.asObservable()
+    var changedIndex: Observable<Int> {
+        base.changedIndex.asObservable()
     }
     
-    var modelSelected: Observable<MovieId> {
+    var selectedModel: Observable<MovieId> {
         Observable.merge(
-            base.nowPlayingVC.rx.modelSelected,
-            base.popularVC.rx.modelSelected,
-            base.topRatedVC.rx.modelSelected
+            base.nowPlayingVC.rx.selectedModel,
+            base.popularVC.rx.selectedModel,
+            base.topRatedVC.rx.selectedModel
         )
     }
 }

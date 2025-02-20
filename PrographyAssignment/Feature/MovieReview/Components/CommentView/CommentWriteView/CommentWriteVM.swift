@@ -14,8 +14,8 @@ final class CommentWriteVM {
     
     struct Input {
         let text: Observable<String?>
-        let didBeginEditing: Observable<Void>
-        let didEndEditing: Observable<Void>
+        let didBeginEditingEvent: Observable<Void>
+        let didEndEditingEvent: Observable<Void>
     }
     
     struct Output {
@@ -31,13 +31,13 @@ final class CommentWriteVM {
         let trimmedText = input.text
             .startWith("") // withLatestFrom 때문에 초기값 할당
             .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
-            .skip(until: input.didBeginEditing)
+            .skip(until: input.didBeginEditingEvent)
 
         // 입력을 시작하면 플레이스홀더 숨김
         // 입력을 끝냈을 때, 텍스트가 입력되어 있지 않다면 플레이스 홀더 표시
         let isPlaceholderHidden = Observable.merge(
-            input.didBeginEditing.map { _ in true },
-            input.didEndEditing.withLatestFrom(trimmedText) { !$1.isEmpty }
+            input.didBeginEditingEvent.map { _ in true },
+            input.didEndEditingEvent.withLatestFrom(trimmedText) { !$1.isEmpty }
         )
 
         return Output(

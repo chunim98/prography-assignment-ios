@@ -69,7 +69,7 @@ extension Reactive where Base: StarButtonsView {
     }
     
     // 5개의 버튼 배열의 탭 이벤트를 하나로 묶고, 인덱스로 변환 (점수를 보내는 게 아님)
-    var tap: Observable<Int> {
+    var tappedStarIndex: Observable<Int> {
         Observable.merge(base.buttons.enumerated().map { index, button in
             button.rx.tap.map { _ in index }
         })

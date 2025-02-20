@@ -95,7 +95,7 @@ extension Reactive where Base: FilterButton {
         }
     }
     
-    var tap: Observable<Void> {
+    var tapEvent: Observable<Void> {
         base.button.rx.tap.asObservable()
     }
 }

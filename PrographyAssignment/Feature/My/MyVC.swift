@@ -98,9 +98,9 @@ final class MyVC: UIViewController {
     
     private func setBinding() {
         let input = MyVM.Input(
-            modelSelected: myMovieCV.rx.modelSelected(MovieId.self).asObservable(),
+            selectedModel: myMovieCV.rx.modelSelected(MovieId.self).asObservable(),
             viewWillAppearEvent: viewWillAppearEvent.asObservable(),
-            filterButtonTapEvent: filterButton.rx.tap,
+            filterButtonTapEvent: filterButton.rx.tapEvent,
             selectedFilterIndex: filterListView.rx.selectedFilterIndex
         )
         let output = myVM.transform(input)
@@ -111,8 +111,8 @@ final class MyVC: UIViewController {
             .disposed(by: bag)
         
         // 선택한 영화의 리뷰 화면으로 이동
-        output.pushMovieReview
-            .bind(to: self.rx.pushMovieReview)
+        output.movieId
+            .bind(to: self.rx.pushMovieReviewBinder)
             .disposed(by: bag)
         
         output.isFilterListHidden
@@ -154,7 +154,7 @@ final class MyVC: UIViewController {
 // MARK: - Reactive
 
 extension Reactive where Base: MyVC {
-    var pushMovieReview: Binder<Int> {
+    fileprivate var pushMovieReviewBinder: Binder<Int> {
         Binder(base) {
             let vc = MovieReviewVC()
             vc.movieReviewVM = .init($1)

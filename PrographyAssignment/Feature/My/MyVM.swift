@@ -13,7 +13,7 @@ import RxCocoa
 final class MyVM {
     
     struct Input {
-        let modelSelected: Observable<MovieId>
+        let selectedModel: Observable<MovieId>
         let viewWillAppearEvent: Observable<Void>
         let filterButtonTapEvent: Observable<Void>
         let selectedFilterIndex: Observable<Int>
@@ -21,7 +21,7 @@ final class MyVM {
     
     struct Output {
         let myMovieSectionDataArr: Observable<[MyMovieSectionData]>
-        let pushMovieReview: Observable<Int>
+        let movieId: Observable<Int>
         let isFilterListHidden: Observable<Bool>
         let selectedFilterIndex: Observable<Int>
     }
@@ -40,7 +40,7 @@ final class MyVM {
             .disposed(by: bag)
         
         // 선택한 영화의 리뷰 화면으로 이동
-        let pushMovieReview = input.modelSelected
+        let movieId = input.selectedModel
             .map { $0.id }
         
         // 필터 버튼을 탭하면 필터 리스트를 표시
@@ -70,7 +70,7 @@ final class MyVM {
         
         return Output(
             myMovieSectionDataArr: myMovieSectionDataArr,
-            pushMovieReview: pushMovieReview,
+            movieId: movieId,
             isFilterListHidden: isFilterListHidden.asObservable(),
             selectedFilterIndex: selectedFilterIndex
         )

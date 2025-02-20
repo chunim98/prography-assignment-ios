@@ -21,11 +21,11 @@ final class TabContentsView: UIView {
     
     // MARK: Interface
 
-    fileprivate let selectedIndexIn = PublishSubject<Int>()
+    fileprivate let tabIndex = PublishSubject<Int>()
     
     // MARK: Components
     
-    private let contentsHStack = UIStackView()
+    fileprivate let contentsHStack = UIStackView()
     
     fileprivate let buttons: [UIButton] = {
         ["Now Playing", "Popular", "Top Rated"].map { title in
@@ -40,7 +40,7 @@ final class TabContentsView: UIView {
         }
     }()
     
-    private let underLineView = {
+    fileprivate let underLineView = {
         let view = UIView()
         view.backgroundColor = .brandColor
         return view
@@ -102,38 +102,17 @@ final class TabContentsView: UIView {
     // MARK: Binding
     
     private func setBinding() {
-        let input = TabContentsVM.Input(selectedIndex: selectedIndexIn.asObservable())
+        let input = TabContentsVM.Input(tabIndex: tabIndex.asObservable())
         let output = tabContentsVM.transform(input: input)
         
-        // 언더라인 뷰의 포지션을 맞추기위한 오프셋을 전달
-        output.underLinePositionWillUpdate
-            .map { CGFloat($0) }
-            .bind(with: self) { owner, index in
-                let tabWidth = owner.contentsHStack.bounds.width / 3
-                let offset = tabWidth / 2
-                let lineOffset = owner.underLineView.bounds.width / 2
-                
-                UIView.animate(withDuration: 0.2) {
-                    owner.underLineView.snp.updateConstraints {
-                        let inset = UIEdgeInsets(left: tabWidth*index+offset-lineOffset)
-                        $0.leading.equalToSuperview().inset(inset)
-                    }
-                    owner.layoutIfNeeded()
-                }
-            }
+        // 현재 탭 인덱스에 맞게, 언더라인 위치 업데이트
+        output.tabIndexCGFloat
+            .bind(to: self.rx.underLinePosition)
             .disposed(by: bag)
         
-        // 선택 결과에 따라 세그먼트의 색을 재설정
-        output.colorWillChange
-            .bind(with: self) { owner, target in
-                owner.buttons.enumerated().forEach { index, button in
-                    if target == index {
-                        button.configuration?.baseForegroundColor = .brandColor
-                    } else {
-                        button.configuration?.baseForegroundColor = .onSurfaceVariant
-                    }
-                }
-            }
+        // 현재 탭 인덱스에 맞게, 버튼 색상 업데이트
+        output.tabIndex
+            .bind(to: self.rx.buttonsColor)
             .disposed(by: bag)
     }
 }
@@ -145,14 +124,38 @@ final class TabContentsView: UIView {
 // MARK: - Reactive
 
 extension Reactive where Base: TabContentsView {
-    var selectedIndex: Binder<Int> {
-        Binder(base) { base, index in
-            base.selectedIndexIn.onNext(index)
+    
+    fileprivate var underLinePosition: Binder<CGFloat> {
+        Binder(base) { base, tabIdx in
+            let tabWidth = base.contentsHStack.bounds.width / 3
+            let offset = tabWidth / 2
+            let lineOffset = base.underLineView.bounds.width / 2
+            
+            UIView.animate(withDuration: 0.2) {
+                base.underLineView.snp.updateConstraints {
+                    let inset = UIEdgeInsets(left: tabWidth*tabIdx+offset-lineOffset)
+                    $0.leading.equalToSuperview().inset(inset)
+                }
+                base.layoutIfNeeded()
+            }
         }
     }
     
+    fileprivate var buttonsColor: Binder<Int> {
+        Binder(base) { base, tabIdx in
+            base.buttons.enumerated().forEach { btnIdx, button in
+                let color: UIColor = (tabIdx == btnIdx) ? .brandColor : .onSurfaceVariant
+                button.configuration?.baseForegroundColor = color
+            }
+        }
+    }
+    
+    var tabIndex: Binder<Int> {
+        Binder(base) { $0.tabIndex.onNext($1) }
+    }
+    
     // 3개의 버튼 배열의 탭 이벤트를 하나로 묶고, 인덱스로 변환
-    var changeIndex: Observable<Int> {
+    var changedIndex: Observable<Int> {
         Observable.merge(base.buttons.enumerated().map { index, button in
             button.rx.tap.map { _ in index }
         })

@@ -12,7 +12,7 @@ final class CoreDataManager {
     
     // MARK: Singleton Instance
     
-    static let shared  = CoreDataManager()
+    static let shared = CoreDataManager()
     
     // MARK: Properties
 

@@ -13,10 +13,10 @@ import RxCocoa
 final class MovieReviewVM {
     
     struct Input {
-        let starButtonsTap: Observable<Int>
+        let tappedStarIndex: Observable<Int>
         let updatedText: Observable<String>
         let barButtonEvent: Observable<BarButtonEvent>
-        let tapGestureEvent: Observable<UITapGestureRecognizer>
+        let tapGesture: Observable<UITapGestureRecognizer>
     }
     
     struct Output {
@@ -56,14 +56,14 @@ final class MovieReviewVM {
             .disposed(by: bag)
         
         // 별점 건드리는 순간, 편집 상태로 업데이트 (최초 작성은 제외)
-        input.starButtonsTap
+        input.tappedStarIndex
             .withLatestFrom(reviewState)
             .compactMap { $0 == .create ? nil : ReviewState.edit }
             .bind(to: reviewState)
             .disposed(by: bag)
         
         // 별점 건드리는 순간, 리뷰 데이터 업데이트
-        input.starButtonsTap
+        input.tappedStarIndex
             .withLatestFrom(reviewData) {
                 $1.updated(personalRate: ($0+1 == $1.personalRate) ? $0 : $0+1)
             }
@@ -159,7 +159,7 @@ final class MovieReviewVM {
             .disposed(by: bag)
         
         let hideKeyBoardEvent = Observable.merge(
-            input.tapGestureEvent.map { _ in },
+            input.tapGesture.map { _ in },
             input.barButtonEvent.filter { $0 == .save }.map { _ in }
         )
         

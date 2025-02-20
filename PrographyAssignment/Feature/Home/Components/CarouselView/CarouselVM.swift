@@ -13,16 +13,13 @@ import RxCocoa
 final class CarouselVM {
     
     struct Input {}
-    
-    struct Output {
-        let carouselCellDataArr: Observable<[CarouselCellData]>
-    }
+    struct Output { let carouselCellDataArr: Observable<[CarouselCellData]> }
     
     private let bag = DisposeBag()
     
     func transform(input: Input) -> Output {
         let carouselCellDataArr = BehaviorSubject(value: [CarouselCellData]())
-        
+        // refactor: BehaviorSubject없어도 될 듯
         // carouselCellDataArr 초기값 설정
         fetchMovieList()
             .map { fetched in fetched.map {
@@ -36,9 +33,7 @@ final class CarouselVM {
             .bind(to: carouselCellDataArr)
             .disposed(by: bag)
         
-        return Output(
-            carouselCellDataArr: carouselCellDataArr.asObservable()
-        )
+        return Output(carouselCellDataArr: carouselCellDataArr.asObservable())
     }
     
     // MARK: Methods

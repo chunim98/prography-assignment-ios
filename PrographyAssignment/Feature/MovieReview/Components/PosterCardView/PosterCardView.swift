@@ -52,7 +52,7 @@ final class PosterCardView: UIView {
 // MARK: - Reactive
 
 extension Reactive where Base: PosterCardView {
-    var movieDetail: Binder<MovieDetail> {
+    var posterPath: Binder<MovieDetail> {
         Binder(base) { base, detail in
             let url = URL(string: "https://image.tmdb.org/t/p/original"+detail.posterPath)
             Task { @MainActor in

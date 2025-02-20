@@ -12,13 +12,9 @@ import RxCocoa
 
 final class MovieListVM {
     
-    struct Input {
-        let currentCellIndex: Observable<Int>
-    }
+    struct Input { let currentCellIndex: Observable<Int> }
     
-    struct Output {
-        let listCellDataArr: Observable<[ListCellData]>
-    }
+    struct Output { let listCellDataArr: Observable<[ListCellData]> }
     
     // MARK: Properties
     
@@ -29,11 +25,11 @@ final class MovieListVM {
     
     func transform(input: Input) -> Output {
         let listCellDataArr = BehaviorSubject(value: [ListCellData]())
-        let loadPage = BehaviorSubject(value: 1)
+        let loadedPageIndex = BehaviorSubject(value: 1)
         let isLoading = BehaviorSubject(value: false)
 
-        // loadPage값이 변할 때마다 새로운 페이지 누적
-        loadPage
+        // loadedPageIndex가 갱신되면, 새로운 페이지 누적
+        loadedPageIndex
             .flatMapLatest(fetchListCellDataArr(page:))
             .withLatestFrom(listCellDataArr) { $1 + $0 } // 기존+신규
             .bind(to: listCellDataArr)
@@ -47,12 +43,12 @@ final class MovieListVM {
             .bind(to: isLoading)
             .disposed(by: bag)
         
-        // 로딩중일 경우 다음페이지를 요청하기 위해 loadPage 값 업데이트
+        // 로딩중일 경우 다음페이지를 요청하기 위해 loadedPageIndex 값 갱신
         isLoading
             .distinctUntilChanged()
             .filter { $0 } // 로딩중일 때만 다음 페이지를 요청 가능
-            .withLatestFrom(loadPage) { $1 + 1 }
-            .bind(to: loadPage)
+            .withLatestFrom(loadedPageIndex) { $1 + 1 }
+            .bind(to: loadedPageIndex)
             .disposed(by: bag)
         
         // 로딩이 끝나고 페이지를 갱신했다면 로딩중 상태를 해제

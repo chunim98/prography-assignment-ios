@@ -11,10 +11,6 @@ import RxSwift
 
 final class SaveBarButton: UIBarButtonItem {
     
-    // MARK: Interface
-    
-    fileprivate let event = PublishSubject<BarButtonEvent>()
-    
     // MARK: Life Cycle
     
     override init() {
