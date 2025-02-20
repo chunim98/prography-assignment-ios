@@ -8,9 +8,14 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
 import SnapKit
 
 final class FilterButton: UIView {
+    
+    // MARK: Properties
+    
+    private let bag = DisposeBag()
     
     // MARK: Components
     
@@ -46,6 +51,7 @@ final class FilterButton: UIView {
         let iv = UIImageView()
         iv.image = UIImage(named: "list")?.resizeImage(newWidth: 24)
         iv.contentMode = .scaleAspectFit
+        iv.isUserInteractionEnabled = false
         return iv
     }()
     
@@ -54,6 +60,7 @@ final class FilterButton: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setAutoLayout()
+        setBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -76,6 +83,19 @@ final class FilterButton: UIView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(28)
         }
+    }
+    
+    // MARK: Binding
+    
+    private func setBinding() {
+        // 버튼이 하이라이트 됐을 때 반투명 효과를 주기
+        button.rx.methodInvoked(#selector(setter: button.isHighlighted))
+            .compactMap { $0.first as? Bool }
+            .distinctUntilChanged()
+            .bind(with: self) {
+                $0.button.backgroundColor = $1 ? UIColor(hex: 0xF2F2F7) : .white
+            }
+            .disposed(by: bag)
     }
 }
 

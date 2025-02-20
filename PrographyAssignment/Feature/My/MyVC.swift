@@ -36,7 +36,7 @@ final class MyVC: UIViewController {
     
     fileprivate let filterButton = FilterButton()
     
-    private let filterListView = FilterListView()
+    fileprivate let filterListView = FilterListView()
     
     private let myMovieCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
@@ -115,10 +115,12 @@ final class MyVC: UIViewController {
             .bind(to: self.rx.pushMovieReviewBinder)
             .disposed(by: bag)
         
+        // 필터 리스트의 숨김,표시 상태 바인딩
         output.isFilterListHidden
-            .bind(to: filterListView.rx.isHidden)
+            .bind(to: self.rx.isFilterListHidden)
             .disposed(by: bag)
         
+        // 선택한 필터에 따라, 필터 버튼의 심볼 이미지 갱신
         output.selectedFilterIndex
             .bind(to: filterButton.rx.selectedFilterIndex)
             .disposed(by: bag)
@@ -154,12 +156,35 @@ final class MyVC: UIViewController {
 // MARK: - Reactive
 
 extension Reactive where Base: MyVC {
+    
     fileprivate var pushMovieReviewBinder: Binder<Int> {
         Binder(base) {
             let vc = MovieReviewVC()
             vc.movieReviewVM = .init($1)
             vc.hidesBottomBarWhenPushed = true
             $0.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    // 필터 리스트에 트랜지션 효과를 부여
+    fileprivate var isFilterListHidden: Binder<Bool> {
+        Binder(base) { base, isHidden in
+            
+            if isHidden {
+                // fade in
+                UIView.animate(withDuration: 0.1) {
+                    base.filterListView.alpha = 0
+                } completion: { isFinished in
+                    base.filterListView.isHidden = isFinished
+                }
+            } else {
+                // fade out
+                base.filterListView.alpha = 0
+                base.filterListView.isHidden = false
+                UIView.animate(withDuration: 0.2) {
+                    base.filterListView.alpha = 1
+                }
+            }
         }
     }
 }
