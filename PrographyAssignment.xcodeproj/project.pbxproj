@@ -345,8 +345,8 @@
 		5131DEAA2D5E291F00527C8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				51EB40712D6465E40069DF1E /* ReviewData.swift */,
 				5131DEAB2D5E292D00527C8E /* MockData.swift */,
+				51EB40712D6465E40069DF1E /* ReviewData.swift */,
 				5131DEC82D5E520D00527C8E /* MoviesInfo.swift */,
 				5186E9C02D6337FA00B2A6A4 /* MovieDetail.swift */,
 			);
