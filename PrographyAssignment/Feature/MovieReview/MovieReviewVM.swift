@@ -87,7 +87,6 @@ final class MovieReviewVM {
             .bind(to: reviewData)
             .disposed(by: bag)
         
-        
         // 바 버튼 이벤트가 편집이면, 편집 상태로 업데이트
         input.barButtonEvent
             .compactMap { $0 == .edit ? ReviewState.edit : nil }
@@ -97,7 +96,10 @@ final class MovieReviewVM {
         // 바 버튼 이벤트가 삭제이면, 리뷰 데이터 지우고 화면 닫기
         input.barButtonEvent
             .filter { $0 == .delete }
-            .withLatestFrom(reviewData) { CoreDataManager.shared.delete($1) }
+            .withLatestFrom(reviewData) {
+                CoreDataManager.shared.delete($1)
+                HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
+            }
             .bind(to: dismissEvent)
             .disposed(by: bag)
         
@@ -121,6 +123,7 @@ final class MovieReviewVM {
                 )
                 
                 CoreDataManager.shared.create(with: reviewData)
+                HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
                 return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             }
             .bind(to: reviewState)
@@ -146,6 +149,7 @@ final class MovieReviewVM {
                 )
                 
                 CoreDataManager.shared.update(with: reviewData)
+                HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
                 return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             }
             .bind(to: reviewState)
@@ -158,11 +162,16 @@ final class MovieReviewVM {
             .bind(to: dismissEvent)
             .disposed(by: bag)
         
+        // 화면 아무 곳을 탭하거나, 저장 버튼을 누르면 코멘트 작성 종료
         let endEditingEvent = Observable.merge(
             input.tapGesture.map { _ in },
             input.barButtonEvent.filter { $0 == .save }.map { _ in }
         )
         
+        // 별점 건드리는 순간, 햅틱 피드백 발생
+        input.tappedStarIndex
+            .bind { _ in HapticManager.shared.occurSelect() }
+            .disposed(by: bag)
 
         return Output(
             movieDetail: movieDetail,

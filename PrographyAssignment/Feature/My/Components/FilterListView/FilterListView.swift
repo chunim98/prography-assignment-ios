@@ -78,7 +78,7 @@ extension Reactive where Base: FilterListView {
         let buttonTaps = base.symbolButtons
             .reversed()
             .enumerated()
-            .map { i, btn in btn.rx.tap.map { _ in i } }
+            .map { idx, btn in btn.rx.tap.map { _ in idx } }
         
         return Observable.merge(buttonTaps)
     }

@@ -7,13 +7,21 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class TabBarVC: UITabBarController {
+    
+    // MARK: Properties
+    
+    private let bag = DisposeBag()
 
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        setBinding()
     }
     
     // MARK: Configure Tab Bar
@@ -48,6 +56,15 @@ final class TabBarVC: UITabBarController {
         
         self.tabBar.standardAppearance = appearance
         self.tabBar.scrollEdgeAppearance = appearance
+    }
+    
+    // MARK: Binding
+    
+    private func setBinding() {
+        // 탭을 선택할 때 햅틱 피드백 발생
+        self.rx.didSelect
+            .bind { _ in HapticManager.shared.occurLight() }
+            .disposed(by: bag)
     }
 }
 

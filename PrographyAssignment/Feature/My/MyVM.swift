@@ -59,6 +59,11 @@ final class MyVM {
             .withLatestFrom(isFilterListHidden) { _, bool in !bool }
             .bind(to: isFilterListHidden)
             .disposed(by: bag)
+        
+        // 필터를 선택했을 때, 햅틱 피드백 발생
+        input.selectedFilterIndex
+            .bind { _ in HapticManager.shared.occurLight() }
+            .disposed(by: bag)
 
         // 조건에 맞는 셀데이터를 내보내기 (6의 경우 All)
         let myMovieSectionDataArr = Observable
