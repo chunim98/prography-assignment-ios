@@ -69,6 +69,8 @@
 		51BAE8642D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */; };
 		51BAE8662D662E0D002D7679 /* MyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8652D662E0B002D7679 /* MyVM.swift */; };
 		51BAE8682D6635DF002D7679 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAE8672D6635DF002D7679 /* TabBarVC.swift */; };
+		51DF28732D67005C006A31ED /* FilterOptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF28722D670049006A31ED /* FilterOptionListView.swift */; };
+		51DF28762D670F8D006A31ED /* SymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF28752D670F85006A31ED /* SymbolButton.swift */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -160,6 +162,8 @@
 		51BAE8602D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		51BAE8652D662E0B002D7679 /* MyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVM.swift; sourceTree = "<group>"; };
 		51BAE8672D6635DF002D7679 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		51DF28722D670049006A31ED /* FilterOptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionListView.swift; sourceTree = "<group>"; };
+		51DF28752D670F85006A31ED /* SymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolButton.swift; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -494,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				51BAE8552D661D9A002D7679 /* FilterOptionButton */,
+				51DF28742D670063006A31ED /* FilterOptionListView */,
 				51BAE8562D66210B002D7679 /* ReviewedMovieCell */,
 			);
 			path = Components;
@@ -514,6 +519,15 @@
 				51BAE85B2D6627A0002D7679 /* ReviewedMovieCellData.swift */,
 			);
 			path = ReviewedMovieCell;
+			sourceTree = "<group>";
+		};
+		51DF28742D670063006A31ED /* FilterOptionListView */ = {
+			isa = PBXGroup;
+			children = (
+				51DF28722D670049006A31ED /* FilterOptionListView.swift */,
+				51DF28752D670F85006A31ED /* SymbolButton.swift */,
+			);
+			path = FilterOptionListView;
 			sourceTree = "<group>";
 		};
 		51E338632D5F71FD00DEECA8 /* TabContentsView */ = {
@@ -717,6 +731,7 @@
 				51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */,
 				51EB40702D64657C0069DF1E /* CoreDataManager.swift in Sources */,
 				51A09B682D60638E0002A2F7 /* ListCellData.swift in Sources */,
+				51DF28732D67005C006A31ED /* FilterOptionListView.swift in Sources */,
 				51EB408A2D64E3610069DF1E /* SaveBarButton.swift in Sources */,
 				5131DEC92D5E521400527C8E /* MovieInfo.swift in Sources */,
 				5186E9B52D63145400B2A6A4 /* UIImage+.swift in Sources */,
@@ -724,6 +739,7 @@
 				51EB408C2D64E3B40069DF1E /* BarButtonEvent.swift in Sources */,
 				51BAE8512D65E35E002D7679 /* MyVC.swift in Sources */,
 				51A09B6C2D6070E20002A2F7 /* MovieListVM.swift in Sources */,
+				51DF28762D670F8D006A31ED /* SymbolButton.swift in Sources */,
 				5186E9D22D637CD900B2A6A4 /* CommentReadView.swift in Sources */,
 				51EB40882D64D4840069DF1E /* PullDownBarButton.swift in Sources */,
 				5186E9BB2D63367800B2A6A4 /* DetailsVM.swift in Sources */,

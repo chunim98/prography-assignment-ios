@@ -33,6 +33,8 @@ final class MyVC: UIViewController {
     
     fileprivate let filterOptionButton = FilterOptionButton()
     
+    private let filterOptionListView = FilterOptionListView()
+    
     private let reviewedMovieCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(
