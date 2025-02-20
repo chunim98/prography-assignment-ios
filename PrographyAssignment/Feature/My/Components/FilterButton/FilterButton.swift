@@ -1,5 +1,5 @@
 //
-//  FilterOptionButton.swift
+//  FilterButton.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/19/25.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-final class FilterOptionButton: UIView {
+final class FilterButton: UIView {
     
     // MARK: Components
     
@@ -80,17 +80,17 @@ final class FilterOptionButton: UIView {
 }
 
 #Preview(traits: .fixedLayout(width: 412, height: 96)) {
-    FilterOptionButton()
+    FilterButton()
 }
 
 // MARK: - Reactive
 
-extension Reactive where Base: FilterOptionButton {
+extension Reactive where Base: FilterButton {
     // 선택된 옵션의 심볼만 표시
-    var optionSelected: Binder<Int> {
-        Binder(base) { base, optionNum in
+    var selectedFilterIndex: Binder<Int> {
+        Binder(base) { base, filterIdx in
             base.symbolViews.enumerated().forEach { index, view in
-                view.isHidden = !(index == optionNum)
+                view.isHidden = !(index == filterIdx)
             }
         }
     }

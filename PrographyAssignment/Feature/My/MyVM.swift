@@ -15,72 +15,72 @@ final class MyVM {
     struct Input {
         let modelSelected: Observable<MovieId>
         let viewWillAppearEvent: Observable<Void>
-        let filterOptionButtonTap: Observable<Void>
-        let selectedOption: Observable<Int>
+        let filterButtonTapEvent: Observable<Void>
+        let selectedFilterIndex: Observable<Int>
     }
     
     struct Output {
-        let reviewedMovieSectionArr: Observable<[ReviewedMovieSection]>
+        let myMovieSectionDataArr: Observable<[MyMovieSectionData]>
         let pushMovieReview: Observable<Int>
-        let optionListAppearance: Observable<Bool>
-        let selectedOption: Observable<Int>
+        let isFilterListHidden: Observable<Bool>
+        let selectedFilterIndex: Observable<Int>
     }
     
     private let bag = DisposeBag()
     
     func transform(_ input: Input) -> Output {
-        let reviewedMovieCellDataArr_ = BehaviorSubject(value: fetchReviewedMovieCellDataArr())
-        let optionListAppearance = BehaviorSubject(value: true)
-        let selectedOption = BehaviorSubject(value: 6) // All
+        let myMovieCellDataArr = BehaviorSubject(value: fetchMyMovieCellDataArr())
+        let isFilterListHidden = BehaviorSubject(value: true)
+        let selectedFilterIndex = BehaviorSubject(value: 6) // All
         
         // 화면이 표시될 때마다 리스트 정보 갱신
         input.viewWillAppearEvent
-            .compactMap { [weak self] _ in self?.fetchReviewedMovieCellDataArr() }
-            .bind(to: reviewedMovieCellDataArr_)
+            .compactMap { [weak self] _ in self?.fetchMyMovieCellDataArr() }
+            .bind(to: myMovieCellDataArr)
             .disposed(by: bag)
         
         // 선택한 영화의 리뷰 화면으로 이동
         let pushMovieReview = input.modelSelected
             .map { $0.id }
         
-        // 옵션 버튼을 탭하면 옵션 리스트를 표시
-        input.filterOptionButtonTap
-            .withLatestFrom(optionListAppearance) { _, bool in !bool }
-            .bind(to: optionListAppearance)
+        // 필터 버튼을 탭하면 필터 리스트를 표시
+        input.filterButtonTapEvent
+            .withLatestFrom(isFilterListHidden) { _, bool in !bool }
+            .bind(to: isFilterListHidden)
             .disposed(by: bag)
         
-        // 선택된 조건에 따라, 옵션 버튼의 상태 업데이트
-        input.selectedOption
-            .bind(to: selectedOption)
+        // 선택된 필터에 따라, 필터 버튼의 상태 업데이트
+        input.selectedFilterIndex
+            .bind(to: selectedFilterIndex)
             .disposed(by: bag)
             
-        // 조건을 선택하면 리스트 창 닫기
-        input.selectedOption
-            .withLatestFrom(optionListAppearance) { _, bool in !bool }
-            .bind(to: optionListAppearance)
+        // 필터를 선택했을 때, 필터 리스트 닫기
+        input.selectedFilterIndex
+            .withLatestFrom(isFilterListHidden) { _, bool in !bool }
+            .bind(to: isFilterListHidden)
             .disposed(by: bag)
 
-        // 조건에 맞는 리스트를 내보내기 (6의 경우 All)
-        let reviewedMovieSectionArr = Observable
-            .combineLatest(reviewedMovieCellDataArr_, selectedOption) { dataArr, index in
+        // 조건에 맞는 셀데이터를 내보내기 (6의 경우 All)
+        let myMovieSectionDataArr = Observable
+            .combineLatest(myMovieCellDataArr, selectedFilterIndex) { dataArr, index in
                 index == 6 ? dataArr : dataArr.filter { $0.personalRate == index }
             }
-            .map { $0.sectionDataArr }
+            .map { $0.sectionDataArr } // RxDataSources 사용을 위해 (섹션을 안쓰지만)섹션으로 변환
             
         
         return Output(
-            reviewedMovieSectionArr: reviewedMovieSectionArr,
+            myMovieSectionDataArr: myMovieSectionDataArr,
             pushMovieReview: pushMovieReview,
-            optionListAppearance: optionListAppearance.asObservable(),
-            selectedOption: selectedOption
+            isFilterListHidden: isFilterListHidden.asObservable(),
+            selectedFilterIndex: selectedFilterIndex
         )
     }
     
     // MARK: Methods
     
-    private func fetchReviewedMovieCellDataArr() -> [ReviewedMovieCellData] {
+    private func fetchMyMovieCellDataArr() -> [MyMovieCellData] {
         CoreDataManager.shared.readAll().map {
-            ReviewedMovieCellData(
+            MyMovieCellData(
                 id: $0.movieId,
                 posterPath: $0.posterPath,
                 personalRate: $0.personalRate,

@@ -114,8 +114,8 @@ extension Reactive where Base: DetailView {
             Observable.just(genreIds)
                 .bind(to: base.genreCV.rx.items(
                     cellIdentifier: GenreCell.identifier,cellType: GenreCell.self
-                )) { index, item, cell in
-                    cell.configure(item)
+                )) { index, data, cell in
+                    cell.configure(data)
                 }
                 .disposed(by: base.bag)
             

@@ -122,26 +122,26 @@ final class ListCell: UITableViewCell {
     
     // MARK: Configure Components
     
-    func configure(_ item: ListCellData) {
-        let url = URL(string: item.posterPath)
+    func configure(_ data: ListCellData) {
+        let url = URL(string: data.posterPath)
         posterImageView.kf.indicatorType = .activity
         posterImageView.kf.setImage(with: url)
 
-        titleLabel.text = item.title
-        overviewLabel.text = item.overview
-        rateLabel.text = String(format: "★ %.1f", item.voteAverage)
+        titleLabel.text = data.title
+        overviewLabel.text = data.overview
+        rateLabel.text = String(format: "★ %.1f", data.voteAverage)
         
         // 장르 컬렉션 뷰 데이터 바인딩 (따로 바인딩 메서드는 안만드는 게 나은 듯)
-        Observable.just(item.genreIDS)
+        Observable.just(data.genreIDS)
             .bind(to: genreCV.rx.items(
                 cellIdentifier: GenreCell.identifier,cellType: GenreCell.self
-            )) { index, item, cell in
-                cell.configure(item)
+            )) { index, data, cell in
+                cell.configure(data)
             }
             .disposed(by: bag)
         
         // 데이터 바인딩 끝나고, 폰트 길이에 맞게 레이아웃 재계산
-        genreCV.genreIds = item.genreIDS
+        genreCV.genreIds = data.genreIDS
         genreCV.collectionViewLayout.invalidateLayout()
     }
 }

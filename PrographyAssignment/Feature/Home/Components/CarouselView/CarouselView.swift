@@ -61,8 +61,8 @@ final class CarouselView: UIView {
             .bind(to: carouselCV.rx.items(
                 cellIdentifier: CarouselCell.identifier,
                 cellType: CarouselCell.self
-            )) { index, item, cell in
-                cell.configure(item)
+            )) { index, data, cell in
+                cell.configure(data)
             }
             .disposed(by: bag)
     }

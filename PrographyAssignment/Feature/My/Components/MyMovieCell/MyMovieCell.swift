@@ -1,5 +1,5 @@
 //
-//  ReviewedMovieCell.swift
+//  MyMovieCell.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/19/25.
@@ -10,11 +10,11 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-final class ReviewedMovieCell: UICollectionViewCell {
+final class MyMovieCell: UICollectionViewCell {
     
     // MARK: Properties
     
-    static let identifier = "ReviewedMovieCell"
+    static let identifier = "MyMovieCell"
     
     // MARK: Components
     
@@ -79,7 +79,7 @@ final class ReviewedMovieCell: UICollectionViewCell {
     
     // MARK: Configure Components
 
-    func configure(_ data: ReviewedMovieCellData) {
+    func configure(_ data: MyMovieCellData) {
         let url = URL(string: data.posterPath)
         posterImageView.kf.indicatorType = .activity
         posterImageView.kf.setImage(with: url)
@@ -90,5 +90,5 @@ final class ReviewedMovieCell: UICollectionViewCell {
 }
 
 #Preview(traits: .fixedLayout(width: 120, height: 240)) {
-    ReviewedMovieCell()
+    MyMovieCell()
 }

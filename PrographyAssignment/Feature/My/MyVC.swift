@@ -14,7 +14,7 @@ import SnapKit
 
 final class MyVC: UIViewController {
     
-    typealias RxDataSource = RxCollectionViewSectionedAnimatedDataSource
+    typealias DataSource = RxCollectionViewSectionedAnimatedDataSource
     
     // MARK: Properties
     
@@ -34,15 +34,15 @@ final class MyVC: UIViewController {
         return sv
     }()
     
-    fileprivate let filterOptionButton = FilterOptionButton()
+    fileprivate let filterButton = FilterButton()
     
-    private let filterOptionListView = FilterOptionListView()
+    private let filterListView = FilterListView()
     
-    private let reviewedMovieCV = {
+    private let myMovieCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(
-            ReviewedMovieCell.self,
-            forCellWithReuseIdentifier: ReviewedMovieCell.identifier
+            MyMovieCell.self,
+            forCellWithReuseIdentifier: MyMovieCell.identifier
         )
         return cv
     }()
@@ -72,21 +72,21 @@ final class MyVC: UIViewController {
     
     private func setAutoLayout() {
         view.addSubview(overallVStack)
-        view.addSubview(filterOptionListView)
-        overallVStack.addArrangedSubview(filterOptionButton)
-        overallVStack.addArrangedSubview(reviewedMovieCV)
+        view.addSubview(filterListView)
+        overallVStack.addArrangedSubview(filterButton)
+        overallVStack.addArrangedSubview(myMovieCV)
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
-        filterOptionButton.snp.makeConstraints { $0.height.equalTo(96) }
-        filterOptionListView.snp.makeConstraints {
-            $0.top.equalTo(filterOptionButton.snp.bottom).offset(-16)
+        filterButton.snp.makeConstraints { $0.height.equalTo(96) }
+        filterListView.snp.makeConstraints {
+            $0.top.equalTo(filterButton.snp.bottom).offset(-16)
             $0.horizontalEdges.equalToSuperview()
         }
     }
     
     private func setFlowLayout() {
         view.layoutIfNeeded()
-        reviewedMovieCV.setMultilineLayout(
+        myMovieCV.setMultilineLayout(
             spacing: 8,
             itemCount: 3,
             itemSize: CGSize(width: 121.3, height: 240),
@@ -98,16 +98,16 @@ final class MyVC: UIViewController {
     
     private func setBinding() {
         let input = MyVM.Input(
-            modelSelected: reviewedMovieCV.rx.modelSelected(MovieId.self).asObservable(),
+            modelSelected: myMovieCV.rx.modelSelected(MovieId.self).asObservable(),
             viewWillAppearEvent: viewWillAppearEvent.asObservable(),
-            filterOptionButtonTap: filterOptionButton.rx.tap,
-            selectedOption: filterOptionListView.rx.selectedOption
+            filterButtonTapEvent: filterButton.rx.tap,
+            selectedFilterIndex: filterListView.rx.selectedFilterIndex
         )
         let output = myVM.transform(input)
         
         // 리뷰한 영화 셀 데이터 바인딩
-        output.reviewedMovieSectionArr
-            .bind(to: reviewedMovieCV.rx.items(dataSource: getReviewedMovieCellDataSource()))
+        output.myMovieSectionDataArr
+            .bind(to: myMovieCV.rx.items(dataSource: getMyMovieDataSource()))
             .disposed(by: bag)
         
         // 선택한 영화의 리뷰 화면으로 이동
@@ -115,33 +115,33 @@ final class MyVC: UIViewController {
             .bind(to: self.rx.pushMovieReview)
             .disposed(by: bag)
         
-        output.optionListAppearance
-            .bind(to: filterOptionListView.rx.isHidden)
+        output.isFilterListHidden
+            .bind(to: filterListView.rx.isHidden)
             .disposed(by: bag)
         
-        output.selectedOption
-            .bind(to: filterOptionButton.rx.optionSelected)
+        output.selectedFilterIndex
+            .bind(to: filterButton.rx.selectedFilterIndex)
             .disposed(by: bag)
     }
     
     // MARK: Rx Data Sources
     
-    private func getReviewedMovieCellDataSource() -> RxDataSource<ReviewedMovieSection> {
+    private func getMyMovieDataSource() -> DataSource<MyMovieSectionData> {
         let animeConfig = AnimationConfiguration(
             insertAnimation: .fade,
             reloadAnimation: .fade,
             deleteAnimation: .fade
         )
         
-        return RxDataSource<ReviewedMovieSection>(
+        return DataSource<MyMovieSectionData>(
             animationConfiguration: animeConfig
-        ) { _, collectionView, indexPath, item in
+        ) { _, collectionView, indexPath, data in
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ReviewedMovieCell.identifier,
+                withReuseIdentifier: MyMovieCell.identifier,
                 for: indexPath
-            ) as? ReviewedMovieCell
+            ) as? MyMovieCell
             else { return UICollectionViewCell() }
-            cell.configure(item)
+            cell.configure(data)
             return cell
         }
     }

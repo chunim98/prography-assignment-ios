@@ -66,10 +66,10 @@ final class MovieListVC: UIViewController {
         output.listCellDataArr
             .bind(to: listTV.rx.items(
                 cellIdentifier: ListCell.identifier,cellType: ListCell.self
-            )) { [weak self] index, item, cell in
+            )) { [weak self] index, data, cell in
                 guard let self else { return }
                 
-                cell.configure(item)
+                cell.configure(data)
                 self.rx.currentCellIndex.onNext(index)
             }
             .disposed(by: bag)

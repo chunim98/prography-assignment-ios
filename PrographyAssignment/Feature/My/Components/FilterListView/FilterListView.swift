@@ -1,5 +1,5 @@
 //
-//  FilterOptionListView.swift
+//  FilterListView.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/20/25.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-final class FilterOptionListView: UIView {
+final class FilterListView: UIView {
     
     // MARK: Components
     
@@ -67,14 +67,14 @@ final class FilterOptionListView: UIView {
 }
 
 #Preview(traits: .fixedLayout(width: 380, height: 296)) {
-    FilterOptionListView()
+    FilterListView()
 }
 
 // MARK: - Reactive
 
-extension Reactive where Base: FilterOptionListView {
+extension Reactive where Base: FilterListView {
     // 6개의 버튼 배열의 탭 이벤트를 하나로 묶고, 인덱스로 변환
-    var selectedOption: Observable<Int> {
+    var selectedFilterIndex: Observable<Int> {
         let buttonTaps = base.symbolButtons
             .reversed()
             .enumerated()
