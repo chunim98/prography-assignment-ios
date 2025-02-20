@@ -23,6 +23,7 @@ final class FilterOptionListView: UIView {
         sv.layer.borderWidth = 1
         sv.layer.cornerRadius = 12
         sv.clipsToBounds = true
+        sv.backgroundColor = .white
         return sv
     }()
     
@@ -58,7 +59,9 @@ final class FilterOptionListView: UIView {
         self.addSubview(overallVStack)
         symbolButtons.forEach { overallVStack.addArrangedSubview($0) }
         
-        overallVStack.snp.makeConstraints { $0.edges.equalToSuperview() }
+        overallVStack.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: 16))
+        }
         symbolButtons.forEach { $0.snp.makeConstraints { $0.height.equalTo(40) } }
     }
 }
@@ -71,7 +74,7 @@ final class FilterOptionListView: UIView {
 
 extension Reactive where Base: FilterOptionListView {
     // 6개의 버튼 배열의 탭 이벤트를 하나로 묶고, 인덱스로 변환
-    var tap: Observable<Int> {
+    var selectedOption: Observable<Int> {
         let buttonTaps = base.symbolButtons
             .reversed()
             .enumerated()

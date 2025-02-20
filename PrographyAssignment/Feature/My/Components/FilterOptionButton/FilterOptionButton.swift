@@ -14,7 +14,7 @@ final class FilterOptionButton: UIView {
     
     // MARK: Components
     
-    private let button = {
+    fileprivate let button = {
         let button = UIButton(configuration: .plain())
         button.layer.borderColor = UIColor.brandColor.cgColor
         button.layer.borderWidth = 1
@@ -29,10 +29,15 @@ final class FilterOptionButton: UIView {
         label.text = "All"
         label.textColor = .black
         label.font = .pretendardBold16
+        label.isUserInteractionEnabled = false
         
         let views = (0...5)
             .map { StarsView(rate: $0) }
-            .map { $0.isHidden = true; return $0 }
+            .map {
+                $0.isHidden = true
+                $0.isUserInteractionEnabled = false
+                return $0
+            }
         
         return views + [label]
     }()
@@ -88,5 +93,9 @@ extension Reactive where Base: FilterOptionButton {
                 view.isHidden = !(index == optionNum)
             }
         }
+    }
+    
+    var tap: Observable<Void> {
+        base.button.rx.tap.asObservable()
     }
 }

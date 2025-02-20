@@ -69,11 +69,16 @@ final class MyVC: UIViewController {
     
     private func setAutoLayout() {
         view.addSubview(overallVStack)
+        view.addSubview(filterOptionListView)
         overallVStack.addArrangedSubview(filterOptionButton)
         overallVStack.addArrangedSubview(reviewedMovieCV)
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
         filterOptionButton.snp.makeConstraints { $0.height.equalTo(96) }
+        filterOptionListView.snp.makeConstraints {
+            $0.top.equalTo(filterOptionButton.snp.bottom).offset(-16)
+            $0.horizontalEdges.equalToSuperview()
+        }
     }
     
     private func setFlowLayout() {
@@ -91,7 +96,9 @@ final class MyVC: UIViewController {
     private func setBinding() {
         let input = MyVM.Input(
             modelSelected: reviewedMovieCV.rx.modelSelected(MovieId.self).asObservable(),
-            viewWillAppearEvent: viewWillAppearEvent.asObservable()
+            viewWillAppearEvent: viewWillAppearEvent.asObservable(),
+            filterOptionButtonTap: filterOptionButton.rx.tap,
+            selectedOption: filterOptionListView.rx.selectedOption
         )
         let output = myVM.transform(input)
         
@@ -109,6 +116,15 @@ final class MyVC: UIViewController {
         output.pushMovieReview
             .bind(to: self.rx.pushMovieReview)
             .disposed(by: bag)
+        
+        output.optionListAppearance
+            .bind(to: filterOptionListView.rx.isHidden)
+            .disposed(by: bag)
+        
+        output.selectedOption
+            .bind(to: filterOptionButton.rx.optionSelected)
+            .disposed(by: bag)
+            
     }
 }
 
