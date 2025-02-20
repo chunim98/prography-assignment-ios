@@ -12,7 +12,7 @@ import XCTest
 final class NetworkingTests: XCTestCase {
 
     // 이 친구를 테스트(System Under Test)
-    var sut: TMDBNetworkManager!
+    var sut: TMDBService!
 
     override func setUpWithError() throws {
         
@@ -20,7 +20,7 @@ final class NetworkingTests: XCTestCase {
         /// 먼저 부모 클래스의 setUpWithError 메소드를 호출하여, 만약 에러를 포착한다면 호출자에게 에러를 전파한다.
 
         try super.setUpWithError()
-        sut = TMDBNetworkManager.shered
+        sut = TMDBService.shered
     }
 
     override func tearDownWithError() throws {

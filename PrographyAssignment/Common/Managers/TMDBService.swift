@@ -1,5 +1,5 @@
 //
-//  TMDBNetworkManager.swift
+//  TMDBService.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/13/25.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class TMDBNetworkManager {
+final class TMDBService {
     
     // 네트워킹 요청을 식별하는 용도의 열거형
     enum Article: String {
@@ -19,7 +19,7 @@ final class TMDBNetworkManager {
         case topRated = "https://api.themoviedb.org/3/movie/top_rated"
     }
     
-    static let shered = TMDBNetworkManager()
+    static let shered = TMDBService()
     private let apiKey = Bundle.main.infoDictionary?["TMDB_API_KEY"] as? String ?? ""
 
     private init() {}

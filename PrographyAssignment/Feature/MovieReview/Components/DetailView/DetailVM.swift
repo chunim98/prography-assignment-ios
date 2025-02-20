@@ -35,7 +35,7 @@ final class DetailVM {
     private func fetchMovieDetail(id: Int) -> Observable<MovieDetail> {
         Observable.create { observer in
             Task {
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieDetail(id)
+                let fetched = try await TMDBService.shered.fetchMovieDetail(id)
                 observer.onNext(fetched)
                 observer.onCompleted()
             }

@@ -22,10 +22,10 @@ final class MovieListVM {
     
     // MARK: Properties
     
-    private let article: TMDBNetworkManager.Article
+    private let article: TMDBService.Article
     private let bag = DisposeBag()
         
-    init(_ article: TMDBNetworkManager.Article) { self.article = article }
+    init(_ article: TMDBService.Article) { self.article = article }
     
     func transform(input: Input) -> Output {
         let listCellDataArr = BehaviorSubject(value: [ListCellData]())
@@ -70,8 +70,8 @@ final class MovieListVM {
         Observable.create { observer in
             Task {
                 #warning("Mock 데이터 사용중")
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieList(self.article, page)
-//                let fetched = try await TMDBNetworkManager.shered.fetchMovieListMock()
+                let fetched = try await TMDBService.shered.fetchMovieList(self.article, page)
+//                let fetched = try await TMDBService.shered.fetchMovieListMock()
                 let listCellDataArr = fetched.results.map {
                     ListCellData(
                         posterPath: $0.posterPath,
