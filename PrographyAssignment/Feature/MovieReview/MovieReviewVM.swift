@@ -15,6 +15,7 @@ final class MovieReviewVM {
     struct Input {
         let tappedStarIndex: Observable<Int>
         let updatedText: Observable<String>
+        let beginEditingEvent: Observable<Void>
         let barButtonEvent: Observable<BarButtonEvent>
         let tapGesture: Observable<UITapGestureRecognizer>
     }
@@ -24,7 +25,7 @@ final class MovieReviewVM {
         let reviewData: Observable<ReviewData>
         let state: Observable<ReviewState>
         let dismissEvent: Observable<Void>
-        let hideKeyBoardEvent: Observable<Void>
+        let endEditingEvent: Observable<Void>
     }
     
     private let movieId: Int
@@ -70,23 +71,22 @@ final class MovieReviewVM {
             .bind(to: reviewData)
             .disposed(by: bag)
         
-        // 코멘트 뷰의 텍스트가 업데이트되면, 편집 상태로 업데이트 (최초 작성은 제외)
-        input.updatedText
-            .distinctUntilChanged()
+        // 코멘트 뷰의 작성을 시작하면, 편집 상태로 업데이트 (최초 작성은 제외)
+        input.beginEditingEvent
             .withLatestFrom(reviewState)
             .compactMap { $0 == .create ? nil : ReviewState.edit }
             .bind(to: reviewState)
             .disposed(by: bag)
-
+        
         // 코멘트 뷰의 텍스트가 업데이트되면, 리뷰 데이터 업데이트
         input.updatedText
-            .distinctUntilChanged()
             .withLatestFrom(reviewData) { text, review in
                 review.updated(commentData: review.commentData.map { $0.updated(comment: text) }
                                ?? ReviewData.CommentData(comment: text, date: Date()))
             }
             .bind(to: reviewData)
             .disposed(by: bag)
+        
         
         // 바 버튼 이벤트가 편집이면, 편집 상태로 업데이트
         input.barButtonEvent
@@ -158,7 +158,7 @@ final class MovieReviewVM {
             .bind(to: dismissEvent)
             .disposed(by: bag)
         
-        let hideKeyBoardEvent = Observable.merge(
+        let endEditingEvent = Observable.merge(
             input.tapGesture.map { _ in },
             input.barButtonEvent.filter { $0 == .save }.map { _ in }
         )
@@ -169,7 +169,7 @@ final class MovieReviewVM {
             reviewData: reviewData.asObservable(),
             state: reviewState.asObservable().distinctUntilChanged(),
             dismissEvent: dismissEvent.asObservable(),
-            hideKeyBoardEvent: hideKeyBoardEvent
+            endEditingEvent: endEditingEvent
         )
     }
     

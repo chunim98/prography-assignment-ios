@@ -8,9 +8,20 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
 import SnapKit
 
 final class CommentView: UIView {
+    
+    // MARK: Properties
+    
+    private let commentVM = CommentVM()
+    private let bag = DisposeBag()
+    
+    // MARK: Interface
+    
+    fileprivate let state = PublishSubject<ReviewState>()
+    fileprivate let commentData = PublishSubject<ReviewData.CommentData?>()
     
     // MARK: Components
     
@@ -49,6 +60,7 @@ final class CommentView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setAutoLayout()
+        setBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -69,6 +81,30 @@ final class CommentView: UIView {
         }
         commentWriteView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
+    
+    private func setBinding() {
+        let input = CommentVM.Input(
+            state: state.asObservable(),
+            commentData: commentData.asObservable()
+        )
+        let output = commentVM.transform(input)
+        
+        output.commentData
+            .bind(to: commentReadView.rx.commentData, commentWriteView.rx.commentData)
+            .disposed(by: bag)
+        
+        output.endEditingEvent
+            .bind(with: self) { owner, _ in owner.endEditing(true) }
+            .disposed(by: bag)
+        
+        output.isCommentWriteViewHidden
+            .bind(to: commentWriteView.rx.isHidden)
+            .disposed(by: bag)
+        
+        output.isPlaceHolderHidden
+            .bind(to: commentWriteView.rx.isPlaceholderHidden)
+            .disposed(by: bag)
+    }
 }
 
 #Preview(traits: .fixedLayout(width: 412, height: 116)) {
@@ -78,22 +114,20 @@ final class CommentView: UIView {
 // MARK: - Reactive
 
 extension Reactive where Base: CommentView {
+
     var state: Binder<ReviewState> {
-        Binder(base) {
-            $0.commentWriteView.isHidden = ($1 == .read)
-            if $1 == .readOnlyRate { $0.commentWriteView.rx.endEditing.onNext(()) }
-        }
+        Binder(base) { $0.state.onNext($1) }
     }
     
-    var text: Binder<ReviewData> {
-        Binder(base) {
-            guard let data = $1.commentData else { return }
-            $0.commentReadView.rx.commentData.onNext(data)
-            $0.commentWriteView.rx.commentData.onNext(data)
-        }
+    var commentData: Binder<ReviewData> {
+        Binder(base) { $0.commentData.onNext($1.commentData) }
     }
-    
+
     var updatedText: Observable<String> {
         base.commentWriteView.rx.updatedText
+    }
+    
+    var beginEditingEvent: Observable<Void> {
+        base.commentWriteView.rx.beginEditingEvent
     }
 }

@@ -74,6 +74,9 @@
 		51DF287C2D672733006A31ED /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 51DF287B2D672733006A31ED /* Differentiator */; };
 		51DF287E2D672733006A31ED /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 51DF287D2D672733006A31ED /* RxDataSources */; };
 		51DF28802D673067006A31ED /* Array+MyMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF287F2D673059006A31ED /* Array+MyMovieCell.swift */; };
+		51DF28822D67883D006A31ED /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF28812D678837006A31ED /* UIView+.swift */; };
+		51DF28842D6789E5006A31ED /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF28832D6789E0006A31ED /* Reactive+.swift */; };
+		51DF28862D67B6D9006A31ED /* CommentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF28852D67B6D6006A31ED /* CommentVM.swift */; };
 		51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338642D5F723A00DEECA8 /* TabContentsView.swift */; };
 		51E338672D5F77E700DEECA8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338662D5F77E700DEECA8 /* UIColor+.swift */; };
 		51E338692D5F84AA00DEECA8 /* TabContentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E338682D5F84A600DEECA8 /* TabContentsVM.swift */; };
@@ -168,6 +171,9 @@
 		51DF28722D670049006A31ED /* FilterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListView.swift; sourceTree = "<group>"; };
 		51DF28752D670F85006A31ED /* SymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolButton.swift; sourceTree = "<group>"; };
 		51DF287F2D673059006A31ED /* Array+MyMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+MyMovieCell.swift"; sourceTree = "<group>"; };
+		51DF28812D678837006A31ED /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		51DF28832D6789E0006A31ED /* Reactive+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+.swift"; sourceTree = "<group>"; };
+		51DF28852D67B6D6006A31ED /* CommentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVM.swift; sourceTree = "<group>"; };
 		51E338642D5F723A00DEECA8 /* TabContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsView.swift; sourceTree = "<group>"; };
 		51E338662D5F77E700DEECA8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		51E338682D5F84A600DEECA8 /* TabContentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentsVM.swift; sourceTree = "<group>"; };
@@ -281,6 +287,8 @@
 		5131DE872D5DD25B00527C8E /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				51DF28832D6789E0006A31ED /* Reactive+.swift */,
+				51DF28812D678837006A31ED /* UIView+.swift */,
 				51EB40842D64C14C0069DF1E /* Date+.swift */,
 				5186E9B42D63144F00B2A6A4 /* UIImage+.swift */,
 				512C07442D62536700EC996C /* Int+.swift */,
@@ -442,6 +450,7 @@
 				5186E9D02D637C7500B2A6A4 /* CommentReadView */,
 				5186E9CE2D637C2300B2A6A4 /* CommentWriteView */,
 				5186E9C32D63533000B2A6A4 /* CommentView.swift */,
+				51DF28852D67B6D6006A31ED /* CommentVM.swift */,
 			);
 			path = CommentView;
 			sourceTree = "<group>";
@@ -765,6 +774,7 @@
 				51BAE8632D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift in Sources */,
 				51BAE8642D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift in Sources */,
 				51A09B662D605D8E0002A2F7 /* GenreCell.swift in Sources */,
+				51DF28822D67883D006A31ED /* UIView+.swift in Sources */,
 				5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */,
 				51BAE8542D65E730002D7679 /* FilterButton.swift in Sources */,
 				5186E9C42D63535E00B2A6A4 /* CommentView.swift in Sources */,
@@ -779,6 +789,7 @@
 				51BAE85C2D6627A2002D7679 /* MyMovieCellData.swift in Sources */,
 				51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */,
 				51E338702D5FA28800DEECA8 /* PageTableVC.swift in Sources */,
+				51DF28842D6789E5006A31ED /* Reactive+.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
 				5131DEAC2D5E293400527C8E /* MockData.swift in Sources */,
 				512C073B2D6240A000EC996C /* HapticManager.swift in Sources */,
@@ -786,6 +797,7 @@
 				51A09B602D604FE80002A2F7 /* ListCell.swift in Sources */,
 				5186E9B92D63243C00B2A6A4 /* DetailView.swift in Sources */,
 				5131DE9F2D5DFC2E00527C8E /* UICollectionView+.swift in Sources */,
+				51DF28862D67B6D9006A31ED /* CommentVM.swift in Sources */,
 				51EB40722D6465E80069DF1E /* ReviewData.swift in Sources */,
 				515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */,
 			);

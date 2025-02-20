@@ -20,7 +20,8 @@ final class CommentWriteView: UIStackView {
     
     // MARK: Interface
     
-    fileprivate let trimmedText = PublishSubject<String>()
+    fileprivate let updatedText = PublishSubject<String>()
+    fileprivate let beginEditingEvent = PublishSubject<Void>()
     
     // MARK: Components
     
@@ -77,19 +78,24 @@ final class CommentWriteView: UIStackView {
     private func setBinding() {
         let input = CommentWriteVM.Input(
             text: textView.rx.text.asObservable(),
-            didBeginEditingEvent: textView.rx.didBeginEditing.asObservable(),
-            didEndEditingEvent: textView.rx.didEndEditing.asObservable()
+            beginEditingEvent: textView.rx.didBeginEditing.asObservable(),
+            endEditingEvent: textView.rx.didEndEditing.asObservable()
         )
         let output = commentWriteVM.trasform(input)
         
         // 플레이스홀더 숨김, 표시 바인딩
-        output.isPlaceholderHidden
-            .bind(to: placeholderLabel.rx.isHidden)
+//        output.isPlaceholderHidden
+//            .bind(to: placeholderLabel.rx.isHidden)
+//            .disposed(by: bag)
+        
+        // 텍스트 작성이 끝나면, 현재 텍스트 외부로 전달
+        output.updatedText
+            .bind(to: updatedText)
             .disposed(by: bag)
         
-        // 좌우 공백이 제거된 텍스트 외부로 방출
-        output.trimmedText
-            .bind(to: trimmedText)
+        // 텍스트 작성을 시작하면, 이벤트 외부로 전달
+        output.beginEditingEvent
+            .bind(to: beginEditingEvent)
             .disposed(by: bag)
     }
 }
@@ -101,19 +107,25 @@ final class CommentWriteView: UIStackView {
 // MARK: - Reactive
 
 extension Reactive where Base: CommentWriteView {
+    // 리뷰 수정하거나 할 때 작성된 텍스트가 바인딩 됨
     var commentData: Binder<ReviewData.CommentData> {
         Binder(base) {
-            $0.textView.text = $1.comment
-            $0.placeholderLabel.isHidden = true
+            print("commentData", $1.comment)
+            $0.textView.text = $1.comment // 실제 텍스트 뷰 바인딩
         }
     }
     
-    var endEditing: Binder<Void> {
-        Binder(base) { base, _ in base.textView.endEditing(true) }
+    var isPlaceholderHidden: Binder<Bool> {
+        Binder(base) { $0.placeholderLabel.isHidden = $1 }
+    }
+
+    var updatedText: Observable<String> {
+        base.updatedText.asObservable()
+            .do { print("updatedText", $0) }
     }
     
-    var updatedText: Observable<String> {
-        base.trimmedText.asObservable()
+    var beginEditingEvent: Observable<Void> {
+        base.beginEditingEvent.asObservable()
     }
 }
 

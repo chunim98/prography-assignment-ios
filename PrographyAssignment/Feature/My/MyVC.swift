@@ -117,7 +117,7 @@ final class MyVC: UIViewController {
         
         // 필터 리스트의 숨김,표시 상태 바인딩
         output.isFilterListHidden
-            .bind(to: self.rx.isFilterListHidden)
+            .bind(to: filterListView.rx.isHiddenWithAnime)
             .disposed(by: bag)
         
         // 선택한 필터에 따라, 필터 버튼의 심볼 이미지 갱신
@@ -163,28 +163,6 @@ extension Reactive where Base: MyVC {
             vc.movieReviewVM = .init($1)
             vc.hidesBottomBarWhenPushed = true
             $0.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    // 필터 리스트에 트랜지션 효과를 부여
-    fileprivate var isFilterListHidden: Binder<Bool> {
-        Binder(base) { base, isHidden in
-            
-            if isHidden {
-                // fade in
-                UIView.animate(withDuration: 0.1) {
-                    base.filterListView.alpha = 0
-                } completion: { isFinished in
-                    base.filterListView.isHidden = isFinished
-                }
-            } else {
-                // fade out
-                base.filterListView.alpha = 0
-                base.filterListView.isHidden = false
-                UIView.animate(withDuration: 0.2) {
-                    base.filterListView.alpha = 1
-                }
-            }
         }
     }
 }

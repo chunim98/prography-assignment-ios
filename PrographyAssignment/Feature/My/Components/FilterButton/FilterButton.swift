@@ -110,7 +110,7 @@ extension Reactive where Base: FilterButton {
     var selectedFilterIndex: Binder<Int> {
         Binder(base) { base, filterIdx in
             base.symbolViews.enumerated().forEach { index, view in
-                view.isHidden = !(index == filterIdx)
+                view.isHiddenWithAnime = !(index == filterIdx)
             }
         }
     }

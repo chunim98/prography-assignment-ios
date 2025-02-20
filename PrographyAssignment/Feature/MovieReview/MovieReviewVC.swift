@@ -95,6 +95,7 @@ final class MovieReviewVC: UIViewController {
         let input = MovieReviewVM.Input(
             tappedStarIndex: starButtonsView.rx.tappedStarIndex,
             updatedText: commentView.rx.updatedText,
+            beginEditingEvent: commentView.rx.beginEditingEvent,
             barButtonEvent: barButtonEvent,
             tapGesture: tapGesture.rx.event.asObservable()
         )
@@ -107,7 +108,7 @@ final class MovieReviewVC: UIViewController {
         
         // 리뷰 데이터 바인딩
         output.reviewData
-            .bind(to: starButtonsView.rx.rate, commentView.rx.text)
+            .bind(to: starButtonsView.rx.rate, commentView.rx.commentData)
             .disposed(by: bag)
         
         // 리뷰 상태 바인딩
@@ -121,8 +122,8 @@ final class MovieReviewVC: UIViewController {
             .disposed(by: bag)
         
         // 키보드 닫기
-        output.hideKeyBoardEvent
-            .bind(to: self.rx.hideKeyBoardBinder)
+        output.endEditingEvent
+            .bind(with: self) { owner, _ in owner.commentView.endEditing(true) }
             .disposed(by: bag)
     }
 }
@@ -148,9 +149,5 @@ extension Reactive where Base: MovieReviewVC {
         Binder(base) { base, _ in
             base.navigationController?.popViewController(animated: true)
         }
-    }
-    
-    fileprivate  var hideKeyBoardBinder: Binder<Void> {
-        Binder(base) { base, _ in base.commentView.endEditing(true) }
     }
 }
