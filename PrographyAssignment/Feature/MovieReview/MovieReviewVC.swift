@@ -44,7 +44,7 @@ final class MovieReviewVC: UIViewController {
     
     private let starButtonsView = StarButtonsView()
     
-    private let detailsView = DetailsView()
+    private let detailView = DetailView()
     
     fileprivate let commentView = CommentView()
 
@@ -73,7 +73,7 @@ final class MovieReviewVC: UIViewController {
         overallVStack.addArrangedSubview(commentView)
         tapAreaVStack.addArrangedSubview(posterCardView)
         tapAreaVStack.addArrangedSubview(starButtonsView)
-        tapAreaVStack.addArrangedSubview(detailsView)
+        tapAreaVStack.addArrangedSubview(detailView)
         
         overallVStack.snp.makeConstraints {
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -101,8 +101,8 @@ final class MovieReviewVC: UIViewController {
         let output = movieReviewVM.transform(input: input)
         
         // 영화 세부정보 데이터 바인딩
-        output.movieDetails
-            .bind(to: posterCardView.rx.movieDetails, detailsView.rx.movieDetails)
+        output.movieDetail
+            .bind(to: posterCardView.rx.movieDetail, detailView.rx.movieDetail)
             .disposed(by: bag)
         
         // 리뷰 데이터 바인딩

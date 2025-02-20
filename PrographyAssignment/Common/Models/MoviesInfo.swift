@@ -1,5 +1,5 @@
 //
-//  MovieInfo.swift
+//  MoviesInfo.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/14/25.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct MovieInfo: Codable {
+struct MoviesInfo: Codable {
     let page: Int
-    let results: [MovieInfo.Result]
+    let results: [MoviesInfo.Result]
 
     enum CodingKeys: String, CodingKey {
         case page

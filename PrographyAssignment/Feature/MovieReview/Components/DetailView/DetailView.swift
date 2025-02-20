@@ -1,5 +1,5 @@
 //
-//  DetailsView.swift
+//  DetailView.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/17/25.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-final class DetailsView: UIView {
+final class DetailView: UIView {
     
     // MARK: Properties
     
@@ -97,19 +97,19 @@ final class DetailsView: UIView {
 }
 
 #Preview(traits: .fixedLayout(width: 412, height: 294)) {
-    DetailsView()
+    DetailView()
 }
 
 // MARK: - Reactive
 
-extension Reactive where Base: DetailsView {
-    var movieDetails: Binder<MovieDetails> {
-        Binder(base) { base, details in
-            base.titleLabel.text = details.title
-            base.rateLabel.text = String(format: "/ %.1f", details.voteAverage)
-            base.overviewTextView.text = details.overview
+extension Reactive where Base: DetailView {
+    var movieDetail: Binder<MovieDetail> {
+        Binder(base) { base, detail in
+            base.titleLabel.text = detail.title
+            base.rateLabel.text = String(format: "/ %.1f", detail.voteAverage)
+            base.overviewTextView.text = detail.overview
             
-            let genreIds = details.genres.map { $0.id }
+            let genreIds = detail.genres.map { $0.id }
             
             Observable.just(genreIds)
                 .bind(to: base.genreCV.rx.items(

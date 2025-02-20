@@ -27,7 +27,7 @@ final class TMDBNetworkManager {
     // MARK: Methods
     
     #warning("나중에 이거 예외처리 할 것")
-    func fetchMovieList(_ article: Article, _ page: Int) async throws -> MovieInfo {
+    func fetchMovieList(_ article: Article, _ page: Int) async throws -> MoviesInfo {
         let url = URL(string: article.rawValue)!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         let queryItems: [URLQueryItem] = [
@@ -46,10 +46,10 @@ final class TMDBNetworkManager {
         
         let (data, _) = try await URLSession.shared.data(for: request)
         let decoder = JSONDecoder()
-        return try decoder.decode(MovieInfo.self, from: data)
+        return try decoder.decode(MoviesInfo.self, from: data)
     }
     
-    func fetchMovieDetails(_ id: Int) async throws -> MovieDetails {
+    func fetchMovieDetail(_ id: Int) async throws -> MovieDetail {
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         let queryItems: [URLQueryItem] = [
@@ -67,12 +67,12 @@ final class TMDBNetworkManager {
 
         let (data, _) = try await URLSession.shared.data(for: request)
         let decoder = JSONDecoder()
-        return try decoder.decode(MovieDetails.self, from: data)
+        return try decoder.decode(MovieDetail.self, from: data)
     }
 
     // 리퀘스트를 보내지는 않는 디버깅용 메서드
-    func fetchMovieListMock() async throws -> MovieInfo {
+    func fetchMovieListMock() async throws -> MoviesInfo {
         let decoder = JSONDecoder()
-        return try decoder.decode(MovieInfo.self, from: MockData.movieInfo)
+        return try decoder.decode(MoviesInfo.self, from: MockData.moviesInfo)
     }
 }

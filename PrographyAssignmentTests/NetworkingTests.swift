@@ -62,7 +62,7 @@ final class NetworkingTests: XCTestCase {
     }
     
     func test_영화_세부정보_받아오기() async throws {
-        let data = try await sut.fetchMovieDetails(939243) // "수퍼 소닉 3"의 id를 사용
+        let data = try await sut.fetchMovieDetail(939243) // "수퍼 소닉 3"의 id를 사용
         
         print(data.genres)
         print(data.id)

@@ -34,7 +34,7 @@ final class HomeVC: UIViewController {
         return sv
     }()
     
-    fileprivate let backdropCarouselView = BackdropCarouselView()
+    fileprivate let carouselView = CarouselView()
     
     private let tabContentsView = TabContentsView()
     
@@ -58,11 +58,11 @@ final class HomeVC: UIViewController {
         view.addSubview(overallVStack)
         overallVStack.addArrangedSubview(headerContainer)
         overallVStack.addArrangedSubview(pageTableVC.view)
-        headerContainer.addArrangedSubview(backdropCarouselView)
+        headerContainer.addArrangedSubview(carouselView)
         headerContainer.addArrangedSubview(tabContentsView)
         
         overallVStack.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
-        backdropCarouselView.snp.makeConstraints { $0.height.equalTo(221) }
+        carouselView.snp.makeConstraints { $0.height.equalTo(221) }
         tabContentsView.snp.makeConstraints { $0.height.equalTo(80) }
     }
     
@@ -74,7 +74,7 @@ final class HomeVC: UIViewController {
             pageTableVC.rx.changeIndex
         )
         let modelSelected = Observable.merge(
-            backdropCarouselView.rx.modelSelected,
+            carouselView.rx.modelSelected,
             pageTableVC.rx.modelSelected
         )
         
@@ -115,9 +115,9 @@ extension Reactive where Base: HomeVC {
             let changeY = gesture.translation(in: base.headerContainer).y // y축 움직이만 사용할 것임
             gesture.setTranslation(.zero, in: base.headerContainer) // 연속된 제스처라 호출마다 0으로 초기화
             // 캐러셀 뷰 높이 조정 (0...221 사이즈 안에서만 조정 가능하게 제한)
-            let height = (base.backdropCarouselView.frame.height+changeY).clamped(0...221)
+            let height = (base.carouselView.frame.height+changeY).clamped(0...221)
             
-            base.backdropCarouselView.snp.updateConstraints { $0.height.equalTo(height) }
+            base.carouselView.snp.updateConstraints { $0.height.equalTo(height) }
             base.headerContainer.layoutIfNeeded()
             
             // gesture가 끝났을 때 height 값에 따라 캐러셀 뷰 높이를 애니메이션 조정
@@ -125,7 +125,7 @@ extension Reactive where Base: HomeVC {
             
             let targetHeight = height < 110 ? 0 : 221
             UIView.animate(withDuration: 0.2) {
-                base.backdropCarouselView.snp.updateConstraints { $0.height.equalTo(targetHeight) }
+                base.carouselView.snp.updateConstraints { $0.height.equalTo(targetHeight) }
                 base.overallVStack.layoutIfNeeded()
             }
         }

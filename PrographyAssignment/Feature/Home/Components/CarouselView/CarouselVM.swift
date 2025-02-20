@@ -1,5 +1,5 @@
 //
-//  BackdropCarouselVM.swift
+//  CarouselVM.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/13/25.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class BackdropCarouselVM {
+final class CarouselVM {
     
     struct Input {}
     
@@ -43,7 +43,7 @@ final class BackdropCarouselVM {
     
     // MARK: Methods
     
-    private func fetchMovieList() -> Observable<[MovieInfo.Result]> {
+    private func fetchMovieList() -> Observable<[MoviesInfo.Result]> {
         Observable.create { observer in
             Task {
                 #warning("Mock 데이터 사용중2")

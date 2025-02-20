@@ -1,5 +1,5 @@
 //
-//  BackdropCarouselView.swift
+//  CarouselView.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/13/25.
@@ -11,11 +11,11 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-final class BackdropCarouselView: UIView {
+final class CarouselView: UIView {
     
     // MARK: Properties
     
-    private let backdropCarouselVM = BackdropCarouselVM()
+    private let carouselVM = CarouselVM()
     private let bag = DisposeBag()
     
     // MARK: Components
@@ -53,8 +53,8 @@ final class BackdropCarouselView: UIView {
     // MARK: Binding
     
     private func setBinding() {
-        let input = BackdropCarouselVM.Input()
-        let output = backdropCarouselVM.transform(input: input)
+        let input = CarouselVM.Input()
+        let output = carouselVM.transform(input: input)
         
         // 캐러셀 컬렉션 뷰 데이터 바인딩
         output.carouselCellDataArr
@@ -69,12 +69,12 @@ final class BackdropCarouselView: UIView {
 }
 
 #Preview(traits: .fixedLayout(width: 412, height: 221)) {
-    BackdropCarouselView()
+    CarouselView()
 }
 
 // MARK: - Reactive
 
-extension Reactive where Base: BackdropCarouselView {
+extension Reactive where Base: CarouselView {
     var modelSelected: Observable<MovieId> {
         base.carouselCV.rx.modelSelected(MovieId.self).asObservable()
     }

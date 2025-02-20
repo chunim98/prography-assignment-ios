@@ -20,7 +20,7 @@ final class MovieReviewVM {
     }
     
     struct Output {
-        let movieDetails: Observable<MovieDetails>
+        let movieDetail: Observable<MovieDetail>
         let reviewData: Observable<ReviewData>
         let state: Observable<ReviewState>
         let dismissEvent: Observable<Void>
@@ -38,10 +38,10 @@ final class MovieReviewVM {
         let dismissEvent = PublishSubject<Void>()
         
         // 영화 아이디로 영화 세부정보 불러오기
-        let movieDetails = fetchMovieDetails(movieId).share(replay: 1)
+        let movieDetail = fetchMovieDetail(movieId).share(replay: 1)
 
         // 세부정보 받고 저장된 리뷰가 있을 경우, 읽기 상태로 업데이트
-        movieDetails
+        movieDetail
             .map { CoreDataManager.shared.read(movieId: $0.id) }
             .compactMap { $0.map { // 옵셔널 map
                 $0.commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
@@ -50,7 +50,7 @@ final class MovieReviewVM {
             .disposed(by: bag)
         
         // 세부정보 받고 저장된 리뷰가 있을 경우, 리뷰 데이터 업데이트
-        movieDetails
+        movieDetail
             .compactMap { CoreDataManager.shared.read(movieId: $0.id) }
             .bind(to: reviewData)
             .disposed(by: bag)
@@ -105,18 +105,18 @@ final class MovieReviewVM {
         input .barButtonEvent
             .withLatestFrom(reviewState) { ($0 == .save) && ($1 == .create) }
             .filter { $0 }
-            .withLatestFrom(Observable.combineLatest(reviewData, movieDetails)) { _, combined in
-                let (review, details) = combined
+            .withLatestFrom(Observable.combineLatest(reviewData, movieDetail)) { _, combined in
+                let (review, detail) = combined
                 let commentData = review.commentData.flatMap {
                     $0.comment.isEmpty
                     ? nil : ReviewData.CommentData(comment: $0.comment, date: Date())
                 }
                 let reviewData = ReviewData(
-                    movieId: details.id,
-                    posterPath: details.posterPath,
+                    movieId: detail.id,
+                    posterPath: detail.posterPath,
                     personalRate: review.personalRate,
                     date: Date(),
-                    title: details.title,
+                    title: detail.title,
                     commentData: commentData
                 )
                 
@@ -130,18 +130,18 @@ final class MovieReviewVM {
         input .barButtonEvent
             .withLatestFrom(reviewState) { ($0 == .save) && ($1 != .create) }
             .filter { $0 }
-            .withLatestFrom(Observable.combineLatest(reviewData, movieDetails)) { _, combined in
-                let (review, details) = combined
+            .withLatestFrom(Observable.combineLatest(reviewData, movieDetail)) { _, combined in
+                let (review, detail) = combined
                 let commentData = review.commentData.flatMap {
                     $0.comment.isEmpty
                     ? nil : ReviewData.CommentData(comment: $0.comment, date: Date())
                 }
                 let reviewData = ReviewData(
-                    movieId: details.id,
-                    posterPath: details.posterPath,
+                    movieId: detail.id,
+                    posterPath: detail.posterPath,
                     personalRate: review.personalRate,
                     date: review.date,
-                    title: details.title,
+                    title: detail.title,
                     commentData: commentData
                 )
                 
@@ -165,7 +165,7 @@ final class MovieReviewVM {
         
 
         return Output(
-            movieDetails: movieDetails,
+            movieDetail: movieDetail,
             reviewData: reviewData.asObservable(),
             state: reviewState.asObservable().distinctUntilChanged(),
             dismissEvent: dismissEvent.asObservable(),
@@ -175,10 +175,10 @@ final class MovieReviewVM {
     
     // MARK: Methods
     
-    private func fetchMovieDetails(_ id: Int) -> Observable<MovieDetails> {
+    private func fetchMovieDetail(_ id: Int) -> Observable<MovieDetail> {
         Observable.create { observer in
             Task { @MainActor in
-                let fetched = try await TMDBNetworkManager.shered.fetchMovieDetails(id)
+                let fetched = try await TMDBNetworkManager.shered.fetchMovieDetail(id)
                 observer.onNext(fetched)
             }
             

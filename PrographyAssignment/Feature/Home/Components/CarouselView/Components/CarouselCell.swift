@@ -18,10 +18,7 @@ final class CarouselCell: UICollectionViewCell {
     
     // MARK: Components
     
-    private let backImageView = {
-        let iv = UIImageView()
-        return iv
-    }()
+    private let backImageView = UIImageView()
     
     private let gradientView = CarouselGradientView()
     
