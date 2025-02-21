@@ -8,23 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func presentAlert(
-        title: String,
-        message: String,
-        acceptTitle: String = String(localized: "확인"),
-        cancelTitle: String = String(localized: "취소"),
-        acceptTask: (() -> Void)? = nil,
-        cancelTask: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let accept = UIAlertAction(title: acceptTitle, style: .default) { _ in acceptTask?() }
-        let cancel = UIAlertAction(title: cancelTitle, style: .cancel) { _ in cancelTask?() }
-        
-        alert.addAction(accept)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
+
     func presentAcceptAlert(
         title: String,
         message: String,

@@ -5,6 +5,7 @@
 //  Created by 신정욱 on 2/20/25.
 //
 
+import Network
 import UIKit
 
 import RxSwift
@@ -15,6 +16,7 @@ final class TabBarVC: UITabBarController {
     // MARK: Properties
     
     private let bag = DisposeBag()
+    private let monitor = NWPathMonitor()
 
     // MARK: Life Cycle
     
@@ -22,6 +24,7 @@ final class TabBarVC: UITabBarController {
         super.viewDidLoad()
         configure()
         setBinding()
+        checkNetwork()
     }
     
     // MARK: Configure Tab Bar
@@ -65,6 +68,21 @@ final class TabBarVC: UITabBarController {
         self.rx.didSelect
             .bind { _ in HapticManager.shared.occurLight() }
             .disposed(by: bag)
+    }
+    
+    // MARK: Connection Check
+    
+    private func checkNetwork() {
+        monitor.start(queue: .global())
+        monitor.pathUpdateHandler = { path in
+            guard !(path.status == .satisfied) else { return }
+            Task { @MainActor in
+                self.presentAcceptAlert(
+                    title: "알림",
+                    message: "오프라인 환경에서는 앱이 정상적으로 동작하지 않을 수 있습니다."
+                )
+            }
+        }
     }
 }
 

@@ -43,7 +43,6 @@ final class MyMovieCell: UICollectionViewCell {
     
     private let titleLabel = {
         let label = UILabel()
-        label.text = "제목입니다" // temp
         label.textColor = .onSurface
         label.font = .pretendardSemiBold14
         return label
