@@ -26,7 +26,6 @@ final class TMDBService {
     
     // MARK: Methods
     
-    #warning("나중에 이거 예외처리 할 것")
     func fetchMovieList(_ article: Article, _ page: Int) async throws -> MoviesInfo {
         let url = URL(string: article.rawValue)!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
@@ -71,8 +70,8 @@ final class TMDBService {
     }
 
     // 리퀘스트를 보내지는 않는 디버깅용 메서드
-    func fetchMovieListMock() async throws -> MoviesInfo {
-        let decoder = JSONDecoder()
-        return try decoder.decode(MoviesInfo.self, from: MockData.moviesInfo)
-    }
+    // func fetchMovieListMock() async throws -> MoviesInfo {
+    //     let decoder = JSONDecoder()
+    //     return try decoder.decode(MoviesInfo.self, from: MockData.moviesInfo)
+    // }
 }

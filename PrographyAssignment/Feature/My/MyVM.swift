@@ -21,6 +21,7 @@ final class MyVM {
     
     struct Output {
         let myMovieSectionDataArr: Observable<[MyMovieSectionData]>
+        let isCVBackViewHidden: Observable<Bool>
         let movieId: Observable<Int>
         let isFilterListHidden: Observable<Bool>
         let selectedFilterIndex: Observable<Int>
@@ -72,9 +73,15 @@ final class MyVM {
             }
             .map { $0.sectionDataArr } // RxDataSources 사용을 위해 (섹션을 안쓰지만)섹션으로 변환
             
+        let isCVBackViewHidden = Observable
+            .combineLatest(myMovieCellDataArr, selectedFilterIndex) { dataArr, index in
+                index == 6 ? dataArr : dataArr.filter { $0.personalRate == index }
+            }
+            .map { !$0.isEmpty }
         
         return Output(
             myMovieSectionDataArr: myMovieSectionDataArr,
+            isCVBackViewHidden: isCVBackViewHidden,
             movieId: movieId,
             isFilterListHidden: isFilterListHidden.asObservable(),
             selectedFilterIndex: selectedFilterIndex

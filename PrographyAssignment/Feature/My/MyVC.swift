@@ -38,13 +38,22 @@ final class MyVC: UIViewController {
     
     fileprivate let filterListView = FilterListView()
     
-    private let myMovieCV = {
+    fileprivate let myMovieCV = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: .init())
         cv.register(
             MyMovieCell.self,
             forCellWithReuseIdentifier: MyMovieCell.identifier
         )
         return cv
+    }()
+    
+    fileprivate let cvBackView = {
+        let label = UILabel()
+        label.text = "작성한 리뷰가 없는 것 같아요."
+        label.textColor = .lightGray
+        label.font = .pretendardBold22
+        label.textAlignment = .center
+        return label
     }()
 
     // MARK: Life Cycle
@@ -110,6 +119,11 @@ final class MyVC: UIViewController {
             .bind(to: myMovieCV.rx.items(dataSource: getMyMovieDataSource()))
             .disposed(by: bag)
         
+        // 보여줄 리뷰가 없다면 백그라운드 표시
+        output.isCVBackViewHidden
+            .bind(to: self.rx.isCVBackViewHidden)
+            .disposed(by: bag)
+        
         // 선택한 영화의 리뷰 화면으로 이동
         output.movieId
             .bind(to: self.rx.pushMovieReviewBinder)
@@ -156,6 +170,10 @@ final class MyVC: UIViewController {
 // MARK: - Reactive
 
 extension Reactive where Base: MyVC {
+    
+    fileprivate var isCVBackViewHidden: Binder<Bool> {
+        Binder(base) { $0.myMovieCV.backgroundView = $1 ? nil : $0.cvBackView }
+    }
     
     fileprivate var pushMovieReviewBinder: Binder<Int> {
         Binder(base) {
