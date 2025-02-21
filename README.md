@@ -1,11 +1,11 @@
 ## 프로젝트 실행에 대한 안내
-![Image](https://github.com/user-attachments/assets/9ae12975-3e5a-43dd-afea-2a062781b7e0)
+![Image](https://github.com/user-attachments/assets/2c9d2942-980f-4d63-bd6c-7cdf4a5a061e)
 
 프로젝트의 실행에 관해 안내드립니다. 
 
-해당 프로젝트는 TMDB의 API 키를 필요로 하지만, 해당 레포지토리에는 TMDB의 API 키가 포함되어 있지 않습니다.
+해당 프로젝트는 TMDB의 API 엑세스 키를 필요로 하지만, 해당 레포지토리에는 TMDB의 API 엑세스 키가 포함되어 있지 않습니다.
 
-때문에 개인적으로 발급받으신 TMDB의 API 키를 위 이미지의 안내에 따라 적용한 후 실행 부탁드립니다.
+때문에 개인적으로 발급받으신 TMDB의 API 엑세스 키를 위 이미지의 안내에 따라 적용한 후 실행 부탁드립니다.
 
 만약, 위 이미지가 보이지 않거나 실행에 관해 도움이 필요하시면 jjingeo1230@gmail.com 혹은 개인 연락처로 연락 부탁드립니다.
 
