@@ -26,14 +26,14 @@
 | 이름 | 목적 |
 | --- | --- |
 | RxSwift | UIKit 환경에서 반응형 프로그래밍과 추적이 쉬운 데이터 흐름을 구현합니다. |
-| RxDataSources | RxCocoa로 TableView 바인딩 시 애니메이션을 적용합니다. |
+| RxDataSources | RxCocoa로 CollectionView 바인딩 시 애니메이션을 적용합니다. |
 | SnapKit | AutoLayout 제약조건 코드의 가독성을 개선합니다. |
 | Kingfisher | 이미지를 캐싱하여 API의 중복 호출을 줄입니다. |
 
 <br/>
 
 ## 코드 컨벤션
-> **기본적으로 https://github.com/StyleShare/swift-style-guide.git 의 컨벤션을 따릅니다.**
+**기본적으로 https://github.com/StyleShare/swift-style-guide.git 의 컨벤션을 따릅니다.**
 
 ### 들여쓰기
 - 들여쓰기에는 탭(tab)을 사용합니다.
@@ -41,8 +41,8 @@
 
 ### 네이밍
 - Rx 프로퍼티의 이름은 전달하고 있는 이벤트가 아닌, 데이터를 기준으로 작성합니다.
-    - 나쁜 예) indexUpdate: Obserbable<Int>
-    - 좋은 예) updatedIndex: Obserbable<Int>
+    - 나쁜 예) indexUpdate: Observable&lt;Int&gt;
+    - 좋은 예) updatedIndex: Observable&lt;Int&gt;
 - Rx 프로퍼티가 순수히 이벤트(Void)만을 전달하는 경우, 이벤트 이름 뒤에 Event를 붙입니다.
     - 예시) buttonTapEvent, dismissEvent…
 - Rx 프로퍼티가 Bool 타입 데이터를 전달하는 경우, 기존의 수동태 이름을 사용합니다.
