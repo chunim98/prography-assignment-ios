@@ -9,7 +9,7 @@ import Foundation
 
 struct ReviewData {
     let movieId: Int
-    let posterPath: String
+    let posterPath: String?
     let personalRate: Int
     let date: Date
     let title: String
@@ -34,7 +34,7 @@ extension ReviewData {
     
     func updated(
         movieId: Int? = nil,
-        posterPath: String? = nil,
+        posterPath: String?? = nil,
         personalRate: Int? = nil,
         date: Date? = nil,
         title: String? = nil,

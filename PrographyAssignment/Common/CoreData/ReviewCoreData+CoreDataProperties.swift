@@ -19,7 +19,7 @@ extension ReviewCoreData {
     @NSManaged public var date: Date
     @NSManaged public var movieId: Int32
     @NSManaged public var personalRate: Int16
-    @NSManaged public var posterPath: String
+    @NSManaged public var posterPath: String?
     @NSManaged public var title: String
     @NSManaged public var commentData: CommentCoreData?
 

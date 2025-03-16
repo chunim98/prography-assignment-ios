@@ -8,7 +8,7 @@
 import Foundation
 
 struct ListCellData: MovieId {
-    let posterPath: String
+    let posterPath: String?
     let title: String
     let overview: String
     let voteAverage: Double
@@ -16,14 +16,14 @@ struct ListCellData: MovieId {
     let id: Int
 
     init(
-        posterPath: String,
+        posterPath: String?,
         title: String,
         overview: String,
         voteAverage: Double,
         genreIDS: [Int],
         id: Int
     ) {
-        self.posterPath = "https://image.tmdb.org/t/p/original" + posterPath
+        self.posterPath = posterPath.map { "https://image.tmdb.org/t/p/original" + $0 }
         self.title = title
         self.overview = overview
         self.voteAverage = voteAverage

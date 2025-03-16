@@ -18,11 +18,11 @@ struct MoviesInfo: Codable {
 
     // MARK: Result
     struct Result: Codable {
-        let backdropPath: String
+        let backdropPath: String?
         let genreIDS: [Int]
         let id: Int
         let overview: String
-        let posterPath: String
+        let posterPath: String?
         let title: String
         let voteAverage: Double
 

@@ -11,13 +11,13 @@ import Differentiator
 
 struct MyMovieCellData: MovieId {
     let id: Int
-    let posterPath: String
+    let posterPath: String?
     let personalRate: Int
     let title: String
     
-    init(id: Int, posterPath: String, personalRate: Int, title: String) {
+    init(id: Int, posterPath: String?, personalRate: Int, title: String) {
         self.id = id
-        self.posterPath = "https://image.tmdb.org/t/p/original" + posterPath
+        self.posterPath = posterPath.map { "https://image.tmdb.org/t/p/original" + $0 }
         self.personalRate = personalRate
         self.title = title
     }

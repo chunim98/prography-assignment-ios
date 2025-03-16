@@ -123,9 +123,11 @@ final class ListCell: UITableViewCell {
     // MARK: Configure Components
     
     func configure(_ data: ListCellData) {
-        let url = URL(string: data.posterPath)
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: url)
+        if let posterPath = data.posterPath {
+            let url = URL(string: posterPath)
+            posterImageView.kf.indicatorType = .activity
+            posterImageView.kf.setImage(with: url)
+        }
 
         titleLabel.text = data.title
         overviewLabel.text = data.overview

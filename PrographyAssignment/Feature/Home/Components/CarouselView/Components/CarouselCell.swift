@@ -85,9 +85,11 @@ final class CarouselCell: UICollectionViewCell {
     // MARK: Configure Components
     
     func configure(_ data: CarouselCellData) {
-        let url = URL(string: data.backDropPath)
-        backImageView.kf.indicatorType = .activity
-        backImageView.kf.setImage(with: url)
+        if let backDropPath = data.backDropPath {
+            let url = URL(string: backDropPath)
+            backImageView.kf.indicatorType = .activity
+            backImageView.kf.setImage(with: url)
+        }
         
         titleLabel.text = data.title
         overviewLabel.text = data.overview

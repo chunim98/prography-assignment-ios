@@ -17,6 +17,7 @@ final class CoreDataManagerTests: XCTestCase {
         posterPath: "대충 주소라고 치자.",
         personalRate: 2,
         date: Date(),
+        title: "제목",
         commentData: .init(comment: "무슨 영화인지는 모르겠지만 재미있었다!", date: Date())
     )
     let newMockData = ReviewData(
@@ -24,6 +25,7 @@ final class CoreDataManagerTests: XCTestCase {
         posterPath: "주소였던 것.",
         personalRate: 2,
         date: Date(),
+        title: "제목",
         commentData: nil
     )
     
@@ -38,7 +40,7 @@ final class CoreDataManagerTests: XCTestCase {
     }
     
     func testCreate() {
-        //        sut.create(with: mockData)
+//        sut.create(with: mockData)
         let result = sut.readAll()
         
 //        result.forEach {

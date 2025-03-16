@@ -79,10 +79,12 @@ final class MyMovieCell: UICollectionViewCell {
     // MARK: Configure Components
 
     func configure(_ data: MyMovieCellData) {
-        let url = URL(string: data.posterPath)
-        posterImageView.kf.indicatorType = .activity
-        posterImageView.kf.setImage(with: url)
-        
+        if let posterPath = data.posterPath {
+            let url = URL(string: posterPath)
+            posterImageView.kf.indicatorType = .activity
+            posterImageView.kf.setImage(with: url)
+        }
+
         titleLabel.text = data.title
         starsView.rx.rate.onNext(data.personalRate)
     }
