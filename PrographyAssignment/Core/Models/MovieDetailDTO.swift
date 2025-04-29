@@ -1,5 +1,5 @@
 //
-//  MovieDetail.swift
+//  MovieDetailDTO.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/17/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieDetail: Codable {
+struct MovieDetailDTO: Codable {
     let genres: [Genre]
     let id: Int
     let overview: String

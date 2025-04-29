@@ -21,7 +21,7 @@ final class MovieReviewVM {
     }
     
     struct Output {
-        let movieDetail: Observable<MovieDetail>
+        let movieDetail: Observable<MovieDetailDTO>
         let reviewData: Observable<ReviewData>
         let state: Observable<ReviewState>
         let dismissEvent: Observable<Void>
@@ -184,7 +184,7 @@ final class MovieReviewVM {
     
     // MARK: Methods
     
-    private func fetchMovieDetail(_ id: Int) -> Observable<MovieDetail> {
+    private func fetchMovieDetail(_ id: Int) -> Observable<MovieDetailDTO> {
         Observable.create { observer in
             Task { @MainActor in
                 let fetched = try await TMDBService.shered.fetchMovieDetail(id)

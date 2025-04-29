@@ -103,7 +103,7 @@ final class DetailView: UIView {
 // MARK: - Reactive
 
 extension Reactive where Base: DetailView {
-    var movieDetail: Binder<MovieDetail> {
+    var movieDetail: Binder<MovieDetailDTO> {
         Binder(base) { base, detail in
             base.titleLabel.text = detail.title
             base.rateLabel.text = String(format: "/ %.1f", detail.voteAverage)

@@ -17,7 +17,7 @@ final class DetailVM {
     }
     
     struct Output {
-        let movieDetail: Observable<MovieDetail>
+        let movieDetail: Observable<MovieDetailDTO>
     }
     
     private let bag = DisposeBag()
@@ -32,7 +32,7 @@ final class DetailVM {
     
     // MARK: Methods
     
-    private func fetchMovieDetail(id: Int) -> Observable<MovieDetail> {
+    private func fetchMovieDetail(id: Int) -> Observable<MovieDetailDTO> {
         Observable.create { observer in
             Task {
                 let fetched = try await TMDBService.shered.fetchMovieDetail(id)

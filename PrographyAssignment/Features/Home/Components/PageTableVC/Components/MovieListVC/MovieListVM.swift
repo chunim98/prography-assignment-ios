@@ -65,7 +65,7 @@ final class MovieListVM {
     private func fetchListCellDataArr(page: Int) -> Observable<[ListCellData]> {
         Observable.create { observer in
             Task {
-                let fetched = try await TMDBService.shered.fetchMovieList(self.article, page)
+                let fetched = try await TMDBService.shered.fetchMoviesInfo(self.article, page)
                 let listCellDataArr = fetched.results.map {
                     ListCellData(
                         posterPath: $0.posterPath,

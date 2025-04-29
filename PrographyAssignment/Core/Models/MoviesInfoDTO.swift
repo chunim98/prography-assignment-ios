@@ -1,5 +1,5 @@
 //
-//  MoviesInfo.swift
+//  MoviesInfoDTO.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/14/25.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct MoviesInfo: Codable {
+struct MoviesInfoDTO: Codable {
     let page: Int
-    let results: [MoviesInfo.Result]
+    let results: [MoviesInfoDTO.Result]
 
     enum CodingKeys: String, CodingKey {
         case page
@@ -35,6 +35,17 @@ struct MoviesInfo: Codable {
             case title
             case voteAverage = "vote_average"
         }
+    }
+}
+
+extension MoviesInfoDTO.Result {
+    func toCarouselCellData() -> CarouselCellData {
+        CarouselCellData(
+            backDropPath: self.backdropPath,
+            title: self.title,
+            overview: self.overview,
+            id: self.id
+        )
     }
 }
 
