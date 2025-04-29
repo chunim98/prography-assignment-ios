@@ -212,41 +212,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5131DE7B2D5DC7A300527C8E /* Feature */ = {
+		5131DE7B2D5DC7A300527C8E /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				5131DE822D5DCB6000527C8E /* Home */,
 				515998632D6301280013D4C8 /* MovieReview */,
 				51BAE84F2D65E33F002D7679 /* My */,
 			);
-			path = Feature;
-			sourceTree = "<group>";
-		};
-		5131DE7C2D5DC7AF00527C8E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				5131DE7D2D5DC7D500527C8E /* Application */,
-				515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */,
-				515C38B12D5DC22C00FC0957 /* Assets.xcassets */,
-				5131DE7E2D5DC7F900527C8E /* CoreData */,
-				5131DE7F2D5DC82100527C8E /* Fonts */,
-				5131DE872D5DD25B00527C8E /* Extentions */,
-				5131DE892D5DDD9B00527C8E /* Components */,
-				5131DEAA2D5E291F00527C8E /* Models */,
-				51EB408E2D6524B70069DF1E /* Protocols */,
-				5131DEAD2D5E2BC400527C8E /* Managers */,
-				51E3386A2D5F8FFF00DEECA8 /* Utils */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		5131DE7D2D5DC7D500527C8E /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				515C38B02D5DC22C00FC0957 /* AppDelegate.swift */,
-				515C38B82D5DC22C00FC0957 /* SceneDelegate.swift */,
-			);
-			path = Application;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		5131DE7E2D5DC7F900527C8E /* CoreData */ = {
@@ -276,8 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				5131DE8E2D5DE4E400527C8E /* Components */,
-				5131DE802D5DCB5C00527C8E /* HomeVC.swift */,
-				512C27BB2D5F4D070094CF49 /* HomeVM.swift */,
+				513A38CC2DC0CAAF000BE69B /* Presentation */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -372,6 +344,57 @@
 			path = PrographyAssignmentTests;
 			sourceTree = "<group>";
 		};
+		513A38C72DC0C926000BE69B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE7E2D5DC7F900527C8E /* CoreData */,
+				5131DEAA2D5E291F00527C8E /* Models */,
+				5131DE872D5DD25B00527C8E /* Extentions */,
+				51EB408E2D6524B70069DF1E /* Protocols */,
+				5131DEAD2D5E2BC400527C8E /* Managers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		513A38C82DC0C931000BE69B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE892D5DDD9B00527C8E /* Components */,
+				51E3386A2D5F8FFF00DEECA8 /* Utils */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		513A38CA2DC0C96F000BE69B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE7F2D5DC82100527C8E /* Fonts */,
+				512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */,
+				515C38B22D5DC22C00FC0957 /* Info.plist */,
+				515C38B42D5DC22C00FC0957 /* LaunchScreen.storyboard */,
+				515C38B12D5DC22C00FC0957 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		513A38CB2DC0C977000BE69B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				515C38B02D5DC22C00FC0957 /* AppDelegate.swift */,
+				515C38B82D5DC22C00FC0957 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		513A38CC2DC0CAAF000BE69B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				5131DE802D5DCB5C00527C8E /* HomeVC.swift */,
+				512C27BB2D5F4D070094CF49 /* HomeVM.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		515998632D6301280013D4C8 /* MovieReview */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,10 +427,11 @@
 		515C38BA2D5DC22C00FC0957 /* PrographyAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				512C27B32D5F1CFD0094CF49 /* Secrets.xcconfig */,
-				515C38B22D5DC22C00FC0957 /* Info.plist */,
-				5131DE7B2D5DC7A300527C8E /* Feature */,
-				5131DE7C2D5DC7AF00527C8E /* Common */,
+				513A38CB2DC0C977000BE69B /* App */,
+				5131DE7B2D5DC7A300527C8E /* Features */,
+				513A38C72DC0C926000BE69B /* Core */,
+				513A38C82DC0C931000BE69B /* Shared */,
+				513A38CA2DC0C96F000BE69B /* Resources */,
 			);
 			path = PrographyAssignment;
 			sourceTree = "<group>";
