@@ -12,25 +12,33 @@ import RxCocoa
 
 final class MovieListVM {
     
-    struct Input { let currentCellIndex: Observable<Int> }
+    // MARK: Input & Output
     
+    struct Input { let currentCellIndex: Observable<Int> }
     struct Output { let listCellDataArr: Observable<[ListCellData]> }
     
     // MARK: Properties
     
-    private let article: TMDBService.Article
+    private let fetchListCellDataArr: FetchListCellDataArrUseCase
     private let bag = DisposeBag()
-        
-    init(_ article: TMDBService.Article) { self.article = article }
+    
+    // MARK: Initializer
+    
+    init(article: TMDBService.Article) {
+        self.fetchListCellDataArr =
+        FetchListCellDataArrUseCase(ListCellDataArrRepositoryImpl(), article)
+    }
+    
+    // MARK: Event Handling
     
     func transform(input: Input) -> Output {
         let listCellDataArr = BehaviorSubject(value: [ListCellData]())
         let loadedPageIndex = BehaviorSubject(value: 1)
         let isLoading = BehaviorSubject(value: false)
-
+        
         // loadedPageIndex가 갱신되면, 새로운 페이지 누적
         loadedPageIndex
-            .flatMapLatest(fetchListCellDataArr(page:))
+            .flatMapLatest(fetchListCellDataArr.excute(page:))
             .withLatestFrom(listCellDataArr) { $1 + $0 } // 기존+신규
             .bind(to: listCellDataArr)
             .disposed(by: bag)
@@ -57,31 +65,6 @@ final class MovieListVM {
             .bind(to: isLoading)
             .disposed(by: bag)
         
-        return Output(
-            listCellDataArr: listCellDataArr.asObservable()
-        )
+        return Output(listCellDataArr: listCellDataArr.asObservable())
     }
-    
-    private func fetchListCellDataArr(page: Int) -> Observable<[ListCellData]> {
-        Observable.create { observer in
-            Task {
-                let fetched = try await TMDBService.shered.fetchMoviesInfo(self.article, page)
-                let listCellDataArr = fetched.results.map {
-                    ListCellData(
-                        posterPath: $0.posterPath,
-                        title: $0.title,
-                        overview: $0.overview,
-                        voteAverage: $0.voteAverage,
-                        genreIDS: $0.genreIDS,
-                        id: $0.id
-                    )
-                }
-                observer.onNext(listCellDataArr)
-                observer.onCompleted()
-            }
-            
-            return Disposables.create()
-        }
-    }
-    
 }

@@ -47,5 +47,16 @@ extension MoviesInfoDTO.Result {
             id: self.id
         )
     }
+    
+    func toListCellData() -> ListCellData {
+        ListCellData(
+            posterPath: self.posterPath,
+            title: self.title,
+            overview: self.overview,
+            voteAverage: self.voteAverage,
+            genreIDS: self.genreIDS,
+            id: self.id
+        )
+    }
 }
 
