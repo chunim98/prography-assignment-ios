@@ -7,10 +7,6 @@
 
 
 final class DefaultReviewDataRepository: ReviewDataRepository {
-    func readAll() -> [ReviewData] {
-        CoreDataManager.shared.readAll()
-    }
-    
     func read(movieId: Int) -> ReviewData? {
         CoreDataManager.shared.read(movieId: movieId)
     }

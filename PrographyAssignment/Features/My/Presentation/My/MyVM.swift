@@ -12,6 +12,8 @@ import RxCocoa
 
 final class MyVM {
     
+    // MARK: Input & Output
+    
     struct Input {
         let selectedModel: Observable<MovieId>
         let viewWillAppearEvent: Observable<Void>
@@ -27,16 +29,25 @@ final class MyVM {
         let selectedFilterIndex: Observable<Int>
     }
     
+    // MARK: Properties
+    
     private let bag = DisposeBag()
     
+    // MARK: Event Handling
+    
     func transform(_ input: Input) -> Output {
-        let myMovieCellDataArr = BehaviorSubject(value: fetchMyMovieCellDataArr())
+        // Use Cases
+        let fetchMyMovieCellDataArr =
+        FetchMyMovieCellDataArrUseCase(DefaultMyMovieCellDataArrRepository())
+        
+        // Subjects
+        let myMovieCellDataArr = BehaviorSubject(value: fetchMyMovieCellDataArr.execute())
         let isFilterListHidden = BehaviorSubject(value: true)
         let selectedFilterIndex = BehaviorSubject(value: 6) // All
         
         // 화면이 표시될 때마다 리스트 정보 갱신
         input.viewWillAppearEvent
-            .compactMap { [weak self] _ in self?.fetchMyMovieCellDataArr() }
+            .map { _ in fetchMyMovieCellDataArr.execute() }
             .bind(to: myMovieCellDataArr)
             .disposed(by: bag)
         
@@ -86,18 +97,5 @@ final class MyVM {
             isFilterListHidden: isFilterListHidden.asObservable(),
             selectedFilterIndex: selectedFilterIndex
         )
-    }
-    
-    // MARK: Methods
-    
-    private func fetchMyMovieCellDataArr() -> [MyMovieCellData] {
-        CoreDataManager.shared.readAll().map {
-            MyMovieCellData(
-                id: $0.movieId,
-                posterPath: $0.posterPath,
-                personalRate: $0.personalRate,
-                title: $0.title
-            )
-        }
     }
 }

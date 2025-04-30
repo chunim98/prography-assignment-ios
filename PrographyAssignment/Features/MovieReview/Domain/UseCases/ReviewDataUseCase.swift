@@ -11,7 +11,6 @@ final class ReviewDataUseCase {
     
     init(_ repository: ReviewDataRepository) { self.repository = repository }
     
-    func readAll() -> [ReviewData] { repository.readAll() }
     func read(movieId: Int) -> ReviewData? { repository.read(movieId: movieId) }
     func create(with reviewData: ReviewData) { repository.create(with: reviewData) }
     func update(with reviewData: ReviewData) { repository.update(with: reviewData) }

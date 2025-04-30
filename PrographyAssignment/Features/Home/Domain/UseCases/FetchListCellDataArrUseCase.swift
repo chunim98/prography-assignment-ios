@@ -9,14 +9,14 @@ import RxSwift
 
 final class FetchListCellDataArrUseCase {
     
-    private let listCellDataRepository: ListCellDataArrRepositoryProtocol
+    private let repository: ListCellDataArrRepository
     private let article: TMDBService.Article
     
     init(
-        _ listCellDataRepository: ListCellDataArrRepositoryProtocol,
+        _ repository: ListCellDataArrRepository,
         _ article: TMDBService.Article
     ) {
-        self.listCellDataRepository = listCellDataRepository
+        self.repository = repository
         self.article = article
     }
     
@@ -24,7 +24,7 @@ final class FetchListCellDataArrUseCase {
         Observable.create { observer in
             Task {
                 let fetched =
-                try await self.listCellDataRepository.fetchListCellDataArr(self.article, page)
+                try await self.repository.fetchListCellDataArr(self.article, page)
                 
                 observer.onNext(fetched)
                 observer.onCompleted()

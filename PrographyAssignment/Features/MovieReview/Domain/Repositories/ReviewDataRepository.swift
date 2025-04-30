@@ -7,7 +7,6 @@
 
 
 protocol ReviewDataRepository {
-    func readAll() -> [ReviewData]
     func read(movieId: Int) -> ReviewData?
     func create(with reviewData: ReviewData)
     func update(with reviewData: ReviewData)
