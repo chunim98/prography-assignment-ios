@@ -113,7 +113,8 @@ extension Reactive where Base: DetailView {
             
             Observable.just(genreIds)
                 .bind(to: base.genreCV.rx.items(
-                    cellIdentifier: GenreCell.identifier,cellType: GenreCell.self
+                    cellIdentifier: GenreCell.identifier,
+                    cellType: GenreCell.self
                 )) { index, data, cell in
                     cell.configure(data)
                 }

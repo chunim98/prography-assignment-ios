@@ -35,7 +35,7 @@ final class MovieListVC: UIViewController {
     // MARK: Life Cycle
     
     init(_ article: TMDBService.Article) {
-        self.movieListVM = MovieListVM(article)
+        self.movieListVM = MovieListVM(article: article)
         super.init(nibName: nil, bundle: nil)
     }
     

@@ -12,6 +12,8 @@ import RxCocoa
 
 final class MovieReviewVM {
     
+    // MARK: Input & Output
+    
     struct Input {
         let tappedStarIndex: Observable<Int>
         let updatedText: Observable<String>
@@ -28,22 +30,33 @@ final class MovieReviewVM {
         let endEditingEvent: Observable<Void>
     }
     
+    // MARK: Properties
+    
     private let movieId: Int
     private let bag = DisposeBag()
     
+    // MARK: Initializer
+    
     init(_ movieId: Int) { self.movieId = movieId }
     
+    // MARK: Event Handling
+    
     func transform(input: Input) -> Output {
+        // Use Cases
+        let fetchMovieDetail = FetchMovieDetailUseCase(DefaultMovieDetailRepository())
+        let reviewDataUseCase = ReviewDataUseCase(DefaultReviewDataRepository())
+        
+        // Subjects
         let reviewState = BehaviorSubject<ReviewState>(value: .create)
         let reviewData = BehaviorSubject(value: ReviewData())
         let dismissEvent = PublishSubject<Void>()
         
         // 영화 아이디로 영화 세부정보 불러오기
-        let movieDetail = fetchMovieDetail(movieId).share(replay: 1)
+        let movieDetail = fetchMovieDetail.execute(movieId).share(replay: 1)
 
         // 세부정보 받고 저장된 리뷰가 있을 경우, 읽기 상태로 업데이트
         movieDetail
-            .map { CoreDataManager.shared.read(movieId: $0.id) }
+            .map { reviewDataUseCase.read(movieId: $0.id) }
             .compactMap { $0.map { // 옵셔널 map
                 $0.commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             } }
@@ -52,7 +65,7 @@ final class MovieReviewVM {
         
         // 세부정보 받고 저장된 리뷰가 있을 경우, 리뷰 데이터 업데이트
         movieDetail
-            .compactMap { CoreDataManager.shared.read(movieId: $0.id) }
+            .compactMap { reviewDataUseCase.read(movieId: $0.id) }
             .bind(to: reviewData)
             .disposed(by: bag)
         
@@ -97,7 +110,7 @@ final class MovieReviewVM {
         input.barButtonEvent
             .filter { $0 == .delete }
             .withLatestFrom(reviewData) {
-                CoreDataManager.shared.delete($1)
+                reviewDataUseCase.delete($1)
                 HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
             }
             .bind(to: dismissEvent)
@@ -122,7 +135,7 @@ final class MovieReviewVM {
                     commentData: commentData
                 )
                 
-                CoreDataManager.shared.create(with: reviewData)
+                reviewDataUseCase.create(with: reviewData)
                 HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
                 return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             }
@@ -148,7 +161,7 @@ final class MovieReviewVM {
                     commentData: commentData
                 )
                 
-                CoreDataManager.shared.update(with: reviewData)
+                reviewDataUseCase.update(with: reviewData)
                 HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
                 return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             }
@@ -180,18 +193,5 @@ final class MovieReviewVM {
             dismissEvent: dismissEvent.asObservable(),
             endEditingEvent: endEditingEvent
         )
-    }
-    
-    // MARK: Methods
-    
-    private func fetchMovieDetail(_ id: Int) -> Observable<MovieDetailDTO> {
-        Observable.create { observer in
-            Task { @MainActor in
-                let fetched = try await TMDBService.shered.fetchMovieDetail(id)
-                observer.onNext(fetched)
-            }
-            
-            return Disposables.create()
-        }
     }
 }
