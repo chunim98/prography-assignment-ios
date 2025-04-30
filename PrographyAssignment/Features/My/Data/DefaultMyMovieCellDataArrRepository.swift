@@ -6,5 +6,5 @@
 //
 
 final class DefaultMyMovieCellDataArrRepository: MyMovieCellDataArrRepository {
-    func readAll() -> [ReviewData] { CoreDataManager.shared.readAll() }
+    func readAll() -> [ReviewData] { ReviewDataManager.shared.readAll() }
 }

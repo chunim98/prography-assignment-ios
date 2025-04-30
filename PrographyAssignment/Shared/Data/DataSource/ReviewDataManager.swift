@@ -1,5 +1,5 @@
 //
-//  CoreDataManager.swift
+//  ReviewDataManager.swift
 //  PrographyAssignment
 //
 //  Created by 신정욱 on 2/18/25.
@@ -8,28 +8,27 @@
 import UIKit
 import CoreData
 
-final class CoreDataManager {
+final class ReviewDataManager {
     
     // MARK: Singleton Instance
     
-    static let shared = CoreDataManager()
+    static let shared = ReviewDataManager()
     
     // MARK: Properties
 
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    private lazy var context = appDelegate?.persistentContainer.viewContext
+    private lazy var stack = CoreDataStack()
+    private var context: NSManagedObjectContext { stack.context }
+    
     private let entityName = "ReviewCoreData"
     private let subEntityName = "CommentCoreData"
     
-    // MARK: Init
+    // MARK: Initializer
     
     private init() {}
     
     // MARK: CRUD Methods
 
     func readAll() -> [ReviewData] {
-        guard let context = context else { return [] }
-        
         let request = NSFetchRequest<ReviewCoreData>(entityName: entityName) // 이 타입 엔티티 다 가져올게요
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)] // 근데 내림차순으로요
         
@@ -49,8 +48,6 @@ final class CoreDataManager {
     }
     
     func read(movieId: Int) -> ReviewData? {
-        guard let context = context else { return nil }
-        
         let request = NSFetchRequest<ReviewCoreData>(entityName: entityName) // 이 타입 엔티티 다 가져올게요
         request.predicate = NSPredicate(format: "movieId = %d", movieId as CVarArg) // 근데 movieId 똑같은 걸로요
         
@@ -71,10 +68,8 @@ final class CoreDataManager {
     
     func create(with reviewData: ReviewData) {
         // 대충 "entityName 타입 파일을 넣을 계획입니다" 라는 뜻
-        guard
-            let context = context,
-            let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
-        else { return }
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
+        guard let entity else { return }
         
         // 임시저장소에 올라가게 할 객체만들기
         let reviewCoreData = ReviewCoreData(entity: entity, insertInto: context)
@@ -94,24 +89,20 @@ final class CoreDataManager {
             return commentCoreData
         }
         
-        appDelegate?.saveContext()
+        stack.saveContext()
     }
     
     func delete(_ reviewData: ReviewData) {
-        guard let context = context else { return }
-        
         let request = NSFetchRequest<ReviewCoreData>(entityName: entityName) // 이 타입 엔티티 다 가져올게요
         request.predicate = NSPredicate(format: "movieId = %d", reviewData.movieId as CVarArg) // 근데 movieId 똑같은 걸로요
         
         guard let data = try? context.fetch(request) else { return }
         data.forEach{ context.delete($0) } // 데이터 삭제하기
         
-        appDelegate?.saveContext()
+        stack.saveContext()
     }
     
     func update(with reviewData: ReviewData) {
-        guard let context = context else { return }
-        
         // 기존 데이터 찾기
         let request = NSFetchRequest<ReviewCoreData>(entityName: entityName) // 이 타입 엔티티 다 가져올게요
         request.predicate = NSPredicate(format: "movieId = %d", reviewData.movieId as CVarArg) // 근데 movieId 똑같은 걸로요
@@ -136,6 +127,6 @@ final class CoreDataManager {
             return commentCoreData
         }
         
-        appDelegate?.saveContext()
+        stack.saveContext()
     }
 }

@@ -8,18 +8,18 @@
 
 final class DefaultReviewDataRepository: ReviewDataRepository {
     func read(movieId: Int) -> ReviewData? {
-        CoreDataManager.shared.read(movieId: movieId)
+        ReviewDataManager.shared.read(movieId: movieId)
     }
     
     func create(with reviewData: ReviewData) {
-        CoreDataManager.shared.create(with: reviewData)
+        ReviewDataManager.shared.create(with: reviewData)
     }
     
     func update(with reviewData: ReviewData) {
-        CoreDataManager.shared.update(with: reviewData)
+        ReviewDataManager.shared.update(with: reviewData)
     }
     
     func delete(_ reviewData: ReviewData) {
-        CoreDataManager.shared.delete(reviewData)
+        ReviewDataManager.shared.delete(reviewData)
     }
 }

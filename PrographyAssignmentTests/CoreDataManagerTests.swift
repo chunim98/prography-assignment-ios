@@ -11,7 +11,7 @@ import XCTest
 
 final class CoreDataManagerTests: XCTestCase {
     
-    var sut: CoreDataManager!
+    var sut: ReviewDataManager!
     let mockData = ReviewData(
         movieId: 12121212,
         posterPath: "대충 주소라고 치자.",
@@ -31,7 +31,7 @@ final class CoreDataManagerTests: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = CoreDataManager.shared
+        sut = ReviewDataManager.shared
     }
     
     override func tearDownWithError() throws {
