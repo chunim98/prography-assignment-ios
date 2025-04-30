@@ -15,7 +15,7 @@ final class CarouselVM {
     struct Output { let carouselCellDataArr: Observable<[CarouselCellData]> }
     
     private let fetchCarouselCellDataArr =
-    FetchCarouselCellDataArrUseCase(CarouselCellDataRepositoryImpl())
+    FetchCarouselCellDataArrUseCase(DefaultCarouselCellDataRepository())
         
     func transform(input: Input) -> Output {
         

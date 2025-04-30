@@ -26,7 +26,7 @@ final class MovieListVM {
     
     init(article: TMDBService.Article) {
         self.fetchListCellDataArr =
-        FetchListCellDataArrUseCase(ListCellDataArrRepositoryImpl(), article)
+        FetchListCellDataArrUseCase(DefaultListCellDataArrRepository(), article)
     }
     
     // MARK: Event Handling

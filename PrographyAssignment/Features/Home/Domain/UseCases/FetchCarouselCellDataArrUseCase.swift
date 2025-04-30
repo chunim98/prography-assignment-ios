@@ -9,9 +9,9 @@ import RxSwift
 
 final class FetchCarouselCellDataArrUseCase {
     
-    private let carouselCellDataRepository: CarouselCellDataRepositoryProtocol
+    private let carouselCellDataRepository: CarouselCellDataRepository
     
-    init(_ carouselCellDataRepository: CarouselCellDataRepositoryProtocol) {
+    init(_ carouselCellDataRepository: CarouselCellDataRepository) {
         self.carouselCellDataRepository = carouselCellDataRepository
     }
     

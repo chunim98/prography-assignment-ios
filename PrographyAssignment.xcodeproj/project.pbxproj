@@ -32,9 +32,8 @@
 		5131DEC32D5E42A800527C8E /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEC12D5E42A800527C8E /* NetworkingTests.swift */; };
 		5131DEC92D5E521400527C8E /* MoviesInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5131DEC82D5E520D00527C8E /* MoviesInfoDTO.swift */; };
 		513A38D42DC0E117000BE69B /* FetchCarouselCellDataArrUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38D32DC0E108000BE69B /* FetchCarouselCellDataArrUseCase.swift */; };
-		513A38D62DC0E130000BE69B /* CarouselCellDataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38D52DC0E128000BE69B /* CarouselCellDataRepositoryProtocol.swift */; };
-		513A38DC2DC0ECA4000BE69B /* CarouselCellDataRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38DB2DC0ECA3000BE69B /* CarouselCellDataRepositoryImpl.swift */; };
-		513A38E52DC10019000BE69B /* ListCellDataArrRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38E42DC10014000BE69B /* ListCellDataArrRepository.swift */; };
+		513A38D62DC0E130000BE69B /* CarouselCellDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38D52DC0E128000BE69B /* CarouselCellDataRepository.swift */; };
+		513A38DC2DC0ECA4000BE69B /* DefaultCarouselCellDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38DB2DC0ECA3000BE69B /* DefaultCarouselCellDataRepository.swift */; };
 		513A38E92DC10247000BE69B /* FetchListCellDataArrUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A38E82DC1023C000BE69B /* FetchListCellDataArrUseCase.swift */; };
 		515998652D6301740013D4C8 /* MovieReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515998642D6301740013D4C8 /* MovieReviewVC.swift */; };
 		515C38BC2D5DC22C00FC0957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 515C38B12D5DC22C00FC0957 /* Assets.xcassets */; };
@@ -61,6 +60,8 @@
 		51A018442DC23C97006B3674 /* ReviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A018432DC23C97006B3674 /* ReviewDataRepository.swift */; };
 		51A018462DC23CB0006B3674 /* DefaultReviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A018452DC23CB0006B3674 /* DefaultReviewDataRepository.swift */; };
 		51A018482DC23D18006B3674 /* ReviewDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A018472DC23D12006B3674 /* ReviewDataUseCase.swift */; };
+		51A018512DC24224006B3674 /* ListCellDataArrRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A018502DC24224006B3674 /* ListCellDataArrRepository.swift */; };
+		51A018532DC2422D006B3674 /* DefaultListCellDataArrRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A018522DC2422D006B3674 /* DefaultListCellDataArrRepository.swift */; };
 		51A09B602D604FE80002A2F7 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A09B5F2D604F6D0002A2F7 /* ListCell.swift */; };
 		51A09B632D60549D0002A2F7 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */; };
 		51A09B642D60549D0002A2F7 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */; };
@@ -141,9 +142,8 @@
 		5131DEC12D5E42A800527C8E /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		5131DEC82D5E520D00527C8E /* MoviesInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesInfoDTO.swift; sourceTree = "<group>"; };
 		513A38D32DC0E108000BE69B /* FetchCarouselCellDataArrUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCarouselCellDataArrUseCase.swift; sourceTree = "<group>"; };
-		513A38D52DC0E128000BE69B /* CarouselCellDataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCellDataRepositoryProtocol.swift; sourceTree = "<group>"; };
-		513A38DB2DC0ECA3000BE69B /* CarouselCellDataRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCellDataRepositoryImpl.swift; sourceTree = "<group>"; };
-		513A38E42DC10014000BE69B /* ListCellDataArrRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellDataArrRepository.swift; sourceTree = "<group>"; };
+		513A38D52DC0E128000BE69B /* CarouselCellDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCellDataRepository.swift; sourceTree = "<group>"; };
+		513A38DB2DC0ECA3000BE69B /* DefaultCarouselCellDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCarouselCellDataRepository.swift; sourceTree = "<group>"; };
 		513A38E82DC1023C000BE69B /* FetchListCellDataArrUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchListCellDataArrUseCase.swift; sourceTree = "<group>"; };
 		515998642D6301740013D4C8 /* MovieReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewVC.swift; sourceTree = "<group>"; };
 		515C38952D5DC20A00FC0957 /* PrographyAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrographyAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +170,8 @@
 		51A018432DC23C97006B3674 /* ReviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDataRepository.swift; sourceTree = "<group>"; };
 		51A018452DC23CB0006B3674 /* DefaultReviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultReviewDataRepository.swift; sourceTree = "<group>"; };
 		51A018472DC23D12006B3674 /* ReviewDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDataUseCase.swift; sourceTree = "<group>"; };
+		51A018502DC24224006B3674 /* ListCellDataArrRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellDataArrRepository.swift; sourceTree = "<group>"; };
+		51A018522DC2422D006B3674 /* DefaultListCellDataArrRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultListCellDataArrRepository.swift; sourceTree = "<group>"; };
 		51A09B5F2D604F6D0002A2F7 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		51A09B612D60549D0002A2F7 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		51A09B622D60549D0002A2F7 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -270,10 +272,9 @@
 		5131DE822D5DCB6000527C8E /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				513A38CC2DC0CAAF000BE69B /* Home */,
-				5131DE932D5DE60300527C8E /* Carousel */,
-				51E338632D5F71FD00DEECA8 /* TabContents */,
-				51E3386E2D5FA25F00DEECA8 /* PageTable */,
+				51A0184D2DC24142006B3674 /* Presentation */,
+				51A0184E2DC2417D006B3674 /* Domain */,
+				51A0184F2DC241DB006B3674 /* Data */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -311,21 +312,12 @@
 		5131DE932D5DE60300527C8E /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
-				513A38D72DC0E6F9000BE69B /* Views */,
-				513A38CD2DC0D350000BE69B /* ViewModels */,
-				5131DEA02D5DFECF00527C8E /* Entities */,
-				513A38D92DC0E740000BE69B /* UseCases */,
-				513A38DA2DC0E776000BE69B /* Repositories */,
+				5131DE912D5DE5DB00527C8E /* CarouselView.swift */,
+				5131DE982D5DEA1B00527C8E /* CarouselCell.swift */,
+				5131DE9C2D5DF3C600527C8E /* CarouselGradientView.swift */,
+				5131DEA82D5E230D00527C8E /* CarouselVM.swift */,
 			);
 			path = Carousel;
-			sourceTree = "<group>";
-		};
-		5131DEA02D5DFECF00527C8E /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		5131DEAA2D5E291F00527C8E /* Models */ = {
@@ -407,83 +399,6 @@
 				512C27BB2D5F4D070094CF49 /* HomeVM.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		513A38CD2DC0D350000BE69B /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				5131DEA82D5E230D00527C8E /* CarouselVM.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		513A38D72DC0E6F9000BE69B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5131DE912D5DE5DB00527C8E /* CarouselView.swift */,
-				5131DE982D5DEA1B00527C8E /* CarouselCell.swift */,
-				5131DE9C2D5DF3C600527C8E /* CarouselGradientView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		513A38D92DC0E740000BE69B /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				513A38D32DC0E108000BE69B /* FetchCarouselCellDataArrUseCase.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
-		513A38DA2DC0E776000BE69B /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				513A38D52DC0E128000BE69B /* CarouselCellDataRepositoryProtocol.swift */,
-				513A38DB2DC0ECA3000BE69B /* CarouselCellDataRepositoryImpl.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		513A38DE2DC0FEB0000BE69B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
-				51A09B692D606D4C0002A2F7 /* MovieListVC.swift */,
-				51A09B5F2D604F6D0002A2F7 /* ListCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		513A38DF2DC0FED4000BE69B /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				51A09B6B2D6070DF0002A2F7 /* MovieListVM.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		513A38E02DC0FEEE000BE69B /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				51A09B672D60638B0002A2F7 /* ListCellData.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		513A38E12DC0FFEB000BE69B /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				513A38E42DC10014000BE69B /* ListCellDataArrRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		513A38E62DC10216000BE69B /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				513A38E82DC1023C000BE69B /* FetchListCellDataArrUseCase.swift */,
-			);
-			path = UseCases;
 			sourceTree = "<group>";
 		};
 		515998632D6301280013D4C8 /* MovieReview */ = {
@@ -622,6 +537,63 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		51A0184D2DC24142006B3674 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				513A38CC2DC0CAAF000BE69B /* Home */,
+				5131DE932D5DE60300527C8E /* Carousel */,
+				51E338632D5F71FD00DEECA8 /* TabContents */,
+				51E3386E2D5FA25F00DEECA8 /* PageTable */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		51A0184E2DC2417D006B3674 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				51A018562DC24282006B3674 /* Repositories */,
+				51A018552DC24274006B3674 /* UseCases */,
+				51A018542DC24262006B3674 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		51A0184F2DC241DB006B3674 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				513A38DB2DC0ECA3000BE69B /* DefaultCarouselCellDataRepository.swift */,
+				51A018522DC2422D006B3674 /* DefaultListCellDataArrRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		51A018542DC24262006B3674 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5131DEA62D5E1F4100527C8E /* CarouselCellData.swift */,
+				51A09B672D60638B0002A2F7 /* ListCellData.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		51A018552DC24274006B3674 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				513A38D32DC0E108000BE69B /* FetchCarouselCellDataArrUseCase.swift */,
+				513A38E82DC1023C000BE69B /* FetchListCellDataArrUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		51A018562DC24282006B3674 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				513A38D52DC0E128000BE69B /* CarouselCellDataRepository.swift */,
+				51A018502DC24224006B3674 /* ListCellDataArrRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		51BAE84F2D65E33F002D7679 /* My */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,11 +661,10 @@
 		51E3386E2D5FA25F00DEECA8 /* PageTable */ = {
 			isa = PBXGroup;
 			children = (
-				513A38DE2DC0FEB0000BE69B /* Views */,
-				513A38DF2DC0FED4000BE69B /* ViewModels */,
-				513A38E62DC10216000BE69B /* UseCases */,
-				513A38E12DC0FFEB000BE69B /* Repositories */,
-				513A38E02DC0FEEE000BE69B /* Entities */,
+				51E3386F2D5FA28800DEECA8 /* PageTableVC.swift */,
+				51A09B692D606D4C0002A2F7 /* MovieListVC.swift */,
+				51A09B5F2D604F6D0002A2F7 /* ListCell.swift */,
+				51A09B6B2D6070DF0002A2F7 /* MovieListVM.swift */,
 			);
 			path = PageTable;
 			sourceTree = "<group>";
@@ -862,6 +833,7 @@
 				5131DE8D2D5DDEF100527C8E /* UIViewController+.swift in Sources */,
 				5186E9C12D63380B00B2A6A4 /* MovieDetailDTO.swift in Sources */,
 				513A38D42DC0E117000BE69B /* FetchCarouselCellDataArrUseCase.swift in Sources */,
+				51A018532DC2422D006B3674 /* DefaultListCellDataArrRepository.swift in Sources */,
 				5131DE962D5DE69900527C8E /* NSDirectionalEdgeInsets+.swift in Sources */,
 				51EB40832D64A6A80069DF1E /* ReviewState.swift in Sources */,
 				5186E9D42D63923500B2A6A4 /* MovieReviewVM.swift in Sources */,
@@ -904,11 +876,12 @@
 				5131DE972D5DE69900527C8E /* UIEdgeInsets+.swift in Sources */,
 				51BAE8612D66289A002D7679 /* CommentCoreData+CoreDataClass.swift in Sources */,
 				51BAE8622D66289A002D7679 /* CommentCoreData+CoreDataProperties.swift in Sources */,
+				51A018512DC24224006B3674 /* ListCellDataArrRepository.swift in Sources */,
 				51A018422DC23C49006B3674 /* DefaultMovieDetailRepository.swift in Sources */,
 				51BAE8632D66289A002D7679 /* ReviewCoreData+CoreDataClass.swift in Sources */,
 				51BAE8642D66289A002D7679 /* ReviewCoreData+CoreDataProperties.swift in Sources */,
 				51A09B662D605D8E0002A2F7 /* GenreCell.swift in Sources */,
-				513A38D62DC0E130000BE69B /* CarouselCellDataRepositoryProtocol.swift in Sources */,
+				513A38D62DC0E130000BE69B /* CarouselCellDataRepository.swift in Sources */,
 				51DF28822D67883D006A31ED /* UIView+.swift in Sources */,
 				5131DEA72D5E1F8000527C8E /* CarouselCellData.swift in Sources */,
 				51BAE8542D65E730002D7679 /* FilterButton.swift in Sources */,
@@ -922,7 +895,6 @@
 				512C07452D62536B00EC996C /* Int+.swift in Sources */,
 				51BAE85C2D6627A2002D7679 /* MyMovieCellData.swift in Sources */,
 				51E338652D5F723A00DEECA8 /* TabContentsView.swift in Sources */,
-				513A38E52DC10019000BE69B /* ListCellDataArrRepository.swift in Sources */,
 				51E338702D5FA28800DEECA8 /* PageTableVC.swift in Sources */,
 				51DF28842D6789E5006A31ED /* Reactive+.swift in Sources */,
 				5131DE812D5DCB5C00527C8E /* HomeVC.swift in Sources */,
@@ -933,7 +905,7 @@
 				5186E9B92D63243C00B2A6A4 /* DetailView.swift in Sources */,
 				5131DE9F2D5DFC2E00527C8E /* UICollectionView+.swift in Sources */,
 				51DF28862D67B6D9006A31ED /* CommentVM.swift in Sources */,
-				513A38DC2DC0ECA4000BE69B /* CarouselCellDataRepositoryImpl.swift in Sources */,
+				513A38DC2DC0ECA4000BE69B /* DefaultCarouselCellDataRepository.swift in Sources */,
 				51EB40722D6465E80069DF1E /* ReviewData.swift in Sources */,
 				515C38C22D5DC22C00FC0957 /* SceneDelegate.swift in Sources */,
 			);
