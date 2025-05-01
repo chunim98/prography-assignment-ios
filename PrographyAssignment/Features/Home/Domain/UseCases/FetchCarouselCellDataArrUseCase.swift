@@ -9,16 +9,16 @@ import RxSwift
 
 final class FetchCarouselCellDataArrUseCase {
     
-    private let carouselCellDataRepository: CarouselCellDataRepository
+    private let repository: CarouselCellDataRepository
     
     init(_ carouselCellDataRepository: CarouselCellDataRepository) {
-        self.carouselCellDataRepository = carouselCellDataRepository
+        self.repository = carouselCellDataRepository
     }
     
-    func excute() -> Observable<[CarouselCellData]> {
+    func execute() -> Observable<[CarouselCellData]> {
         Observable<[CarouselCellData]>.create { observer in
             Task {
-                let fetched = try await self.carouselCellDataRepository.fetch()
+                let fetched = try await self.repository.fetch()
                 observer.onNext(fetched)
                 observer.onCompleted()
             }

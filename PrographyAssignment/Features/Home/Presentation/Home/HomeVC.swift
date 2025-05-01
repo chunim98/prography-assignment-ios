@@ -134,7 +134,7 @@ extension Reactive where Base: HomeVC {
     fileprivate var pushMovieReviewBinder: Binder<Int> {
         Binder(base) {
             let vc = MovieReviewVC()
-            vc.movieReviewVM = .init($1)
+            vc.movieReviewVM = DIContainer.shared.makeMovieReviewVM(movieId: $1)
             vc.hidesBottomBarWhenPushed = true
             $0.navigationController?.pushViewController(vc, animated: true)
         }

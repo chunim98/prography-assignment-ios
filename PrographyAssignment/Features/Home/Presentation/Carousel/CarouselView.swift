@@ -15,7 +15,7 @@ final class CarouselView: UIView {
     
     // MARK: Properties
     
-    private let carouselVM = CarouselVM()
+    private let carouselVM = DIContainer.shared.makeCarouselVM()
     private let bag = DisposeBag()
     
     // MARK: Components

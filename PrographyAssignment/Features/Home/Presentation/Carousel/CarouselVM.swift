@@ -14,13 +14,15 @@ final class CarouselVM {
     struct Input {}
     struct Output { let carouselCellDataArr: Observable<[CarouselCellData]> }
     
-    private let fetchCarouselCellDataArr =
-    FetchCarouselCellDataArrUseCase(DefaultCarouselCellDataRepository())
+    private let fetchCarouselCellDataArr: FetchCarouselCellDataArrUseCase
+    
+    init(fetchCarouselCellDataArr: FetchCarouselCellDataArrUseCase) {
+        self.fetchCarouselCellDataArr = fetchCarouselCellDataArr
+    }
         
     func transform(input: Input) -> Output {
-        
         // carouselCellDataArr 초기값 설정
-        let carouselCellDataArr = fetchCarouselCellDataArr.excute()
+        let carouselCellDataArr = fetchCarouselCellDataArr.execute()
         
         return Output(carouselCellDataArr: carouselCellDataArr)
     }

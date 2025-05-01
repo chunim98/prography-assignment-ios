@@ -20,7 +20,7 @@ final class FetchListCellDataArrUseCase {
         self.article = article
     }
     
-    func excute(page: Int ) -> Observable<[ListCellData]> {
+    func execute(page: Int ) -> Observable<[ListCellData]> {
         Observable.create { observer in
             Task {
                 let fetched =

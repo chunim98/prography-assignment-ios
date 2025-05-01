@@ -18,7 +18,7 @@ final class MyVC: UIViewController {
     
     // MARK: Properties
     
-    private let myVM = MyVM()
+    private let myVM = DIContainer.shared.makeMyVM()
     private let bag = DisposeBag()
     private let once = OnlyOnce()
     
@@ -178,7 +178,7 @@ extension Reactive where Base: MyVC {
     fileprivate var pushMovieReviewBinder: Binder<Int> {
         Binder(base) {
             let vc = MovieReviewVC()
-            vc.movieReviewVM = .init($1)
+            vc.movieReviewVM = DIContainer.shared.makeMovieReviewVM(movieId: $1)
             vc.hidesBottomBarWhenPushed = true
             $0.navigationController?.pushViewController(vc, animated: true)
         }

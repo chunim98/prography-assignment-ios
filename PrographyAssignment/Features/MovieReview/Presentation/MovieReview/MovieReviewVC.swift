@@ -130,7 +130,7 @@ final class MovieReviewVC: UIViewController {
 
 #Preview {
     let vc = MovieReviewVC()
-    vc.movieReviewVM = MovieReviewVM(822119)
+    vc.movieReviewVM = DIContainer.shared.makeMovieReviewVM(movieId: 822119)
     return UINavigationController(rootViewController: vc)
 }
 

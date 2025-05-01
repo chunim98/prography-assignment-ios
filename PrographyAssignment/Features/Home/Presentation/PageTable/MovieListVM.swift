@@ -24,9 +24,8 @@ final class MovieListVM {
     
     // MARK: Initializer
     
-    init(article: TMDBService.Article) {
-        self.fetchListCellDataArr =
-        FetchListCellDataArrUseCase(DefaultListCellDataArrRepository(), article)
+    init(fetchListCellDataArr: FetchListCellDataArrUseCase) {
+        self.fetchListCellDataArr = fetchListCellDataArr
     }
     
     // MARK: Event Handling
@@ -38,7 +37,7 @@ final class MovieListVM {
         
         // loadedPageIndex가 갱신되면, 새로운 페이지 누적
         loadedPageIndex
-            .flatMapLatest(fetchListCellDataArr.excute(page:))
+            .flatMapLatest(fetchListCellDataArr.execute(page:))
             .withLatestFrom(listCellDataArr) { $1 + $0 } // 기존+신규
             .bind(to: listCellDataArr)
             .disposed(by: bag)

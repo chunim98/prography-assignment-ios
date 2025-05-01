@@ -33,13 +33,19 @@ final class MyVM {
     
     private let bag = DisposeBag()
     
+    // MARK: Use Cases
+    
+    private let fetchMyMovieCellDataArr: FetchMyMovieCellDataArrUseCase
+    
+    // MARK: Initializer
+    
+    init(fetchMyMovieCellDataArr: FetchMyMovieCellDataArrUseCase) {
+        self.fetchMyMovieCellDataArr = fetchMyMovieCellDataArr
+    }
+    
     // MARK: Event Handling
     
     func transform(_ input: Input) -> Output {
-        // Use Cases
-        let fetchMyMovieCellDataArr =
-        FetchMyMovieCellDataArrUseCase(DefaultMyMovieCellDataArrRepository())
-        
         // Subjects
         let myMovieCellDataArr = BehaviorSubject(value: fetchMyMovieCellDataArr.execute())
         let isFilterListHidden = BehaviorSubject(value: true)
@@ -47,7 +53,7 @@ final class MyVM {
         
         // 화면이 표시될 때마다 리스트 정보 갱신
         input.viewWillAppearEvent
-            .map { _ in fetchMyMovieCellDataArr.execute() }
+            .compactMap { [weak self] _ in self?.fetchMyMovieCellDataArr.execute() }
             .bind(to: myMovieCellDataArr)
             .disposed(by: bag)
         

@@ -35,17 +35,26 @@ final class MovieReviewVM {
     private let movieId: Int
     private let bag = DisposeBag()
     
+    // MARK: Use Cases
+    
+    private let fetchMovieDetail: FetchMovieDetailUseCase
+    private let reviewDataUseCase: ReviewDataUseCase
+    
     // MARK: Initializer
     
-    init(_ movieId: Int) { self.movieId = movieId }
+    init(
+        movieId: Int,
+        fetchMovieDetail: FetchMovieDetailUseCase,
+        reviewDataUseCase: ReviewDataUseCase
+    ) {
+        self.movieId = movieId
+        self.fetchMovieDetail = fetchMovieDetail
+        self.reviewDataUseCase = reviewDataUseCase
+    }
     
     // MARK: Event Handling
     
     func transform(input: Input) -> Output {
-        // Use Cases
-        let fetchMovieDetail = FetchMovieDetailUseCase(DefaultMovieDetailRepository())
-        let reviewDataUseCase = ReviewDataUseCase(DefaultReviewDataRepository())
-        
         // Subjects
         let reviewState = BehaviorSubject<ReviewState>(value: .create)
         let reviewData = BehaviorSubject(value: ReviewData())
@@ -56,7 +65,7 @@ final class MovieReviewVM {
 
         // 세부정보 받고 저장된 리뷰가 있을 경우, 읽기 상태로 업데이트
         movieDetail
-            .map { reviewDataUseCase.read(movieId: $0.id) }
+            .compactMap { [weak self] in self?.reviewDataUseCase.read(movieId: $0.id) }
             .compactMap { $0.map { // 옵셔널 map
                 $0.commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             } }
@@ -65,7 +74,7 @@ final class MovieReviewVM {
         
         // 세부정보 받고 저장된 리뷰가 있을 경우, 리뷰 데이터 업데이트
         movieDetail
-            .compactMap { reviewDataUseCase.read(movieId: $0.id) }
+            .compactMap { [weak self] in self?.reviewDataUseCase.read(movieId: $0.id) }
             .bind(to: reviewData)
             .disposed(by: bag)
         
@@ -109,8 +118,8 @@ final class MovieReviewVM {
         // 바 버튼 이벤트가 삭제이면, 리뷰 데이터 지우고 화면 닫기
         input.barButtonEvent
             .filter { $0 == .delete }
-            .withLatestFrom(reviewData) {
-                reviewDataUseCase.delete($1)
+            .withLatestFrom(reviewData) { [weak self] in
+                self?.reviewDataUseCase.delete($1)
                 HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
             }
             .bind(to: dismissEvent)
@@ -120,7 +129,9 @@ final class MovieReviewVM {
         input .barButtonEvent
             .withLatestFrom(reviewState) { ($0 == .save) && ($1 == .create) }
             .filter { $0 }
-            .withLatestFrom(Observable.combineLatest(reviewData, movieDetail)) { _, combined in
+            .withLatestFrom(
+                Observable.combineLatest(reviewData, movieDetail)
+            ) { [weak self] _, combined in
                 let (review, detail) = combined
                 let commentData = review.commentData.flatMap {
                     $0.comment.isEmpty
@@ -135,7 +146,7 @@ final class MovieReviewVM {
                     commentData: commentData
                 )
                 
-                reviewDataUseCase.create(with: reviewData)
+                self?.reviewDataUseCase.create(with: reviewData)
                 HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
                 return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             }
@@ -146,7 +157,9 @@ final class MovieReviewVM {
         input .barButtonEvent
             .withLatestFrom(reviewState) { ($0 == .save) && ($1 != .create) }
             .filter { $0 }
-            .withLatestFrom(Observable.combineLatest(reviewData, movieDetail)) { _, combined in
+            .withLatestFrom(
+                Observable.combineLatest(reviewData, movieDetail)
+            ) { [weak self] _, combined in
                 let (review, detail) = combined
                 let commentData = review.commentData.flatMap {
                     $0.comment.isEmpty
@@ -161,7 +174,7 @@ final class MovieReviewVM {
                     commentData: commentData
                 )
                 
-                reviewDataUseCase.update(with: reviewData)
+                self?.reviewDataUseCase.update(with: reviewData)
                 HapticManager.shared.occurSuccess() // 햅틱 피드백 발생
                 return commentData == nil ? ReviewState.readOnlyRate : ReviewState.read
             }
